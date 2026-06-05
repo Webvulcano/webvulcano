@@ -1,0 +1,92 @@
+.header {
+  margin-bottom: var(--sp-xl);
+}
+
+.card {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(3rem,10vh,6rem) 0;
+  border-top: 0.5px solid var(--color-border);
+}
+
+.cardLast {
+  border-bottom: 0.5px solid var(--color-border);
+}
+
+.cardCompact {
+  min-height: auto;
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.5rem;
+  margin-bottom: clamp(1.5rem,4vh,3rem);
+}
+
+.arrow {
+  font-size: clamp(1.2rem,1.6vw,1.8rem);
+}
+
+.title {
+  margin-bottom: var(--sp-lg);
+  white-space: nowrap;
+}
+
+.metaGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--gap-meta);
+  margin-bottom: var(--sp-lg);
+}
+
+.metaLabel {
+  composes: t-label c-faint from global;
+  margin-bottom: var(--sp-xs);
+}
+
+.metaValue {
+  composes: t-label from global;
+  color: var(--color-text-strong);
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  text-transform: none;
+}
+
+.summaryGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--gap-content);
+  margin-bottom: var(--sp-lg);
+}
+
+.summaryLabel {
+  composes: t-label c-faint from global;
+  margin-bottom: 0.75rem;
+}
+
+.galleryGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--gap-gallery);
+}
+
+.galleryImgWrap {
+  overflow: hidden;
+}
+
+.galleryImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.moreWrap {
+  display: flex;
+  justify-content: center;
+  padding-top: var(--sp-xl);
+}

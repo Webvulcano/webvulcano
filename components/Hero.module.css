@@ -1,0 +1,133 @@
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: var(--color-bg);
+}
+
+/* ── Glow effect — inspired by prism light refraction ── */
+.glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 900px;
+  height: 500px;
+  transform: translate(-50%, -40%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.glow::before,
+.glow::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+}
+
+.glow::before {
+  background: radial-gradient(
+    ellipse at center,
+    rgba(255, 255, 255, 0.06) 0%,
+    rgba(255, 255, 255, 0.02) 40%,
+    transparent 70%
+  );
+  filter: blur(60px);
+}
+
+.glow::after {
+  background:
+    radial-gradient(ellipse at 30% 50%, rgba(180, 160, 255, 0.04) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 50%, rgba(255, 200, 140, 0.04) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 40%, rgba(140, 220, 255, 0.03) 0%, transparent 50%);
+  filter: blur(80px);
+  animation: glowPulse 8s ease-in-out infinite alternate;
+}
+
+@keyframes glowPulse {
+  0% { opacity: 0.6; transform: scale(1); }
+  100% { opacity: 1; transform: scale(1.08); }
+}
+
+/* ── Content ── */
+.content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: clamp(2rem, 5vh, 6rem) clamp(1.5rem, 5vw, 4rem);
+  max-width: 1100px;
+}
+
+.eyebrow {
+  margin-bottom: clamp(2rem, 5vh, 4rem);
+}
+
+/* ── Headline ── */
+.headline {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+
+.line1,
+.line2 {
+  display: block;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 200;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: var(--color-white);
+}
+
+.line1 {
+  font-size: clamp(2.8rem, 7vw, 7rem);
+}
+
+.line2 {
+  font-size: clamp(3rem, 7.5vw, 7.5rem);
+}
+
+.line2 .cursive {
+  font-size: 1.05em;
+}
+
+/* ── Subtitle ── */
+.sub {
+  margin-top: clamp(1.5rem, 3vh, 2.5rem);
+  font-size: clamp(1rem, 1.5vw, 1.6rem);
+  font-weight: 300;
+  color: var(--color-text-muted);
+  letter-spacing: 0.01em;
+  line-height: 1.5;
+}
+
+/* ── CTA ── */
+.cta {
+  margin-top: clamp(2rem, 4vh, 3.5rem);
+}
+
+/* ── Bottom scarcity ── */
+.bottom {
+  position: absolute;
+  bottom: clamp(2rem, 4vh, 3rem);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+:global([data-theme="light"]) .glow {
+  opacity: 0;
+}
+
+@media (max-width: 768px) {
+  .line1 { font-size: clamp(2rem, 10vw, 3.2rem); }
+  .line2 { font-size: clamp(2.2rem, 11vw, 3.5rem); }
+  .sub { font-size: clamp(0.9rem, 4vw, 1.1rem); }
+  .glow { width: 400px; height: 300px; }
+}

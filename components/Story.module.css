@@ -1,0 +1,37 @@
+.story {
+  border-top: 0.5px solid var(--color-border);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(1.5rem, 3vw, 3rem);
+  max-width: 740px;
+  margin-bottom: var(--sp-lg);
+}
+
+.card {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  padding: clamp(1rem, 2vh, 1.5rem) 0;
+}
+
+.icon {
+  color: var(--color-text-dim);
+  font-size: 0.5rem;
+  margin-top: 0.55rem;
+  flex-shrink: 0;
+}
+
+.reversal {
+  max-width: 520px;
+  padding-top: var(--sp-md);
+  border-top: 0.5px solid var(--color-border);
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
