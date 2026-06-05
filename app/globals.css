@@ -133,6 +133,8 @@ html, body {
 
 .section          { padding-left: var(--section-px-left); padding-right: var(--section-px-right); }
 .section-padded   { padding-top: var(--section-py); padding-bottom: var(--section-py); }
+#works { padding-bottom: clamp(2rem, 6vh, 4rem); }
+#form { padding-top: clamp(2rem, 6vh, 4rem); }
 .section-screen   { min-height: 100vh; display: flex; flex-direction: column; }
 .section-center   { justify-content: center; }
 .flex-col         { display: flex; flex-direction: column; }
@@ -365,10 +367,17 @@ html, body {
 
 @media (max-width: 768px) {
   body { padding-top: 56px; }
+  .section { padding-left: 1.25rem; padding-right: 1.25rem; }
   .hero-grid { grid-template-columns: 1fr !important; }
   .works-meta-grid { grid-template-columns: 1fr 1fr !important; }
   .gallery-grid { grid-template-columns: 1fr 1fr !important; }
   .form-row { grid-template-columns: 1fr !important; }
+  .section-screen { min-height: auto; }
+  .checkbox-group { flex-direction: column; }
+  .checkbox-option { width: 100%; padding: 0.75rem 1rem; min-height: 44px; box-sizing: border-box; }
+  .checkbox-option:hover { border-color: var(--color-border); color: var(--color-text-muted); }
+  .checkbox-option.selected:hover { border-color: #FF6102; color: #FF6102; }
+  #form .btn-primary { width: 100%; text-align: center; }
 }
 
 /* ── Future breakpoints (placeholder) ──

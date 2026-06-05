@@ -79,7 +79,7 @@ export default function QualificationForm() {
       <section id="form" className="section section-screen section-center section-padded">
         <div className={styles.successWrap}>
           <div className="divider-v" />
-          <p className="t-h2 c-white lh-tight-alt" style={{whiteSpace: 'nowrap'}}>
+          <p className="t-h2 c-white lh-tight-alt">
             Fejlődésre fel! <span className="cursive c-accent-l">:)</span>
           </p>
           <p className="t-lead c-muted">
@@ -130,6 +130,7 @@ export default function QualificationForm() {
           <div className={`checkbox-group ${styles.optionGroup}`}>
             {CHALLENGES.map(c => (
               <div key={c} className={`checkbox-option${challenges.includes(c) ? ' selected' : ''}`} onClick={() => toggleChallenge(c)}>
+                <span className={`${styles.check}${challenges.includes(c) ? ` ${styles.checked}` : ''}`} />
                 {c}
               </div>
             ))}
@@ -141,7 +142,7 @@ export default function QualificationForm() {
           <textarea
             ref={textareaRef}
             className="form-textarea"
-            placeholder="Röviden: mivel foglalkozol, és mi a célod a következő hónapokban..."
+            placeholder="Röviden: mivel foglalkozol, és mi a célod..."
             value={description}
             onChange={e => {
               setDescription(e.target.value)

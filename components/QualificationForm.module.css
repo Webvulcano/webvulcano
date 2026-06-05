@@ -71,3 +71,13 @@
   gap: 1.5rem;
   max-width: 480px;
 }
+
+@media (max-width: 768px) {
+  .formBody {
+    max-width: 100%;
+  }
+
+  .successWrap {
+    max-width: 100%;
+  }
+}

@@ -1,5 +1,7 @@
 .story {
   border-top: 0.5px solid var(--color-border);
+  padding-top: clamp(2rem, 6vh, 4rem);
+  padding-bottom: clamp(2rem, 6vh, 4rem);
 }
 
 .grid {
