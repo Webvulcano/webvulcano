@@ -47,6 +47,7 @@ export default function Nav() {
   const [active, setActive] = useState('home')
   const [isMobile, setIsMobile] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
+  const [pastHero, setPastHero] = useState(false)
   const { theme, toggleTheme } = useTheme()
 
   useEffect(() => {
@@ -59,6 +60,17 @@ export default function Nav() {
     mql.addEventListener('change', handler)
     return () => mql.removeEventListener('change', handler)
   }, [])
+
+  useEffect(() => {
+    if (!isMobile || mode !== 'home') return
+    const hero = document.getElementById('home')
+    if (!hero) return
+    const obs = new IntersectionObserver(([entry]) => {
+      setPastHero(!entry.isIntersecting)
+    }, { threshold: 0.4 })
+    obs.observe(hero)
+    return () => obs.disconnect()
+  }, [isMobile, mode])
 
   useEffect(() => {
     if (menuOpen) {
@@ -92,7 +104,7 @@ export default function Nav() {
   if (isMobile) {
     return (
       <>
-        <nav className={styles.topbar}>
+        <nav className={`${styles.topbar} ${pastHero ? styles.topbarVisible : styles.topbarHidden}`}>
           <Link href="/" className={styles.topbarLogo}>
             🌋
           </Link>

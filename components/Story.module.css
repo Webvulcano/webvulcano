@@ -32,6 +32,13 @@
 
 @media (max-width: 768px) {
   .grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(1rem, 2vw, 1.5rem);
+    max-width: 100%;
+  }
+
+  .card {
+    flex-direction: column;
+    gap: 0.5rem;
   }
 }
