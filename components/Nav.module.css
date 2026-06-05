@@ -1,3 +1,5 @@
+/* ── Desktop sidebar (>768px) ── */
+
 .sidebar {
   position: fixed;
   top: 0;
@@ -7,7 +9,6 @@
   z-index: 50;
   display: flex;
   flex-direction: column;
-  /* logo top, links centered, bottom empty */
   padding: clamp(1rem,2.5vw,2.5rem);
 }
 
@@ -68,3 +69,133 @@
 .themeToggle:hover {
   transform: scale(1.15);
 }
+
+/* ── Mobile top bar (<768px) ── */
+
+.topbar {
+  display: none;
+}
+
+.topbarLogo {
+  font-size: 1.5rem;
+  text-decoration: none;
+  line-height: 1;
+}
+
+.topbarBack {
+  composes: t-meta unstyled-btn from global;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+  transition: color 0.3s;
+}
+
+.topbarBack:hover {
+  color: #FF6102;
+}
+
+.topbarCta {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.5rem 1.2rem;
+  font-size: var(--fs-meta);
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    display: none;
+  }
+
+  .topbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 56px;
+    z-index: 110;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1.25rem;
+    background: var(--color-bg);
+    backdrop-filter: blur(12px);
+  }
+}
+
+/* ── Hamburger ── */
+
+.hamburger {
+  composes: unstyled-btn from global;
+  position: relative;
+  width: 24px;
+  height: 18px;
+  cursor: pointer;
+  z-index: 110;
+}
+
+.hamburger span {
+  display: block;
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--color-text);
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+.hamburger span:nth-child(1) { top: 0; }
+.hamburger span:nth-child(2) { top: 8px; }
+.hamburger span:nth-child(3) { top: 16px; }
+
+.hamburgerOpen span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.hamburgerOpen span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburgerOpen span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* ── Fullscreen overlay ── */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: var(--color-bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 5rem 2rem 3rem;
+}
+
+.overlayLinks {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.overlayLink {
+  composes: unstyled-btn from global;
+  font-family: 'Montserrat', sans-serif;
+  font-size: var(--fs-h3);
+  font-weight: 300;
+  letter-spacing: 0.04em;
+  color: var(--color-text-muted);
+  transition: color 0.3s;
+  cursor: pointer;
+}
+
+.overlayLink:hover,
+.overlayLinkActive {
+  color: #FF6102;
+}
+

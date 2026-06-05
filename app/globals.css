@@ -364,9 +364,14 @@ html, body {
    ══════════════════════════════════════════════════════════ */
 
 @media (max-width: 768px) {
-  .nav-sidebar { display: none; }
+  body { padding-top: 56px; }
   .hero-grid { grid-template-columns: 1fr !important; }
   .works-meta-grid { grid-template-columns: 1fr 1fr !important; }
   .gallery-grid { grid-template-columns: 1fr 1fr !important; }
   .form-row { grid-template-columns: 1fr !important; }
 }
+
+/* ── Future breakpoints (placeholder) ──
+@media (max-width: 1024px) { }
+@media (max-width: 1280px) { }
+*/
