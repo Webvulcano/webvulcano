@@ -9,7 +9,7 @@ import styles from './Nav.module.css'
 const MENU = [['home', 'Home'], ['story', 'Szolgáltatás'], ['works', 'Eredmények'], ['form', 'Audit']]
 const CENTER = (MENU.length - 1) / 2
 const STEP = 26
-const BP_MOBILE = 768
+const BP_MOBILE = 950
 
 const listVariants = {
   initial: {},
