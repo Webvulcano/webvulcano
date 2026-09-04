@@ -180,7 +180,7 @@ export default function QualificationForm() {
           <div className={styles.riskReversal}>
             <div className="scarcity-chip">
               <span className="scarcity-dot" />
-              Havonta 5 vállalkozásnak
+              Havonta csak 5 vállalkozásnak
             </div>
             <p className="t-tiny c-faint mt-sm">
               Nem kötöd le magad. Nem küldök spamet. Egy személyes elemzést kapsz — ennyi.

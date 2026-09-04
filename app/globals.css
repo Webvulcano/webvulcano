@@ -122,6 +122,7 @@ html, body {
 
 .t-hero    { font-size: var(--fs-hero);    font-weight: var(--fw-thin);    line-height: var(--lh-tight);   letter-spacing: var(--tr-display); }
 .t-h2      { font-size: var(--fs-h2);      font-weight: var(--fw-regular); line-height: var(--lh-snug);    letter-spacing: var(--tr-h2); }
+.t-h3      { font-size: var(--fs-h3);      font-weight: var(--fw-regular); line-height: var(--lh-snug);    letter-spacing: var(--tr-h2); }
 .t-lead    { font-size: var(--fs-lead);    font-weight: var(--fw-regular); line-height: var(--lh-normal); }
 .t-body    { font-size: var(--fs-body);    font-weight: var(--fw-regular); line-height: var(--lh-loose);   letter-spacing: var(--tr-body); }
 .t-body-sm { font-size: var(--fs-body-sm); font-weight: var(--fw-regular); line-height: var(--lh-relaxed); letter-spacing: var(--tr-body); }

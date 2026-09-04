@@ -196,7 +196,7 @@
 .overlayLink {
   composes: unstyled-btn from global;
   font-family: 'Montserrat', sans-serif;
-  font-size: var(--fs-h3);
+  font-size: var(--fs-lead);
   font-weight: 300;
   letter-spacing: 0.04em;
   color: var(--color-text-muted);

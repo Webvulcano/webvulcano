@@ -15,7 +15,7 @@
 
 .text {
   font-family: 'Montserrat', sans-serif;
-  font-size: clamp(1.1rem,2vw,1.4rem);
+  font-size: var(--fs-lead);
   font-weight: var(--fw-thin);
   letter-spacing: 0.04em;
   color: var(--color-white);
