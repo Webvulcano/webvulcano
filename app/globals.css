@@ -381,6 +381,18 @@ html, body {
   .checkbox-option:hover { border-color: var(--color-border); color: var(--color-text-muted); }
   .checkbox-option.selected:hover { border-color: #FF6102; color: #FF6102; }
   #form .btn-primary { width: 100%; text-align: center; }
+
+  :root {
+    --fs-hero:    clamp(3.25rem, 7.15vw, 7.8rem);
+    --fs-h2:      clamp(2.6rem, 5.2vw, 5.85rem);
+    --fs-h3:      clamp(1.625rem, 2.34vw, 2.34rem);
+    --fs-lead:    clamp(1.235rem, 1.69vw, 1.95rem);
+    --fs-body:    clamp(1.105rem, 1.365vw, 1.43rem);
+    --fs-body-sm: clamp(1.17rem, 1.43vw, 1.56rem);
+    --fs-meta:    clamp(0.78rem, 0.975vw, 1.105rem);
+    --fs-label:   clamp(0.78rem, 0.91vw, 1.04rem);
+    --fs-tiny:    clamp(0.715rem, 0.845vw, 0.975rem);
+  }
 }
 
 /* ── Future breakpoints (placeholder) ──

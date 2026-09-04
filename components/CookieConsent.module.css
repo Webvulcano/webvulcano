@@ -65,6 +65,11 @@
   border-color: #FF6102;
 }
 
+@media (max-width: 950px) {
+  .text { font-size: clamp(0.88rem, 1.04vw, 1.2rem); }
+  .actions button { font-size: clamp(0.96rem, 1.12vw, 1.28rem); }
+}
+
 @media (max-width: 480px) {
   .banner {
     width: calc(100% - 1.5rem);

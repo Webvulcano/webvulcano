@@ -8,6 +8,11 @@ export const metadata = {
   description: 'Meséld el a vállalkozásod. Én elkezdelek segíteni — teljesen ingyen.',
 }
 
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+}
+
 export default function RootLayout({ children }) {
   return (
     <html lang="hu" suppressHydrationWarning>

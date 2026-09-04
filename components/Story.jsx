@@ -3,10 +3,8 @@ import { useEffect, useRef } from 'react'
 import styles from './Story.module.css'
 
 const AUDIT_ITEMS = [
-  { icon: '◉', title: 'Weboldal audit', desc: 'Mi működik, mi nem — pontról pontra.' },
-  { icon: '◉', title: 'SEO elemzés', desc: 'Hol veszítesz látogatókat a Google-ön.' },
-  { icon: '◉', title: 'Sebesség teszt', desc: 'Miért lassú az oldalad és hogyan javítható.' },
-  { icon: '◉', title: 'Automatizációs javaslat', desc: 'Mit lehet egyszerűsíteni a folyamataidban.' },
+  { icon: '◉', title: 'Weboldal vázlat', desc: 'Megmutatom milyen weboldalad lehetne.' },
+  { icon: '◉', title: 'Automatizációs javaslat', desc: 'Megbeszéljük milyen monoton feladataid vannak és mit lehet egyszerűsíteni a folyamataidban.' },
 ]
 
 export default function Story() {
