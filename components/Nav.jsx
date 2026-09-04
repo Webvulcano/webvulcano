@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useTheme } from './ThemeProvider'
 import styles from './Nav.module.css'
 
-const MENU = [['home', 'Home'], ['story', 'Szolgáltatás'], ['works', 'Eredmények'], ['form', 'Audit']]
+const MENU = [['home', 'Home'], ['story', 'Szolgáltatás'], ['works', 'Eredmények'], ['form', 'Vázlat']]
 const CENTER = (MENU.length - 1) / 2
 const STEP = 26
 const BP_MOBILE = 950
@@ -114,7 +114,7 @@ export default function Nav() {
               className={`btn-primary ${styles.topbarCta}`}
               onClick={() => { setMenuOpen(false); setTimeout(() => scrollTo('form'), 100) }}
             >
-              Ingyenes Audit
+              Ingyenes Vázlat
             </button>
           )}
 
@@ -158,7 +158,7 @@ export default function Nav() {
                     className="btn-primary"
                     onClick={() => handleMobileNav('form')}
                   >
-                    Ingyenes Audit →
+                    Ingyenes Vázlat →
                   </button>
                 </motion.li>
               </motion.ul>

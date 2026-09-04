@@ -4,11 +4,10 @@ import Link from 'next/link'
 import styles from './QualificationForm.module.css'
 
 const CHALLENGES = [
-  'Nem találnak rám a Google-ön',
-  'Kevés megkeresés / érdeklődő jön',
+  'Nincs weboldalunk',
   'Elavult vagy nem profi a weboldalunk',
   'Lassú a weboldalunk',
-  'Sok időt töltök ismétlődő feladatokkal',
+  'Weboldalam van, de sok monoton adminisztrációs feladataim vannak',
 ]
 
 export default function QualificationForm() {
@@ -80,10 +79,10 @@ export default function QualificationForm() {
         <div className={styles.successWrap}>
           <div className="divider-v" />
           <p className="t-h2 c-white lh-tight-alt">
-            Fejlődésre fel! <span className="cursive c-accent-l">:)</span>
+            Köszi! Már nézem is a vállalkozásod.
           </p>
           <p className="t-lead c-muted">
-            24–48 órán belül személyesen visszajelzek.
+            24 órán belül személyesen visszajelzek.
           </p>
         </div>
       </section>
@@ -97,10 +96,10 @@ export default function QualificationForm() {
       <div className={`reveal ${styles.header}`}>
         <p className="t-h2 c-white lh-tighter max-w-title">
           Kérem a díjmentes{' '}
-          <span className="cursive c-body">auditot</span>
+          <span className="cursive c-body">vázlatot</span>
         </p>
         <p className="t-lead reveal reveal-delay-1 c-dim mt-sm max-w-sub">
-          2 perc kitölteni. 48 órán belül küldöm a személyes elemzésed.
+          2 perc kitölteni. 24 órán belül felveszem veled a kapcsolatot.
         </p>
       </div>
 
@@ -175,7 +174,7 @@ export default function QualificationForm() {
             </span>
           </div>
           <button type="submit" className="btn-primary" disabled={sending} style={{ marginTop: '1rem' }}>
-            {sending ? 'Küldés...' : 'Kérem az auditot'}
+            {sending ? 'Küldés...' : 'Kérem a vázlatot'}
           </button>
           {error && <p className="t-tiny" style={{ color: '#ff4444', marginTop: '0.5rem' }}>{error}</p>}
           <div className={styles.riskReversal}>

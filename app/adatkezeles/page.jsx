@@ -8,7 +8,7 @@ export default function AdatkezelesPage() {
     <main className="section section-padded" style={{ paddingTop: 'clamp(3rem,8vh,6rem)', paddingBottom: '4rem' }}>
 
       <h1 className="t-h2 c-white lh-tighter mb-lg">Adatkezelési tájékoztató</h1>
-      <p className="t-tiny c-faint mb-lg">Utolsó frissítés: 2026. június 3.</p>
+      <p className="t-tiny c-faint mb-lg">Utolsó frissítés: 2026. szeptember 4.</p>
 
       <div className="privacy-content">
 
@@ -33,6 +33,10 @@ export default function AdatkezelesPage() {
             <li>Weboldal URL (opcionális)</li>
             <li>Vállalkozással kapcsolatos információk (kihívások, leírás)</li>
           </ul>
+          <p className="t-body c-body mt-sm">
+            Emellett a weboldal látogatása során, hozzájárulása esetén, automatikusan
+            gyűjtött használati adatokat is kezelünk (lásd 9. pont).
+          </p>
         </section>
 
         <section className="mb-lg">
@@ -43,14 +47,26 @@ export default function AdatkezelesPage() {
           <ul className="t-body c-body" style={{ paddingLeft: '1.2rem', marginTop: '0.5rem', listStyle: 'disc' }}>
             <li>Díjmentes weboldal audit elkészítése és visszaküldése</li>
             <li>Kapcsolatfelvétel az audit eredményeivel kapcsolatban</li>
+            <li>
+              Az audit előkészítéséhez az Ön által megadott email cím alapján nyilvánosan
+              elérhető, a vállalkozására vonatkozó információk (pl. weboldal, közösségi
+              média, cégadatok) megismerése
+            </li>
+            <li>Weboldalunk teljesítményének és látogatottságának mérése, fejlesztése</li>
           </ul>
         </section>
 
         <section className="mb-lg">
           <h2 className="t-lead c-strong mb-sm">4. Az adatkezelés jogalapja</h2>
           <p className="t-body c-body">
-            Az adatkezelés jogalapja az Ön önkéntes hozzájárulása (GDPR 6. cikk (1) bekezdés a) pont),
-            amelyet az űrlap elküldésével ad meg.
+            Az űrlap kitöltésével kapcsolatos adatkezelés jogalapja az Ön önkéntes hozzájárulása
+            (GDPR 6. cikk (1) bekezdés a) pont), amelyet az űrlap elküldésével ad meg.
+          </p>
+          <p className="t-body c-body mt-sm">
+            Az email cím alapján végzett, nyilvánosan elérhető céginformációk megismerése
+            jogos érdeken alapul (GDPR 6. cikk (1) bekezdés f) pont): az audit csak így
+            készíthető el érdemben. Az elemző (analitikai) sütik használatának jogalapja
+            az Ön külön hozzájárulása, amelyet a weboldalon megjelenő cookie-tájékoztatóban ad meg.
           </p>
         </section>
 
@@ -66,8 +82,16 @@ export default function AdatkezelesPage() {
           <h2 className="t-lead c-strong mb-sm">6. Adattovábbítás</h2>
           <p className="t-body c-body">
             Az űrlap adatait a Web3Forms szolgáltatáson keresztül továbbítjuk email formájában.
-            A Web3Forms adatvédelmi irányelvei elérhetők: web3forms.com. Harmadik félnek
-            az adatokat nem adjuk tovább, nem értékesítjük.
+            A Web3Forms adatvédelmi irányelvei elérhetők: web3forms.com.
+          </p>
+          <p className="t-body c-body mt-sm">
+            Hozzájárulása esetén a weboldal látogatási adatait az alábbi szolgáltatók kezelik
+            adatfeldolgozóként: Google (Google Analytics, Google Search Console) és Microsoft
+            (Microsoft Clarity). Adatvédelmi irányelveik: policies.google.com/privacy és
+            privacy.microsoft.com.
+          </p>
+          <p className="t-body c-body mt-sm">
+            Ezeken kívül harmadik félnek az adatokat nem adjuk tovább, nem értékesítjük.
           </p>
         </section>
 
@@ -103,9 +127,23 @@ export default function AdatkezelesPage() {
         <section className="mb-lg">
           <h2 className="t-lead c-strong mb-sm">9. Cookie-k és sütik</h2>
           <p className="t-body c-body">
-            A weboldal kizárólag a témaválasztás (világos/sötét mód) és a visszatérő
-            látogató felismerése céljából használ localStorage-ot. Harmadik féltől származó
-            sütiket nem alkalmazunk. Analitikai vagy reklámcélú cookie-kat nem használunk.
+            A weboldal a témaválasztás (világos/sötét mód) és a visszatérő látogató
+            felismerése céljából technikailag szükséges localStorage-ot használ, hozzájárulás
+            nélkül is.
+          </p>
+          <p className="t-body c-body mt-sm">
+            Az Ön hozzájárulása esetén az alábbi elemző (analitikai) cookie-kat / eszközöket
+            használjuk a weboldal teljesítményének és a látogatói viselkedés megértéséhez:
+          </p>
+          <ul className="t-body c-body" style={{ paddingLeft: '1.2rem', marginTop: '0.5rem', listStyle: 'disc' }}>
+            <li>Google Analytics — látogatottsági statisztika</li>
+            <li>Google Search Console — keresési teljesítmény mérése</li>
+            <li>Microsoft Clarity — hőtérkép és munkamenet-felvétel a felhasználói élmény javításához</li>
+          </ul>
+          <p className="t-body c-body mt-sm">
+            Ezek a sütik nem szükségesek a weboldal működéséhez, ezért csak az Ön előzetes
+            hozzájárulásával kerülnek használatra. Hozzájárulását a weboldalon megjelenő
+            cookie-tájékoztatóban bármikor megadhatja vagy visszavonhatja.
           </p>
         </section>
 

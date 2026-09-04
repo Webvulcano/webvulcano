@@ -26,13 +26,13 @@ export default function Hero() {
         </h1>
 
         <p className={`hero-fade ${styles.sub}`}>
-          Megmutatom, miért nem hoz ügyfelet a weboldalad —{' '}
+          Megmutatom milyen weboldalad lehetne -{' '}
           <span className="cursive c-white">díjmentesen.</span>
         </p>
 
         <div className={`hero-fade ${styles.cta}`}>
           <a href="#form" onClick={scrollToForm}>
-            <button className="btn-primary">Kérem a díjmentes auditot →</button>
+            <button className="btn-primary">Kérem a díjmentes vázlatot →</button>
           </a>
         </div>
 
