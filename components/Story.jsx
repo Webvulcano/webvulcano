@@ -37,8 +37,12 @@ export default function Story() {
     <section id="story" ref={sectionRef} className={`section section-padded ${styles.story}`}>
       <div className="reveal divider-v mb-lg" />
 
-      <p className="reveal t-meta c-dim mb-lg">
+      <h2 className="reveal t-meta c-dim mb-lg">
         Mit kapsz díjmentesen?
+      </h2>
+
+      <p className="reveal t-body c-muted mb-lg">
+        Ingyenes weboldal-terv és automatizációs javaslat budapesti vállalkozásoknak.
       </p>
 
       <div className={`reveal ${styles.grid}`}>

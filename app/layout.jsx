@@ -4,8 +4,22 @@ import Nav from '@/components/Nav'
 import CookieConsent from '@/components/CookieConsent'
 
 export const metadata = {
-  title: 'webvulcano — weboldal & automatizáció',
-  description: 'Meséld el a vállalkozásod. Én elkezdelek segíteni — teljesen ingyen.',
+  title: 'Weboldal készítés Budapest — ingyenes terv | webvulcano',
+  description: 'Ingyenes weboldal-terv budapesti vállalkozásoknak. Gyors, modern weboldal, ami mérhetően hoz érdeklődőt.',
+}
+
+const localBusinessSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  name: 'webvulcano',
+  url: 'https://www.webvulcano.hu',
+  email: 'info@webvulcano.hu',
+  areaServed: {
+    '@type': 'City',
+    name: 'Budapest',
+  },
+  priceRange: '80000-200000 HUF',
+  description: 'Weboldal készítés Budapesten — modern, gyors, konverzióra optimalizált weboldalak helyi vállalkozásoknak.',
 }
 
 export const viewport = {
@@ -27,6 +41,10 @@ export default function RootLayout({ children }) {
             }
           })();
         `}} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+        />
       </head>
       <body>
         <ThemeProvider>

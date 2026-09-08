@@ -13,7 +13,7 @@ export default function Hero() {
 
       <div className={styles.content}>
         <p className={`hero-fade t-meta c-dim ${styles.eyebrow}`}>
-          webvulcano — weboldal & automatizáció
+          webvulcano — weboldal készítés Budapesten
         </p>
 
         <h1 className={styles.headline}>

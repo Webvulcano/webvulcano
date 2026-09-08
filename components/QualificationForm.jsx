@@ -96,10 +96,10 @@ export default function QualificationForm() {
       <div className="reveal divider-v mb-lg" />
 
       <div className={`reveal ${styles.header}`}>
-        <p className="t-h2 c-white lh-tighter max-w-title">
+        <h2 className="t-h2 c-white lh-tighter max-w-title">
           Kérem a díjmentes{' '}
           <span className="cursive c-body">vázlatot</span>
-        </p>
+        </h2>
         <p className="t-lead reveal reveal-delay-1 c-dim mt-sm max-w-sub">
           2 perc kitölteni. 24 órán belül felveszem veled a kapcsolatot.
         </p>
@@ -185,7 +185,7 @@ export default function QualificationForm() {
               Havonta csak 5 vállalkozásnak
             </div>
             <p className="t-tiny c-faint mt-sm">
-              Nem kötöd le magad. Nem küldök spamet. Egy személyes elemzést kapsz — ennyi.
+              Nem kötöd le magad. Nem küldök spamet. Egy vadonat új vázlatot kapsz - ennyi.
             </p>
           </div>
         </div>

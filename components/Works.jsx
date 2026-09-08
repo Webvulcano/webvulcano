@@ -21,9 +21,9 @@ export default function Works() {
 
   return (
     <section id="works" className="section section-padded">
-      <p ref={headerRef} className={`reveal t-meta c-dim ${styles.header}`}>
+      <h2 ref={headerRef} className={`reveal t-meta c-dim ${styles.header}`}>
         Így segítettem vállalkozásoknak
-      </p>
+      </h2>
       {featured.map((p, i) => <ProjectCard key={i} project={p} last={i === featured.length - 1} index={i} />)}
 
       <div className={styles.moreWrap}>

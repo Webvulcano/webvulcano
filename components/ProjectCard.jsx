@@ -56,7 +56,7 @@ export default function ProjectCard({ project, last, index, compact }) {
         <div className={`gallery-grid ${styles.galleryGrid}`}>
           {project.images.map((src, i) => (
             <div key={i} className={`gallery-img ${styles.galleryImgWrap}`}>
-              <img src={src} alt={`${project.title} screenshot`} className={styles.galleryImage} />
+              <img src={src} alt={`${project.title} weboldal készítés Budapest — képernyőkép ${i + 1}`} className={styles.galleryImage} />
             </div>
           ))}
         </div>
