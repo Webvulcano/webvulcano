@@ -13,6 +13,7 @@ export default function Works() {
   useEffect(() => {
     const el = headerRef.current
     if (!el) return
+    if (el.getBoundingClientRect().top < window.innerHeight) { el.classList.add('visible'); return }
     const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) { el.classList.add('visible'); obs.disconnect() } }, { threshold: 0.1 })
     obs.observe(el)
     return () => obs.disconnect()

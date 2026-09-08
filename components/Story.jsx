@@ -13,10 +13,12 @@ export default function Story() {
   useEffect(() => {
     const el = sectionRef.current
     if (!el) return
+    const reveal = () => el.querySelectorAll('.reveal').forEach(r => r.classList.add('visible'))
+    if (el.getBoundingClientRect().top < window.innerHeight) { reveal(); return }
     const obs = new IntersectionObserver(
       ([e]) => {
         if (e.isIntersecting) {
-          el.querySelectorAll('.reveal').forEach(r => r.classList.add('visible'))
+          reveal()
           obs.disconnect()
         }
       },

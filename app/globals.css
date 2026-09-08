@@ -382,6 +382,7 @@ html, body {
   .checkbox-option:hover { border-color: var(--color-border); color: var(--color-text-muted); }
   .checkbox-option.selected:hover { border-color: #FF6102; color: #FF6102; }
   #form .btn-primary { width: 100%; text-align: center; }
+  #home .btn-primary { padding: 0.9rem 1.5rem; font-size: clamp(0.7rem, 3vw, 0.85rem); white-space: nowrap; }
 
   :root {
     --fs-hero:    clamp(3.25rem, 7.15vw, 7.8rem);

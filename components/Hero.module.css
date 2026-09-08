@@ -62,6 +62,7 @@
   text-align: center;
   padding: clamp(2rem, 5vh, 6rem) clamp(1.5rem, 5vw, 4rem);
   max-width: 1100px;
+  transform: translateY(-6vh);
 }
 
 .eyebrow {
@@ -130,4 +131,5 @@
   .line2 { font-size: clamp(2.2rem, 11vw, 3.5rem); }
   .sub { font-size: clamp(0.9rem, 4vw, 1.1rem); }
   .glow { width: 400px; height: 300px; }
+  .content { transform: translateY(-14vh); }
 }

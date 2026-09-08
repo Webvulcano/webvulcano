@@ -8,6 +8,7 @@ export default function ProjectCard({ project, last, index, compact }) {
   useEffect(() => {
     const el = ref.current
     if (!el) return
+    if (el.getBoundingClientRect().top < window.innerHeight) { el.classList.add('visible'); return }
     const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) { el.classList.add('visible'); obs.disconnect() } }, { threshold: 0.08 })
     obs.observe(el)
     return () => obs.disconnect()

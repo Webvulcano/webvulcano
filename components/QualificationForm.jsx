@@ -28,7 +28,9 @@ export default function QualificationForm() {
   useEffect(() => {
     const el = sectionRef.current
     if (!el) return
-    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) { el.querySelectorAll('.reveal').forEach(r => r.classList.add('visible')); obs.disconnect() } }, { threshold: 0.05 })
+    const reveal = () => el.querySelectorAll('.reveal').forEach(r => r.classList.add('visible'))
+    if (el.getBoundingClientRect().top < window.innerHeight) { reveal(); return }
+    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) { reveal(); obs.disconnect() } }, { threshold: 0.05 })
     obs.observe(el)
     return () => obs.disconnect()
   }, [])
