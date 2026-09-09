@@ -12,6 +12,12 @@
   padding: clamp(1rem,2.5vw,2.5rem);
 }
 
+.sidebarLogo {
+  font-size: 1.5rem;
+  line-height: 1;
+  text-decoration: none;
+}
+
 .linksWrap {
   position: relative;
   margin: auto 0;

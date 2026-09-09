@@ -172,7 +172,7 @@ export default function Nav() {
   /* ── Desktop / Tablet ── */
   return (
     <nav className={`nav-sidebar ${styles.sidebar}`}>
-      <Link href="/" className="t-meta unstyled-btn c-white">
+      <Link href="/" className={`unstyled-btn c-white ${styles.sidebarLogo}`}>
         🌋
       </Link>
 
