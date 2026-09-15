@@ -48,19 +48,17 @@ export default function QualificationForm() {
     setSending(true)
     setError('')
 
-    const formData = new FormData()
-    formData.append('access_key', '9236e513-d688-4a37-9bfe-ee9894175975')
-    formData.append('subject', `Név: ${name}`)
-    formData.append('name', name)
-    formData.append('email', email)
-    formData.append('website', noWebsite ? 'Nincs weboldala' : website)
-    formData.append('challenges', challenges.join(', ') || 'Nem választott')
-    formData.append('description', description || 'Nem írt leírást')
-
     try {
-      const res = await fetch('https://api.web3forms.com/submit', {
+      const res = await fetch('/api/lead', {
         method: 'POST',
-        body: formData,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name,
+          email,
+          website: noWebsite ? '' : website,
+          painpoint: challenges.join(', ') || 'Nem választott',
+          goal: description || 'Nem írt leírást',
+        }),
       })
       const data = await res.json()
       if (data.success) {
