@@ -1,0 +1,50 @@
+.stars {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: var(--sp-lg);
+}
+
+.star {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-size: clamp(2.2rem, 6vw, 3rem);
+  line-height: 1;
+  color: var(--color-border);
+  transition: color 0.2s, transform 0.15s;
+}
+
+.star.filled {
+  color: #FF6102;
+  transform: scale(1.08);
+}
+
+.followUp {
+  margin-top: var(--sp-lg);
+  max-width: 560px;
+}
+
+.successWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: var(--sp-lg);
+  max-width: 560px;
+}
+
+.signatureText {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.signatureText p {
+  line-height: 1.6;
+}
+
+.signature {
+  margin-top: 0.4rem;
+  font-style: italic;
+  opacity: 0.8;
+}

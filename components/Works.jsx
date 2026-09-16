@@ -3,7 +3,7 @@ import { useEffect, useRef } from 'react'
 import Link from 'next/link'
 import styles from './Works.module.css'
 import { projects } from './projectlist'
-import ProjectCard from './ProjectCard'
+import WorksMarquee from './WorksMarquee'
 
 const featured = projects.filter(p => p.featured)
 
@@ -24,7 +24,7 @@ export default function Works() {
       <h2 ref={headerRef} className={`reveal t-meta c-dim ${styles.header}`}>
         Így segítettem vállalkozásoknak
       </h2>
-      {featured.map((p, i) => <ProjectCard key={i} project={p} last={i === featured.length - 1} index={i} />)}
+      <WorksMarquee projects={featured} />
 
       <div className={styles.moreWrap}>
         <Link href="/projektek" className="btn-primary">Összes projekt →</Link>

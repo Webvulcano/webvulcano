@@ -22,16 +22,16 @@
   --color-border: rgba(136,136,136,0.45);
   --color-border-strong: rgba(136,136,136,0.67);
 
-  /* ── Type Scale (fluid, 16px base / 1.2 minor third) ── */
+  /* ── Type Scale (static, 16px base / 1.2 minor third — hero excepted) ── */
   --fs-hero:    clamp(2.5rem, 5.5vw, 6rem);          /* kiugró, nincs a lépcsőn */
-  --fs-h2:      clamp(2rem, 4vw, 4.5rem);            /* kiugró, nincs a lépcsőn */
-  --fs-h3:      clamp(1.728rem, 2.16vw, 1.944rem);
-  --fs-lead:    clamp(1.440rem, 1.80vw, 1.620rem);
-  --fs-body:    clamp(1rem, 1.25vw, 1.125rem);
-  --fs-body-sm: clamp(1.200rem, 1.50vw, 1.350rem);
-  --fs-meta:    clamp(0.833rem, 1.04vw, 0.938rem);
-  --fs-label:   clamp(0.694rem, 0.87vw, 0.781rem);
-  --fs-tiny:    clamp(0.694rem, 0.87vw, 0.781rem);
+  --fs-h2:      2.074rem;
+  --fs-h3:      1.728rem;
+  --fs-lead:    1.440rem;
+  --fs-body:    1rem;
+  --fs-body-sm: 1.200rem;
+  --fs-meta:    0.833rem;
+  --fs-label:   0.694rem;
+  --fs-tiny:    0.694rem;
 
   /* ── Font Weights ── */
   --fw-thin: 200;
@@ -386,7 +386,6 @@ html, body {
 
   :root {
     --fs-hero: clamp(3.25rem, 7.15vw, 7.8rem);
-    --fs-h2:   clamp(2.6rem, 5.2vw, 5.85rem);
   }
 }
 

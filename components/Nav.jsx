@@ -43,7 +43,7 @@ const overlayItemVariants = {
 
 export default function Nav() {
   const pathname = usePathname()
-  const mode = (pathname === '/projektek' || pathname === '/adatkezeles') ? 'back' : 'home'
+  const mode = (pathname === '/projektek' || pathname === '/adatkezeles' || pathname === '/ertekeles') ? 'back' : 'home'
   const [active, setActive] = useState('home')
   const [isMobile, setIsMobile] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)

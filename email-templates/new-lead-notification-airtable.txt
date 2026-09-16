@@ -1,0 +1,16 @@
+Szia Lehel! 🌋 Új űrlapkitöltés érkezett.
+
+<span style="color:#FF6102;">**Név**</span>
+{{NÉV}}
+
+<span style="color:#FF6102;">**Email**</span>
+{{EMAIL}}
+
+<span style="color:#FF6102;">**Website**</span>
+{{WEBSITE}}
+
+<span style="color:#FF6102;">**Painpoint**</span>
+{{PAINPOINT}}
+
+<span style="color:#FF6102;">**Goal**</span>
+{{GOAL}}

@@ -59,6 +59,16 @@ const projectData = [
   },
 ]
 
-export const projects = projectData.map((p, i) => ({
+function slugify(str) {
+  return str
+    .normalize('NFD')
+    .replace(/[̀-ͯ]/g, '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+}
+
+export const projects = projectData.map((p) => ({
   ...p,
+  slug: slugify(p.title),
 }))

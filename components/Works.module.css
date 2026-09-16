@@ -17,6 +17,7 @@
 
 .cardCompact {
   min-height: auto;
+  scroll-margin-top: 80px;
 }
 
 .cardHeader {

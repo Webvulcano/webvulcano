@@ -1,0 +1,118 @@
+.viewport {
+  --card-w: clamp(260px, 30vw, 380px);
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  padding: var(--sp-lg) 0 calc(var(--sp-lg) + 32px);
+}
+
+.clip {
+  position: relative;
+  width: calc(var(--card-w) * 2.28);
+  overflow: hidden;
+}
+
+.stage {
+  position: relative;
+  width: var(--card-w);
+  aspect-ratio: 1082 / 856;
+  margin: 0 auto;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  display: block;
+  transform: translateX(var(--tx));
+  z-index: var(--z);
+  transition: transform 0.6s cubic-bezier(0.4,0,0.2,1), opacity 0.6s cubic-bezier(0.4,0,0.2,1);
+}
+
+.slide:hover {
+  transform: translateX(var(--tx)) scale(1.06);
+  z-index: 5;
+}
+
+.frame {
+  position: absolute;
+  left: 11%;
+  right: 0;
+  top: 7%;
+  bottom: 0;
+  border-radius: 20px;
+  background: linear-gradient(150deg, #2a2018, #131110);
+  box-shadow: 0 16px 32px -14px rgba(0,0,0,0.5);
+}
+
+[data-theme="light"] .frame {
+  background: #FFFFFF;
+  border: 0.5px solid var(--color-border);
+  box-shadow: 0 12px 26px -14px rgba(0,0,0,0.22);
+}
+
+.image {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  pointer-events: none;
+}
+
+.chip {
+  composes: t-tiny from global;
+  position: absolute;
+  right: -10px;
+  top: 14px;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  background: #f2efe9;
+  color: #1c1712;
+  padding: 6px 12px;
+  border-radius: 999px;
+  box-shadow: 0 8px 16px -6px rgba(0,0,0,0.4);
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+.statBadge {
+  position: absolute;
+  left: -16px;
+  bottom: -18px;
+  z-index: 3;
+  background: #FF6102;
+  color: #1a0900;
+  padding: 12px 18px;
+  border-radius: 14px;
+  box-shadow: 0 10px 22px -8px rgba(0,0,0,0.5);
+  max-width: 75%;
+}
+
+.statBig {
+  composes: t-h3 from global;
+  color: inherit;
+}
+
+.statSmall {
+  composes: t-tiny from global;
+  color: inherit;
+  opacity: 0.8;
+  text-transform: none;
+  letter-spacing: normal;
+  margin-top: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slide {
+    transition: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .viewport {
+    --card-w: clamp(160px, 46vw, 220px);
+  }
+}

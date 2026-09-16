@@ -17,6 +17,7 @@ export default function ProjectCard({ project, last, index, compact }) {
   return (
     <article
       ref={ref}
+      id={project.slug}
       className={`project-card reveal ${styles.card} ${!compact && last ? styles.cardLast : ''} ${compact ? styles.cardCompact : ''}`}
     >
       <div className={styles.cardHeader}>
