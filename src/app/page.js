@@ -3,7 +3,7 @@ import Image from "next/image";
 export default function Home() {
   return (
     <main
-      className="relative flex w-full items-center justify-center overflow-hidden py-10"
+      className="relative w-full overflow-hidden"
       style={{
         minHeight: "100vh",
         background: "linear-gradient(180deg, #05060f 0%, #0b0d1f 60%, #05060f 100%)",
@@ -13,31 +13,33 @@ export default function Home() {
         Menu
       </div>
 
-      {/* Átlátszó hátterű kivágás — alsó réteg */}
+      {/* Átlátszó hátterű kivágás — alul kezdődik, nagyobb méret */}
       <div
-        className="relative"
-        style={{ width: "320px", height: "530px", zIndex: 0 }}
+        className="absolute bottom-0 left-1/2 -translate-x-1/2"
+        style={{ width: "520px", height: "90vh", zIndex: 0 }}
       >
         <Image
           src="/images/hero-en.png"
           alt="Portré kivágás"
           fill
           priority
-          sizes="320px"
+          sizes="520px"
           className="object-contain object-bottom"
         />
       </div>
 
       {/* Felirat — felső réteg, előttem, blend-módban átlátszik rajtam */}
-      <h1
-        className="pointer-events-none absolute w-full max-w-5xl px-4 text-center font-black uppercase leading-[0.95] tracking-tight text-white mix-blend-difference"
-        style={{ fontSize: "clamp(1.8rem, 5.5vw, 4.5rem)", zIndex: 10 }}
-      >
-        <span className="block">EVERY GREAT TRICK</span>
-        <span className="block">HAS THREE</span>
-        <span className="block">PARTS. YOUR WEBSITE</span>
-        <span className="block">IS THE PRESTIGE.</span>
-      </h1>
+      <div className="pointer-events-none absolute inset-0 flex items-center justify-center" style={{ zIndex: 10 }}>
+        <h1
+          className="w-full max-w-5xl px-4 text-center font-black uppercase leading-[0.95] tracking-tight text-white mix-blend-difference"
+          style={{ fontSize: "clamp(1.8rem, 5.5vw, 4.5rem)" }}
+        >
+          <span className="block">EVERY GREAT TRICK</span>
+          <span className="block">HAS THREE</span>
+          <span className="block">PARTS. YOUR WEBSITE</span>
+          <span className="block">IS THE PRESTIGE.</span>
+        </h1>
+      </div>
     </main>
   );
 }
