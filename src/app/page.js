@@ -5,7 +5,7 @@ export default function Home() {
     <main
       className="relative flex w-full items-center justify-center overflow-hidden py-10"
       style={{
-        minHeight: "70vh",
+        minHeight: "100vh",
         background: "linear-gradient(180deg, #05060f 0%, #0b0d1f 60%, #05060f 100%)",
       }}
     >
