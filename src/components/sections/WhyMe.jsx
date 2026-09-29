@@ -4,26 +4,22 @@ import { benefits } from "@/data/content";
 
 export default function WhyMe() {
   return (
-    <section id="miert-velem" className="bg-night">
+    <section id="miert-velem" className="bg-canvas">
+      {/* Kivéve: „Weboldalkészítés Budapesten: helyi vállalkozásoknak” sáv
       <div className="container-x pb-8 text-center text-paper">
-        <h2
-          data-reveal
-          className="mx-auto max-w-[20ch] text-2xl font-light md:text-3xl lg:text-4xl"
-        >
-          Weboldalkészítés Budapesten:{" "}
-          <Accent className="text-muted-soft">helyi vállalkozásoknak</Accent>
-        </h2>
-      </div>
-
-      <div className="px-3 pt-16 pb-3">
+              <h2
+                data-reveal
+                className="mx-auto max-w-[20ch] text-2xl font-light md:text-3xl lg:text-4xl"
+              >
+                Weboldalkészítés Budapesten:
+                <Accent className="text-muted-soft">helyi vállalkozásoknak</Accent>
+              </h2>
+            </div>
+      
+      */}
+      <div className="px-3 pb-3">
         <div className="rounded-[24px] bg-canvas py-20 text-ink lg:py-28">
           <div className="container-x">
-            <p
-              data-reveal
-              className="text-center text-sm font-medium tracking-eyebrow text-ink/75 uppercase"
-            >
-              Miért velem
-            </p>
             <h3
               data-reveal
               style={{ "--d": "80ms" }}

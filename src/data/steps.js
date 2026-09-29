@@ -96,10 +96,10 @@ export const steps = [
     lead: "Ha tetszik az irány, fix, átlátható árajánlatot kapsz. Pontosan látod, mit tartalmaz – és azt is, mit nem.",
     outputsTitle: ["Fix ár,", "apró betű nélkül."],
     outputs: [
-      `Fix ár a leírt tartalomra, jellemzően 80 és 200${NB}ezer${NB}Ft között`,
+      `Fix ár a leírt tartalomra, jellemzően 120 és 200${NB}ezer${NB}Ft között`,
       "Pontos lista arról, mit tartalmaz az oldal",
       "Ütemezés: mikor mi készül el",
-      `Karbantartás: 10${NB}000${NB}Ft/hó, az első 3${NB}hónap díjmentes`,
+      `Karbantartás: 15${NB}000${NB}Ft/hó, az első 3${NB}hónap díjmentes`,
     ],
     details: [
       {
@@ -119,7 +119,7 @@ export const steps = [
       {
         titleLines: ["Utána sem", "maradsz egyedül"],
         paragraphs: [
-          `A karbantartás havi 10${NB}ezer${NB}Ft, és az első 3${NB}hónap díjmentes. Ebben benne van a hosting, a frissítések és a kisebb módosítások.`,
+          `A karbantartás havi 15${NB}ezer${NB}Ft, és az első 3${NB}hónap díjmentes. Ebben benne van a hosting, a frissítések, a kisebb módosítások, a Google Cégprofilod gondozása és egy havi jelentés.`,
           "Ha később nagyobb bővítés kell – új aloldal, új funkció –, arra külön, szintén fix ajánlatot adok.",
         ],
       },
@@ -168,7 +168,7 @@ export const steps = [
   {
     slug: "elesites-karbantartas",
     title: "Élesítés és karbantartás",
-    short: `Élesítjük az oldalt, bekötöm az analyticset, és onnantól figyelem. Az első 3${NB}hónap karbantartása díjmentes.`,
+    short: `Élesítjük az oldalt, bekötöm az analyticset, és onnantól figyelem. Átnézzük a Google Cégprofilodat, és megnézzük, hogyan szerezhetnél több értékelést. Az első 3${NB}hónap karbantartása díjmentes.`,
     teaser: "Élő oldal, csatolt analytics – és nem maradsz magadra.",
     description:
       "Élesítés, csatolt analytics és folyamatos karbantartás. Számokban látod, mit hoz a weboldalad. Az első 3 hónap díjmentes.",
@@ -177,8 +177,10 @@ export const steps = [
     outputs: [
       "Élő oldal a saját domaineden",
       "Csatolt analytics: látogatók, források, érdeklődők",
+      "Google Cégprofil átnézése és rendbetétele",
+      "Terv, hogyan szerezz több Google-értékelést",
       "Hosting, frissítések, kisebb módosítások",
-      `3${NB}hónap díjmentes karbantartás, utána 10${NB}000${NB}Ft/hó`,
+      `3${NB}hónap díjmentes karbantartás, utána 15${NB}000${NB}Ft/hó`,
     ],
     details: [
       {
@@ -196,9 +198,16 @@ export const steps = [
         ],
       },
       {
+        titleLines: ["Google Cégprofil", "és értékelések"],
+        paragraphs: [
+          "Átnézzük a Google Cégprofilodat: stimmelnek-e az adatok, a nyitvatartás, a kategóriák és a képek, és ugyanazt mondja-e, mint a weboldalad.",
+          "Megnézzük, hogyan szerezhetnél több értékelést a vállalkozásodnak – mert aki a Google-ben rád talál, először a csillagokat nézi.",
+        ],
+      },
+      {
         titleLines: ["Folyamatos", "karbantartás"],
         paragraphs: [
-          `Az első 3${NB}hónap karbantartása díjmentes, utána havi 10${NB}ezer${NB}Ft. Ebben benne vannak a frissítések és a kisebb módosítások, például a nyitvatartás, az árak vagy a képek cseréje.`,
+          `Az első 3${NB}hónap karbantartása díjmentes, utána havi 15${NB}ezer${NB}Ft. Ebben benne vannak a frissítések és a kisebb módosítások (például a nyitvatartás, az árak vagy a képek cseréje), a Google Cégprofilod gondozása, és minden hónapban kapsz egy rövid jelentést: hány látogatód volt, és hányan kerestek meg.`,
           "Nem hagylak magadra az átadás után: ha valami változik a vállalkozásodban, az oldalad is követi.",
         ],
       },

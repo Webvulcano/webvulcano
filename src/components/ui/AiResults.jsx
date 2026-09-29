@@ -1,7 +1,7 @@
 import GuideModal from "@/components/ui/GuideModal";
 
 // Chat-nézetben ennyivel a 3 cég után jön az útmutató (előbb olvassa el a listát).
-const GUIDE_DELAY = 2000;
+const GUIDE_DELAY = 1500;
 
 // Az AI-teszt válasza: a dobozban („box”) és a teljes képernyős ChatGPT-nézetben („chat”) is ez fut.
 export default function AiResults({ result, state, error, industry, city, variant = "box" }) {

@@ -82,7 +82,7 @@ export default function AiDemo() {
     <div className="rounded-2xl border border-paper/10 bg-night-2 p-5 shadow-[0_20px_50px_-20px_rgba(0,0,0,0.8)] md:p-6">
       <form onSubmit={submit} className="grid gap-3 sm:grid-cols-2">
         <label className="grid gap-1.5 text-sm text-paper/60">
-          Melyik iparágban dolgozol?
+          Mi a foglalkozásod?
           <input
             className={input}
             value={industry}

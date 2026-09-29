@@ -2,8 +2,7 @@ export const site = {
   brand: "Webvulcano",
   owner: "Bognár Lehel",
   email: "info@webvulcano.hu",
-  // TODO: telefonszám (szoveg-tervezet.md) – amíg üres, nem jelenik meg sehol.
-  phone: "",
+  phone: "+36 30 904 1618",
   location: "Budapest",
   privacyUrl: "https://webvulcano.hu/adatkezeles",
   cta: "Kérek ingyen vázlatot",

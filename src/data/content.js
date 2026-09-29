@@ -76,7 +76,7 @@ export const benefits = [
   {
     icon: "server",
     title: "Hosting és karbantartás",
-    text: "Én szolgálom ki az oldalt, és frissítem, ha kell. Az első 3\u00a0hónap díjmentes, utána 10\u00a0ezer\u00a0Ft/hó.",
+    text: "Én szolgálom ki az oldalt, és frissítem, ha kell. Az első 3\u00a0hónap díjmentes, utána 15\u00a0ezer\u00a0Ft/hó.",
   },
 ];
 
@@ -89,29 +89,29 @@ export const pricing = [
     name: "Landing oldal",
     text: "Egyetlen, fókuszált oldal egy világos céllal: hívás vagy üzenet.",
     forWhom: "Induló vállalkozásoknak, egy-egy szolgáltatásra",
-    price: "80e\u00a0Ft-tól",
+    price: "120e\u00a0Ft-tól",
   },
   {
     label: "Legjobb ár-érték",
     name: "Üzleti weboldal",
     text: "Rád szabott, több szekciós oldal szövegírással, referenciákkal, űrlappal és csatolt analyticsszel.",
     forWhom: "A legtöbb helyi vállalkozásnak ez a jó választás",
-    price: "120e\u00a0Ft",
+    price: "150e\u00a0Ft",
     featured: true,
   },
   {
     label: "Egyedi igények",
-    name: "Egyedi weboldal",
-    text: "Több aloldal, admin felület, egyedi funkciók – ahogy a vállalkozásod kívánja.",
+    name: "Ultra Weboldal",
+    text: "Admin felület, egyedi automatizációk - vállalkozásodra szabva",
     forWhom: "Ha több kell, mint egy bemutatkozó oldal",
-    price: "200e\u00a0Ft-ig",
+    price: "450e\u00a0Ft-ig",
   },
 ];
 
 export const faq = [
   {
     q: "Mennyibe kerül egy weboldal?",
-    a: "80 és 200\u00a0ezer\u00a0Ft között, a komplexitástól függően. A legtöbb helyi vállalkozásnak szóló oldal nagyjából 120\u00a0ezer\u00a0Ft. Az ingyen vázlat után pontos, fix árajánlatot kapsz.",
+    a: "120 és 450\u00a0ezer\u00a0Ft között, a komplexitástól függően. A legtöbb helyi vállalkozásnak szóló oldal nagyjából 160\u00a0ezer\u00a0Ft. Az ingyen vázlat után pontos, fix árajánlatot kapsz.",
   },
   {
     q: "Tényleg ingyen van a vázlat? Mire kötelez?",
@@ -127,7 +127,7 @@ export const faq = [
   },
   {
     q: "Mit tartalmaz a karbantartás?",
-    a: "Hosting, frissítések, kisebb módosítások (pl.\u00a0nyitvatartás, árak, képek cseréje) és folyamatos felügyelet. Havi 10\u00a0ezer\u00a0Ft – az első 3\u00a0hónap díjmentes.",
+    a: "Hosting, frissítések, kisebb módosítások (pl.\u00a0nyitvatartás, árak, képek cseréje), a Google Cégprofilod gondozása és egy havi rövid jelentés: hány látogatód volt, és hányan kerestek meg. Havi 15\u00a0ezer\u00a0Ft – az első 3\u00a0hónap díjmentes.",
   },
   {
     q: "Kell külön tárhelyet vennem?",

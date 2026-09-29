@@ -68,7 +68,7 @@ export default function Pricing() {
           >
             <p className="text-base text-paper/75">
               <span className="font-bold text-paper">Karbantartás + hosting:</span>{" "}
-              10&nbsp;000&nbsp;Ft/hó –{" "}
+              15&nbsp;000&nbsp;Ft/hó –{" "}
               <span className="text-highlight">az első 3&nbsp;hónap díjmentes.</span>
             </p>
             <Link

@@ -5,7 +5,6 @@ import StepHero from "@/components/step/StepHero";
 import StepNav from "@/components/step/StepNav";
 import StepOutputs from "@/components/step/StepOutputs";
 import CtaCard from "@/components/ui/CtaCard";
-import OnThisPage from "@/components/ui/OnThisPage";
 import RevealObserver from "@/components/ui/RevealObserver";
 import { getStep, slugify, steps } from "@/data/steps";
 
@@ -33,22 +32,11 @@ export default async function StepPage({ params }) {
 
   const { step, index, next } = found;
   const details = step.details.map((d) => ({ ...d, id: slugify(d.titleLines.join(" ")) }));
-  const toc = [
-    { id: "mit-kapsz", label: "Mit kapsz" },
-    ...details.map((d) => ({ id: d.id, label: d.titleLines.join(" ") })),
-    { id: "tobbi-lepes", label: "Többi lépés" },
-  ];
 
   return (
     <>
       <main className="bg-night text-paper">
-        <div className="container-x xl:grid xl:grid-cols-[13rem_minmax(0,1fr)] xl:gap-14">
-          <aside className="hidden xl:block">
-            <div className="sticky top-[30vh] mt-48">
-              <OnThisPage items={toc} />
-            </div>
-          </aside>
-
+        <div className="container-x">
           <div className="min-w-0">
             <StepHero step={step} index={index} total={steps.length} />
             <StepOutputs step={step} />

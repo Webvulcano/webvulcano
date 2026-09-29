@@ -1,4 +1,3 @@
-import ScrollFill from "@/components/ui/ScrollFill";
 
 // „Mit kapsz ebből a lépésből” — referencia: „What this stage produces”.
 // A feltöltődő címek skála-lépcsője a hasábszélességhez igazítva (egy sor = egy kitöltési sor).
@@ -14,11 +13,13 @@ export default function StepOutputs({ step }) {
         <p className="text-sm font-medium tracking-eyebrow text-highlight uppercase">
           Mit kapsz ebből a lépésből
         </p>
-        <ScrollFill
-          as="h2"
-          segments={[{ lines: step.outputsTitle, fill: "text-paper" }]}
-          className={`mt-6 ${fillHeading}`}
-        />
+        <h2 className={`mt-6 ${fillHeading}`}>
+          {step.outputsTitle.map((l) => (
+            <span key={l} className="block">
+              {l}
+            </span>
+          ))}
+        </h2>
       </div>
 
       <ul className="border-t border-paper/10 lg:mt-12">

@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  /* config options here */
+  // Dev: telefonról / más gépről (LAN IP) is betöltődjön a JS és a HMR.
+  allowedDevOrigins: ["192.168.*.*", "10.*.*.*", "*.local"],
 };
 
 export default nextConfig;

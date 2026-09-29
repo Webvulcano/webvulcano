@@ -5,7 +5,7 @@ import Intro from "@/components/sections/Intro";
 import Guarantees from "@/components/sections/Guarantees";
 import Statement from "@/components/sections/Statement";
 import Services from "@/components/sections/Services";
-import FeaturedProject from "@/components/sections/FeaturedProject";
+// import FeaturedProject from "@/components/sections/FeaturedProject";
 import WhyMe from "@/components/sections/WhyMe";
 import Projects from "@/components/sections/Projects";
 import Process from "@/components/sections/Process";
@@ -27,7 +27,7 @@ export default function Home() {
           <Guarantees />
           <Statement />
           <Services />
-          <FeaturedProject />
+          {/* <FeaturedProject /> */}
           <WhyMe />
           <Projects />
           <Process />

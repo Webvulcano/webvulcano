@@ -8,15 +8,13 @@ import { site } from "@/data/site";
 // áthaladással halad. Mobilon normál folyás, a kitöltés a saját blokkhoz mér.
 const segments = [
   {
-    lines: ["Weboldala ma már", "szinte mindenkinek van.", "Te is össze tudnál", "kattintani egyet."],
+    lines: ["Weboldalt ma már", "Te is össze tudnál", "kattintani."],
     fill: "text-paper",
   },
   {
     lines: [
-      "De honnan tudod, milyen",
-      "szavak hozzák a hívást –",
-      "és mitől lesz a látogatóból",
-      "ügyfél?",
+      "De méred is hogy",
+      "hányan, és mire kattintanak?",
     ],
     fill: "text-highlight",
   },
@@ -35,7 +33,7 @@ export default function Statement() {
           />
           <div className="mt-10 flex flex-col items-start gap-5 sm:flex-row sm:items-center sm:gap-8">
             <p className="text-base text-paper/70 md:text-lg">
-              Ezt csinálom én: a szövegtől a konverzióig.
+              Nálam látni fogod, hogy a látogatók mire kattintanak az oldaladon.
             </p>
             <Button href={site.ctaHref}>
               {site.cta}

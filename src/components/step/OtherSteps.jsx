@@ -1,6 +1,5 @@
 import Link from "next/link";
 import Icon from "@/components/ui/Icon";
-import ScrollFill from "@/components/ui/ScrollFill";
 import { stepPath, steps } from "@/data/steps";
 
 const pad = (n) => String(n).padStart(2, "0");
@@ -10,11 +9,10 @@ export default function OtherSteps({ current }) {
   return (
     <section id="tobbi-lepes" className="border-t border-paper/10 py-20 lg:py-28">
       <p className="text-sm font-medium tracking-eyebrow text-highlight uppercase">Így dolgozom</p>
-      <ScrollFill
-        as="h2"
-        segments={[{ lines: ["A folyamat", "többi lépése."], fill: "text-paper" }]}
-        className="mt-6 text-3xl font-bold md:text-4xl lg:text-5xl"
-      />
+      <h2 className="mt-6 text-3xl font-bold md:text-4xl lg:text-5xl">
+        <span className="block">A folyamat</span>
+        <span className="block">többi lépése.</span>
+      </h2>
 
       <ul className="mt-14 border-t border-paper/10">
         {steps.map((s, i) =>

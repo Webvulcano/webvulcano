@@ -128,7 +128,7 @@ export default function GuideModal({ industry = "", city = "", className = "" })
                 </div>
                 <div>
                   <label htmlFor="g-phone" className={label}>Telefonszám</label>
-                  <input id="g-phone" type="tel" className={input} value={phone} onChange={(e) => setPhone(e.target.value)} autoComplete="tel" placeholder="+36 30 123 4567" required />
+                  <input id="g-phone" type="tel" className={input} value={phone} onChange={(e) => setPhone(e.target.value)} autoComplete="tel" placeholder="+36 30 904 1618" required />
                 </div>
                 <label className="flex items-start gap-2.5 text-sm text-paper/70">
                   <input
