@@ -1,0 +1,7 @@
+/* Minden téma itt van beimportálva. Az aktív téma: src/data/theme.js
+   Új téma hozzáadása:
+   1. másold le a teal-sand.css-t új néven, írd át a [data-theme="…"] nevet és a színeket,
+   2. importáld be ide,
+   3. add hozzá a nevét a src/data/theme.js `themes` listájához (és ha ez legyen az aktív: `theme`). */
+@import "./teal-sand.css";
+@import "./midnight.css";

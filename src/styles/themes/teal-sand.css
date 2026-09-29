@@ -1,0 +1,49 @@
+/* ─────────────────────────────────────────────────────────────────────────
+   TÉMA: Teal & Sand (alapértelmezett)
+   Paletta: #1E7C85 · #2BB3C0 · #FBF7F2 · #7C8085 · #2E3033
+
+   Új téma: másold le ezt a fájlt (pl. forest.css), írd át a data-theme nevét és
+   az 1) Paletta blokk hex-kódjait, a 2) Szerepek blokkban pedig döntsd el, melyik
+   szín mire menjen. Utána: src/styles/themes/index.css (@import) +
+   src/data/theme.js (név). Előnézet kódváltás nélkül: ?theme=<név> az URL végén.
+   ───────────────────────────────────────────────────────────────────────── */
+[data-theme="teal-sand"] {
+  /* 1) Paletta — hex-kód CSAK itt szerepel */
+  --pal-teal-deep: #1e7c85;
+  --pal-teal: #2bb3c0;
+  --pal-cream: #fbf7f2;
+  --pal-taupe: #7c8085;
+  --pal-cocoa: #2e3033;
+
+  /* 2) Szerepek — a komponensek csak ezeket használják (Tailwind: bg-canvas, text-ink, …) */
+
+  /* világos felületek */
+  --canvas: var(--pal-cream); /* hero, világos szekciók */
+  --canvas-2: color-mix(in oklab, var(--pal-cream) 92%, var(--pal-taupe)); /* alternatív világos (Folyamat) */
+  --raised: #ffffff; /* kártya világos felületen */
+  --ink: var(--pal-cocoa); /* szöveg világos felületen */
+
+  /* sötét felületek */
+  --night: var(--pal-cocoa); /* sötét szekciók */
+  --night-2: color-mix(in oklab, var(--pal-cocoa) 82%, black); /* kártya sötéten */
+  --night-3: color-mix(in oklab, var(--pal-cocoa) 68%, black); /* kártya-gradiens alja */
+  --paper: var(--pal-cream); /* szöveg sötét felületen */
+
+  /* akcentusok */
+  --accent: var(--pal-teal-deep); /* fő gomb (CTA) */
+  --accent-hover: color-mix(in oklab, var(--pal-teal-deep) 82%, black);
+  --accent-ink: color-mix(in oklab, var(--pal-teal-deep) 80%, var(--pal-cocoa)); /* link-szöveg világoson */
+  --on-accent: #ffffff; /* szöveg a gombon */
+  --highlight: var(--pal-teal); /* pipák, árak, aktív elemek sötéten */
+  --muted: var(--pal-taupe); /* dőlt kiemelés világoson, ikon-sín */
+  --muted-soft: color-mix(in oklab, var(--pal-taupe) 55%, var(--pal-cream)); /* dőlt kiemelés sötéten */
+  --decor: var(--muted-soft); /* babérkoszorú */
+  --feature: color-mix(in oklab, var(--pal-taupe) 30%, var(--pal-cocoa)); /* kiemelt projekt kártya */
+  --hero-number: color-mix(in oklab, var(--pal-teal) 18%, var(--pal-cream)); /* hero „3” kitöltés */
+  --danger: #ff9e8f;
+
+  /* hero háttér-fények (bal alsó sarok) */
+  --glow-1: var(--pal-teal);
+  --glow-2: var(--pal-taupe);
+  --glow-3: var(--pal-teal-deep);
+}

@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="hu">
+<head>
+<meta charset="utf-8">
+<title>Így ajánljon téged is a ChatGPT – Webvulcano</title>
+<!-- Forrás a public/utmutato/chatgpt-ajanlas-utmutato.pdf-hez.
+     Újragenerálás: npm run utmutato (Chrome headless nyomtatás). -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=block" rel="stylesheet">
+<style>
+  @page { size: A4; margin: 0; }
+  :root {
+    --teal: #1e7c85; --teal-2: #2bb3c0; --ink: #2e3033; --muted: #7c8085;
+    --cream: #fbf7f2; --line: #e6e1da;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body { font-family: Inter, sans-serif; color: var(--ink); font-size: 10.5pt; line-height: 1.55; background: #fff; }
+  em { font-family: "Instrument Serif", serif; font-style: italic; font-weight: 400; letter-spacing: 0; }
+
+  .page { width: 210mm; height: 297mm; padding: 20mm 20mm 18mm; position: relative; page-break-after: always; overflow: hidden; }
+  .page:last-child { page-break-after: auto; }
+  .foot { position: absolute; left: 20mm; right: 20mm; bottom: 10mm; display: flex; justify-content: space-between; font-size: 8pt; color: var(--muted); }
+
+  /* Borító */
+  .cover { background: var(--ink); color: var(--cream); display: flex; flex-direction: column; }
+  .cover .glow { position: absolute; left: -60mm; bottom: -60mm; width: 180mm; height: 180mm; border-radius: 50%; background: radial-gradient(circle, rgba(43,179,192,.45), rgba(30,124,133,0) 70%); }
+  .brand { display: flex; align-items: center; gap: 3mm; font-weight: 700; font-size: 11pt; position: relative; }
+  .brand img { width: 11mm; height: 11mm; border-radius: 50%; background: var(--cream); }
+  .cover .kicker { margin-top: 62mm; font-size: 9pt; font-weight: 600; letter-spacing: .28em; text-transform: uppercase; color: var(--teal-2); position: relative; }
+  .cover h1 { margin-top: 6mm; font-size: 40pt; line-height: 1.02; letter-spacing: -.03em; font-weight: 800; position: relative; }
+  .cover h1 em { color: var(--teal-2); }
+  .cover .sub { margin-top: 8mm; font-size: 14pt; color: rgba(251,247,242,.75); max-width: 130mm; position: relative; }
+  .cover .who { margin-top: auto; position: relative; font-size: 10pt; color: rgba(251,247,242,.7); }
+  .cover .who b { color: var(--cream); }
+
+  h2 { font-size: 22pt; line-height: 1.1; letter-spacing: -.02em; font-weight: 800; }
+  h2 em { color: var(--teal); }
+  .lead { margin-top: 5mm; font-size: 12pt; color: #4a4d51; }
+  p + p { margin-top: 3mm; }
+
+  .note { margin-top: 7mm; padding: 5mm 6mm; border-radius: 4mm; background: var(--cream); border-left: 1.2mm solid var(--teal); }
+  .note b { color: var(--teal); }
+
+  .flow { margin-top: 7mm; display: grid; grid-template-columns: repeat(3, 1fr); gap: 4mm; }
+  .flow div { border: .3mm solid var(--line); border-radius: 4mm; padding: 4.5mm; }
+  .flow .n { font-size: 20pt; font-weight: 800; color: var(--teal); line-height: 1; }
+  .flow .t { margin-top: 2mm; font-weight: 700; }
+  .flow .d { margin-top: 1mm; font-size: 9pt; color: var(--muted); }
+
+  .step { margin-top: 7mm; display: grid; grid-template-columns: 13mm 1fr; gap: 4mm; page-break-inside: avoid; }
+  .step .num { width: 13mm; height: 13mm; border-radius: 50%; background: var(--teal); color: #fff; font-weight: 800; font-size: 14pt; display: grid; place-items: center; }
+  .step h3 { font-size: 13.5pt; line-height: 1.25; font-weight: 800; letter-spacing: -.01em; padding-top: 2.5mm; }
+  .step .why { margin-top: 1.5mm; color: #4a4d51; }
+  .step ul { margin-top: 2.5mm; list-style: none; }
+  .step li { position: relative; padding-left: 6mm; margin-top: 1.4mm; }
+  .step li::before { content: ""; position: absolute; left: 0; top: 1.6mm; width: 3mm; height: 3mm; border-radius: 50%; background: rgba(30,124,133,.18); box-shadow: inset 0 0 0 .9mm var(--teal); }
+
+  .check { margin-top: 6mm; }
+  .check h4 { margin-top: 5mm; font-size: 9pt; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--teal); }
+  .check label { display: flex; gap: 3mm; margin-top: 2mm; }
+  .check label::before { content: ""; flex: 0 0 4.2mm; height: 4.2mm; margin-top: .6mm; border: .4mm solid var(--ink); border-radius: 1mm; }
+
+  .cta { margin-top: 9mm; padding: 8mm; border-radius: 5mm; background: var(--ink); color: var(--cream); position: relative; overflow: hidden; }
+  .cta .glow { position: absolute; right: -40mm; top: -40mm; width: 110mm; height: 110mm; border-radius: 50%; background: radial-gradient(circle, rgba(43,179,192,.4), rgba(30,124,133,0) 70%); }
+  .cta h3 { position: relative; font-size: 19pt; line-height: 1.1; font-weight: 800; letter-spacing: -.02em; }
+  .cta h3 em { color: var(--teal-2); }
+  .cta p { position: relative; margin-top: 3mm; color: rgba(251,247,242,.78); }
+  .cta ul { position: relative; margin-top: 4mm; list-style: none; }
+  .cta li { margin-top: 1.5mm; padding-left: 6mm; position: relative; }
+  .cta li::before { content: "✓"; position: absolute; left: 0; color: var(--teal-2); font-weight: 800; }
+  .cta .btn { position: relative; display: inline-block; margin-top: 6mm; padding: 3.5mm 7mm; border-radius: 20mm; background: var(--teal); color: #fff; font-weight: 600; text-decoration: none; }
+  .cta .contact { position: relative; margin-top: 4mm; font-size: 9.5pt; color: rgba(251,247,242,.7); }
+</style>
+</head>
+<body>
+
+<!-- 1. Borító -->
+<section class="page cover">
+  <div class="glow"></div>
+  <div class="brand"><img src="../../public/brand/logo.png" alt=""> Webvulcano</div>
+  <p class="kicker">Ingyenes útmutató helyi vállalkozóknak</p>
+  <h1>Így ajánljon<br>téged is <em style="white-space:nowrap">a ChatGPT</em></h1>
+  <p class="sub">6 lépés, hogy nagyobb eséllyel bekerülj a top 3 közé, amikor valaki a városodban a szakmádra kérdez rá.</p>
+  <p class="who"><b>Bognár Lehel</b> · weboldalfejlesztő<br>webvulcano.hu · info@webvulcano.hu</p>
+</section>
+
+<!-- 2. Miért és hogyan -->
+<section class="page">
+  <h2>Már nem csak <em>guglizunk</em></h2>
+  <p class="lead">Egyre többen kérdezik meg a ChatGPT-t: „Kit ajánlasz, ha fodrász kell Győrben?” A válasz általában 3 név. Aki nincs köztük, az abban a pillanatban nem létezik a kérdező számára.</p>
+
+  <p style="margin-top:6mm">A jó hír: a ChatGPT nem sorsol. Rákeres a webre, és azokat a vállalkozásokat ajánlja, akikről <b>egyértelmű, megbízható információt talál</b>. Ezen pedig tudsz dolgozni.</p>
+
+  <div class="flow">
+    <div><p class="n">1</p><p class="t">Rákeres</p><p class="d">„[szakma] [város] vélemények”, „Google értékelés” típusú keresésekkel.</p></div>
+    <div><p class="n">2</p><p class="t">Azonosít</p><p class="d">Kik azok, akikről egyértelműen kiderül: mit csinálnak, hol és hogyan érhetők el.</p></div>
+    <div><p class="n">3</p><p class="t">Mérlegel</p><p class="d">Értékelések, vélemények, más oldalak említései alapján dönt.</p></div>
+  </div>
+
+  <div class="note">
+    <p><b>Őszintén:</b> első helyet senki nem tud garantálni. A ChatGPT minden kérdésre kicsit máshogy válaszol, a sorrend futásról futásra változik. Amit el tudsz érni: hogy <b>sokkal gyakrabban és nagyobb eséllyel</b> téged ajánljon. Ez a 6 lépés erről szól.</p>
+  </div>
+
+  <div class="step">
+    <div class="num">1</div>
+    <div>
+      <h3>Legyen saját weboldalad, egyértelmű adatokkal</h3>
+      <p class="why">A ChatGPT arra hivatkozik szívesen, akiről egy helyen, világosan kiderül minden. Egy Facebook-oldal vagy egy félkész honlap ehhez kevés.</p>
+      <ul>
+        <li>A főcímben pontosan: <b>„Fodrász Győrben – [Neved / Szalonod]”</b>.</li>
+        <li>Név, cím, telefonszám, nyitvatartás jól láthatóan, szövegként (ne képen).</li>
+        <li>Szolgáltatások és irányárak felsorolva.</li>
+        <li>Strukturált adatok („schema”): a fejlesztőd be tudja állítani, hogy a gépek is értsék, ki vagy.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot"><span>Így ajánljon téged is a ChatGPT</span><span>webvulcano.hu</span></div>
+</section>
+
+<!-- 3. Lépések 2–4 -->
+<section class="page">
+  <div class="step" style="margin-top:0">
+    <div class="num">2</div>
+    <div>
+      <h3>Töltsd ki 100%-ig a Google Cégprofilodat</h3>
+      <p class="why">A ChatGPT keresései gyakran kifejezetten a Google-értékeléseket keresik. A Google Cégprofil (régen: Google Térkép-adatlap) az egyik legfontosabb forrásod.</p>
+      <ul>
+        <li>Pontos fő kategória (pl. „Fodrász”, nem csak „Szépségszalon”).</li>
+        <li>Minden szolgáltatás felvéve, rövid leírással.</li>
+        <li>Friss, valódi fotók: a hely, a csapat, a munkáid.</li>
+        <li>Nyitvatartás, ünnepnapok, weboldal-link, telefonszám naprakészen.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="num">3</div>
+    <div>
+      <h3>Gyűjts folyamatosan értékeléseket</h3>
+      <p class="why">Ez a legerősebb jel. Egy több száz értékeléses vállalkozás sokkal gyakrabban kerül a javaslatok közé, mint egy tízes.</p>
+      <ul>
+        <li>Minden elégedett ügyféltől kérj értékelést, ne csak néha.</li>
+        <li>Tedd egyszerűvé: közvetlen link vagy QR-kód, ami rögtön az értékelő ablakot nyitja.</li>
+        <li>Automatizáld: a szolgáltatás után menjen ki egy rövid SMS vagy e-mail a linkkel.</li>
+        <li>Válaszolj minden értékelésre, a negatívakra is, udvariasan.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="num">4</div>
+    <div>
+      <h3>Legyél ott, ahol a ChatGPT keres</h3>
+      <p class="why">A modell nem csak a Google-t nézi: iparági katalógusokat, véleményoldalakat és helyi cikkeket is. Minél több megbízható helyen szerepelsz egyformán, annál biztosabb, hogy te vagy „az” a győri fodrász.</p>
+      <ul>
+        <li>Regisztrálj a szakmád katalógusaiba és véleményoldalaira (pl. egészségügyben a medgo.hu).</li>
+        <li>A neved, címed, telefonszámod <b>betűre ugyanúgy</b> szerepeljen mindenhol.</li>
+        <li>Helyi említések: helyi hírportál, „legjobb [szakma] [városban]” listák, együttműködő partnerek oldalai.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot"><span>Így ajánljon téged is a ChatGPT</span><span>webvulcano.hu</span></div>
+</section>
+
+<!-- 4. Lépések 5–6 + checklist eleje -->
+<section class="page">
+  <div class="step" style="margin-top:0">
+    <div class="num">5</div>
+    <div>
+      <h3>Engedd, hogy a keresőrobotok lássák az oldalad</h3>
+      <p class="why">Amit a ChatGPT keresője nem tud elolvasni, azt nem is fogja ajánlani. Ez technikai rész, de pár perc egy fejlesztőnek.</p>
+      <ul>
+        <li>A <b>robots.txt</b> ne tiltsa a ChatGPT keresőrobotját (<b>OAI-SearchBot</b>).</li>
+        <li>Regisztráld az oldalt a Google Search Console-ban és a Bing Webmaster Toolsban is.</li>
+        <li>Gyors, mobilon is jól működő oldal. A lassú oldalt az ember is, a robot is otthagyja.</li>
+        <li>A fontos információ szövegként legyen meg, ne csak képen vagy PDF-ben.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="num">6</div>
+    <div>
+      <h3>Válaszolj a kérdésekre, amiket az ügyfeleid feltesznek</h3>
+      <p class="why">A ChatGPT kérdésekre ad választ. Ha a te oldaladon ott a jó válasz, nagyobb eséllyel hivatkozik rád.</p>
+      <ul>
+        <li>GYIK-szekció a valódi kérdésekkel: „Mennyibe kerül…?”, „Mennyi idő…?”, „Hétvégén is nyitva vagytok?”</li>
+        <li>Minden fő szolgáltatásnak külön aloldal, rendes leírással.</li>
+        <li>Írd le, kiknek segítesz és miben vagy más. Ezt a modell szívesen idézi.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="note">
+    <p><b>Próbáld ki magad:</b> kérdezd meg a ChatGPT-t: „Kit ajánlasz, ha [szakmád] kell [városodban]?” Futtasd le 3–4-szer. Ha egyszer sem vagy benne, a fenti lépésekben van tennivaló.</p>
+  </div>
+  <div class="foot"><span>Így ajánljon téged is a ChatGPT</span><span>webvulcano.hu</span></div>
+</section>
+
+<!-- 5. Ellenőrzőlista + CTA -->
+<section class="page">
+  <h2>Ellenőrző<em>lista</em></h2>
+  <p class="lead">Pipáld ki, ami már megvan. Ami üres, azzal kezdd.</p>
+
+  <div class="check">
+    <h4>Weboldal</h4>
+    <label>Van saját weboldalam, a főcímben a szakmám és a városom</label>
+    <label>Név, cím, telefon, nyitvatartás szövegként, jól látható helyen</label>
+    <label>Szolgáltatások külön aloldalon, GYIK-szekció</label>
+    <label>Gyors, mobilon is jól működik, a robotok olvashatják</label>
+    <h4>Google Cégprofil</h4>
+    <label>Pontos kategória, minden szolgáltatás felvéve</label>
+    <label>Friss fotók, naprakész nyitvatartás és elérhetőség</label>
+    <h4>Értékelések és jelenlét</h4>
+    <label>Minden ügyféltől kérek értékelést (lehetőleg automatikusan)</label>
+    <label>Minden értékelésre válaszolok</label>
+    <label>Szerepelek a szakmám katalógusaiban, mindenhol ugyanazokkal az adatokkal</label>
+  </div>
+
+  <div class="cta">
+    <div class="glow"></div>
+    <h3>Nincs időd ezzel foglalkozni? <em>Megcsinálom helyetted.</em></h3>
+    <p>Bognár Lehel vagyok, weboldalfejlesztő. Az a célom, hogy számokkal alátámasztva hozzam neked az érdeklődőidet.</p>
+    <ul>
+      <li>Weboldal, amit a ChatGPT és a Google is ért</li>
+      <li>Google Cégprofil beállítása</li>
+      <li>Automatikus értékelésszerzés</li>
+    </ul>
+    <a class="btn" href="https://webvulcano.hu/#kapcsolat">Kérek ingyen vázlatot →</a>
+    <p class="contact">Ingyen vázlatot kapsz, mielőtt bármit fizetnél · info@webvulcano.hu · webvulcano.hu</p>
+  </div>
+  <div class="foot"><span>Így ajánljon téged is a ChatGPT</span><span>webvulcano.hu</span></div>
+</section>
+
+</body>
+</html>

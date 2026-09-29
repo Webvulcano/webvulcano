@@ -1,0 +1,43 @@
+/* ─────────────────────────────────────────────────────────────────────────
+   TÉMA: Midnight (az első verzió színei — referencia-hű: szürkéskék + éjkék + kék)
+   Előnézet: ?theme=midnight
+   ───────────────────────────────────────────────────────────────────────── */
+[data-theme="midnight"] {
+  /* 1) Paletta */
+  --pal-mist: #c9d3d7;
+  --pal-mist-2: #eceef1;
+  --pal-navy: #171b27;
+  --pal-navy-card: #252b3d;
+  --pal-navy-card-2: #1a1f2d;
+  --pal-blue: #2c2cf3;
+  --pal-green: #10b981;
+  --pal-slate: #8a93b0;
+  --pal-gold: #d6b370;
+
+  /* 2) Szerepek */
+  --canvas: var(--pal-mist);
+  --canvas-2: var(--pal-mist-2);
+  --raised: #ffffff;
+  --ink: var(--pal-navy);
+
+  --night: var(--pal-navy);
+  --night-2: var(--pal-navy-card);
+  --night-3: var(--pal-navy-card-2);
+  --paper: #ffffff;
+
+  --accent: var(--pal-blue);
+  --accent-hover: #1d1dd4;
+  --accent-ink: var(--pal-blue);
+  --on-accent: #ffffff;
+  --highlight: var(--pal-green);
+  --muted: var(--pal-slate);
+  --muted-soft: var(--pal-slate);
+  --decor: var(--pal-gold);
+  --feature: #454d66;
+  --hero-number: #ffffff;
+  --danger: #ff8a8a;
+
+  --glow-1: #e976ba;
+  --glow-2: #967ee8;
+  --glow-3: #709ee2;
+}

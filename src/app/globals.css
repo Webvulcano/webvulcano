@@ -1,26 +1,382 @@
 @import "tailwindcss";
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@import "../styles/themes/index.css";
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-instrument-serif), Georgia, "Times New Roman", serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* ─────────────────────────────────────────────────────────────────────────
+   TIPOGRÁFIAI SKÁLA — Major Third (×1.25), alap 16px
+   Minden betűméret egy lépcső: 16 × 1.25ⁿ. Más méret a projektben nem létezik
+   (a Tailwind alapskálája nullázva). Elnevezés: `Nxl` = n = N+1.
+   Sorköz és betűköz a mérethez kötve: nagyobb méret → szorosabb sor és betű
+   (Inter dynamic metrics szerint; ≥32px-től az opsz tengely display-vágást ad).
+   ───────────────────────────────────────────────────────────────────────── */
+@theme {
+  --text-*: initial;
+
+  --text-sm: 0.8rem; /* 12.80px · n=−1 — címke, meta, felirat */
+  --text-sm--line-height: 1.5;
+  --text-sm--letter-spacing: 0em;
+  --text-base: 1rem; /* 16.00px · n=0 — törzsszöveg, UI */
+  --text-base--line-height: 1.6;
+  --text-base--letter-spacing: -0.011em;
+  --text-lg: 1.25rem; /* 20.00px · n=1 — bevezető bekezdés */
+  --text-lg--line-height: 1.5;
+  --text-lg--letter-spacing: -0.015em;
+  --text-xl: 1.5625rem; /* 25.00px · n=2 */
+  --text-xl--line-height: 1.3;
+  --text-xl--letter-spacing: -0.018em;
+  --text-2xl: 1.9531rem; /* 31.25px · n=3 */
+  --text-2xl--line-height: 1.2;
+  --text-2xl--letter-spacing: -0.02em;
+  --text-3xl: 2.4414rem; /* 39.06px · n=4 */
+  --text-3xl--line-height: 1.12;
+  --text-3xl--letter-spacing: -0.022em;
+  --text-4xl: 3.0518rem; /* 48.83px · n=5 */
+  --text-4xl--line-height: 1.06;
+  --text-4xl--letter-spacing: -0.025em;
+  --text-5xl: 3.8147rem; /* 61.04px · n=6 */
+  --text-5xl--line-height: 1.02;
+  --text-5xl--letter-spacing: -0.03em;
+  --text-6xl: 4.7684rem; /* 76.29px · n=7 */
+  --text-6xl--line-height: 0.98;
+  --text-6xl--letter-spacing: -0.032em;
+  --text-7xl: 5.9605rem; /* 95.37px · n=8 */
+  --text-7xl--line-height: 0.95;
+  --text-7xl--letter-spacing: -0.035em;
+
+  /* display — csak dekoratív számok / szavak */
+  --text-9xl: 9.3132rem; /* 149.0px · n=10 */
+  --text-9xl--line-height: 0.85;
+  --text-9xl--letter-spacing: -0.04em;
+  --text-10xl: 11.6415rem; /* 186.3px · n=11 */
+  --text-10xl--line-height: 0.85;
+  --text-10xl--letter-spacing: -0.05em;
+  --text-11xl: 14.5519rem; /* 232.8px · n=12 */
+  --text-11xl--line-height: 0.85;
+  --text-11xl--letter-spacing: -0.05em;
+  --text-13xl: 22.7374rem; /* 363.8px · n=14 */
+  --text-13xl--line-height: 1;
+  --text-14xl: 28.4217rem; /* 454.7px · n=15 */
+  --text-14xl--line-height: 1;
+  --text-15xl: 35.5271rem; /* 568.4px · n=16 */
+  --text-15xl--line-height: 1;
+  --text-16xl: 44.4089rem; /* 710.5px · n=17 */
+  --text-16xl--line-height: 1;
+
+  /* nagybetűs feliratok betűköze */
+  --tracking-eyebrow: 0.28em; /* szekció-felirat */
+  --tracking-label: 0.16em; /* kártya-címke, meta */
+
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   SZÍNEK — szemantikus tokenek. Az értékük a témából jön (src/styles/themes/*.css,
+   aktív: src/data/theme.js). A Tailwind alap-palettája nullázva: komponensben csak
+   ezek a nevek használhatók (bg-canvas, text-ink, bg-night, text-paper, bg-accent…),
+   így egy új téma mindent átszínez, és nem marad „beégetett” szín.
+   ───────────────────────────────────────────────────────────────────────── */
+@theme inline {
+  --color-*: initial;
+
+  --color-canvas: var(--canvas);
+  --color-canvas-2: var(--canvas-2);
+  --color-raised: var(--raised);
+  --color-ink: var(--ink);
+
+  --color-night: var(--night);
+  --color-night-2: var(--night-2);
+  --color-night-3: var(--night-3);
+  --color-paper: var(--paper);
+
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-ink: var(--accent-ink);
+  --color-on-accent: var(--on-accent);
+  --color-highlight: var(--highlight);
+  --color-muted: var(--muted);
+  --color-muted-soft: var(--muted-soft);
+  --color-decor: var(--decor);
+  --color-feature: var(--feature);
+  --color-hero-number: var(--hero-number);
+  --color-danger: var(--danger);
+}
+
+@utility container-x {
+  width: 100%;
+  max-width: 1320px;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+
+  @media (width >= 40rem) {
+    padding-inline: 2rem;
+  }
+  @media (width >= 64rem) {
+    padding-inline: 3rem;
   }
 }
 
+@utility text-gradient {
+  background-image: linear-gradient(
+    95deg,
+    var(--color-paper) 0%,
+    color-mix(in oklab, var(--color-paper) 65%, var(--color-muted-soft)) 40%,
+    var(--color-muted-soft) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Színes fények/árnyékok — a téma akcentus-színeiből */
+@utility glow-accent {
+  box-shadow: 0 10px 30px -10px color-mix(in oklab, var(--color-accent) 75%, transparent);
+}
+@utility glow-accent-soft {
+  box-shadow: 0 0 50px -12px color-mix(in oklab, var(--color-accent) 60%, transparent);
+}
+@utility glow-accent-ring {
+  box-shadow: 0 0 24px -2px color-mix(in oklab, var(--color-accent) 85%, transparent);
+}
+@utility glow-highlight {
+  box-shadow: 0 0 60px -18px color-mix(in oklab, var(--color-highlight) 65%, transparent);
+}
+@utility glow-highlight-dot {
+  box-shadow: 0 0 0 5px color-mix(in oklab, var(--color-accent) 20%, transparent);
+}
+
+/* Hero háttér: halvány fények a bal alsó sarokban (--glow-1…3 a témából) */
+@utility hero-glow {
+  background-image:
+    radial-gradient(55% 45% at 3% 102%, color-mix(in oklab, var(--glow-1) 45%, transparent) 0%, transparent 70%),
+    radial-gradient(45% 40% at 18% 98%, color-mix(in oklab, var(--glow-2) 38%, transparent) 0%, transparent 70%),
+    radial-gradient(40% 35% at 0% 80%, color-mix(in oklab, var(--glow-3) 35%, transparent) 0%, transparent 72%);
+}
+
+/* Körvonalas szöveg: a kitöltés átlátszó, a kontúr a szövegszín (currentColor marad érvényes). */
+@utility text-outline {
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: var(--outline-w, 1.5px) currentColor;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 88px;
+  background: var(--color-night);
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: var(--text-base--line-height);
+  letter-spacing: var(--text-base--letter-spacing);
+  font-optical-sizing: auto;
+  overflow-x: clip;
+}
+
+/* ---------- Tördelés ---------- */
+@layer base {
+  /* címek: kiegyensúlyozott sorok, elválasztás nélkül */
+  h1,
+  h2,
+  h3,
+  h4 {
+    text-wrap: balance;
+  }
+  /* törzsszöveg: nincs árva szó a sor végén + magyar elválasztás (lang="hu") */
+  p,
+  li,
+  dd,
+  blockquote {
+    text-wrap: pretty;
+  }
+  p,
+  dd {
+    hyphens: auto;
+    hyphenate-limit-chars: 8 3 3;
+  }
+  /* nagybetűs, középre zárt és display-méretű (xl és fölötte, bármely breakpointon) szöveg nem válik el */
+  p.uppercase,
+  p.text-center,
+  .text-center p,
+  p:is(
+      [class*="text-xl"],
+      [class*="text-2xl"],
+      [class*="text-3xl"],
+      [class*="text-4xl"],
+      [class*="text-5xl"],
+      [class*="text-6xl"],
+      [class*="text-7xl"],
+      [class*="text-9xl"],
+      [class*="text-1"]
+    ) {
+    hyphens: manual;
+  }
+}
+
+::selection {
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+}
+
+/* ---------- Reveal (IntersectionObserver: RevealObserver.jsx) ---------- */
+.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) var(--d, 0ms),
+    transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) var(--d, 0ms);
+}
+.js [data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---------- Hero belépő animáció ---------- */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(0.6em);
+  }
+}
+.rise {
+  animation: rise 1s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  animation-delay: var(--d, 0ms);
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.98);
+  }
+}
+.fade-up {
+  animation: fade-up 1.2s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  animation-delay: var(--d, 0ms);
+}
+
+/* ---------- Hero „3”: kontúr lefelé rajzolódik, a kitöltés alulról feltöltődik ---------- */
+@keyframes wipe-down {
+  from {
+    clip-path: inset(0 0 100% 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+@keyframes wipe-up {
+  from {
+    clip-path: inset(100% 0 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+.three-outline {
+  animation: wipe-down 1.1s cubic-bezier(0.65, 0, 0.35, 1) 150ms both;
+}
+.three-fill {
+  animation: wipe-up 1.3s cubic-bezier(0.65, 0, 0.35, 1) 750ms both;
+}
+
+/* ---------- Marquee ---------- */
+@keyframes marquee-up {
+  to {
+    transform: translateY(-50%);
+  }
+}
+@keyframes marquee-down {
+  from {
+    transform: translateY(-50%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+.marquee-up {
+  animation: marquee-up var(--dur, 40s) linear infinite;
+}
+.marquee-down {
+  animation: marquee-down var(--dur, 40s) linear infinite;
+}
+
+/* ---------- Folyamat: szám váltás ---------- */
+@keyframes number-in {
+  from {
+    opacity: 0;
+    transform: translateY(18%);
+    filter: blur(6px);
+  }
+}
+.number-in {
+  animation: number-in 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+/* ---------- Görgetésre feltöltődő szöveg (ScrollFill.jsx) ----------
+   A konténeren --p (0–1) és --n (sorok száma), soronként --i. Az i. sor kitöltése:
+   clamp(0, p·n − i, 1). JS nélkül / csökkentett mozgásnál teljesen kitöltve. */
+[data-fill] {
+  --p: 1;
+}
+.js [data-fill] {
+  --p: 0;
+}
+.fill-line {
+  --fill: clamp(0%, calc((var(--p) * var(--n) - var(--i)) * 100%), 100%);
+  clip-path: inset(-0.2em calc(100% - var(--fill)) -0.2em 0);
+}
+
+/* ---------- details/summary harmonika ---------- */
+details > summary {
+  list-style: none;
+  cursor: pointer;
+}
+details > summary::-webkit-details-marker {
+  display: none;
+}
+details[open] .acc-icon {
+  transform: rotate(45deg);
+}
+details[open] .acc-chevron {
+  transform: rotate(180deg);
+}
+
+/* ---------- Finom zaj textúra a sötét kártyákra ---------- */
+.noise {
+  position: relative;
+  isolation: isolate;
+}
+.noise::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  opacity: 0.07;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .js [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
+  .js [data-fill] {
+    --p: 1 !important;
+  }
 }
