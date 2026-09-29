@@ -61,7 +61,7 @@ export default function Problem() {
           <div className="relative grid items-center gap-10 lg:grid-cols-[1fr_1.25fr] lg:gap-14">
             <div>
               <h3 className="mt-6 text-3xl font-bold text-paper md:text-4xl">
-                De egyáltalán <Accent className="text-highlight">ajánl téged?</Accent>
+                De egyáltalán <Accent className="text-highlight">ajánl téged az AI?</Accent>
               </h3>
               <p className="mt-5 max-w-[42ch] text-base text-paper/60 md:text-lg">
                 A ChatGPT pont ezekből veszi az információt, és ez alapján ajánl

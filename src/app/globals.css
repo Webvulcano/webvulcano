@@ -380,3 +380,19 @@ details[open] .acc-chevron {
     --p: 1 !important;
   }
 }
+
+/* ---------- ChatGPT-nézet: gépelő pöttyök ---------- */
+@keyframes typing-dot {
+  0%, 80%, 100% {
+    opacity: 0.25;
+    transform: translateY(0);
+  }
+  40% {
+    opacity: 1;
+    transform: translateY(-3px);
+  }
+}
+.typing-dot {
+  animation: typing-dot 1.2s ease-in-out infinite;
+  animation-delay: var(--d, 0ms);
+}

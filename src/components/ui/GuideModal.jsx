@@ -65,7 +65,7 @@ export default function GuideModal({ industry = "", city = "", className = "" })
         <span className="grid size-10 shrink-0 place-items-center rounded-full bg-highlight/15 text-highlight">
           <Icon name="rocket" className="size-5" strokeWidth={2} />
         </span>
-        <p className="min-w-0 flex-1 text-base text-paper">
+        <p className="min-w-0 flex-1 basis-56 text-base text-paper">
           <span className="block text-sm font-medium tracking-label text-highlight uppercase">Ingyenes útmutató</span>
           <span className="font-bold">{guideTitle}</span>{" "}
           <span className="text-paper/70">– {guideSubtitle}</span>

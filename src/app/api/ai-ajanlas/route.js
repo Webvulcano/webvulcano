@@ -1,5 +1,8 @@
 // „ChatGPT téged ajánl?” — OpenAI Responses API webes kereséssel.
 // A kulcs: OPENAI_API_KEY a .env.local-ban (sosem megy a böngészőbe).
+import { aiMockDelay, aiMockItems } from "@/data/aiMock";
+import { cacheKey, readCache, writeCache } from "@/lib/aiCache";
+
 const MODEL = process.env.OPENAI_MODEL || "gpt-5.4-mini";
 const DAILY_LIMIT = 5;
 const MAX_LEN = 60;
@@ -50,6 +53,12 @@ const schema = {
 const clean = (v) => (typeof v === "string" ? v.replace(/\s+/g, " ").trim().slice(0, MAX_LEN) : "");
 
 export async function POST(request) {
+  // Tesztmód: mentett válasz, nincs OpenAI-hívás és nincs napi korlát.
+  if (process.env.AI_MOCK === "1") {
+    await new Promise((r) => setTimeout(r, aiMockDelay));
+    return Response.json({ success: true, question: null, items: aiMockItems });
+  }
+
   const key = process.env.OPENAI_API_KEY;
   if (!key) {
     return Response.json({ success: false, error: "Server misconfigured" }, { status: 500 });
@@ -66,6 +75,14 @@ export async function POST(request) {
   const city = clean(body?.city);
   if (!industry || !city) {
     return Response.json({ success: false, error: "Missing fields" }, { status: 400 });
+  }
+
+  // Gyorsítótár: friss mentett válasznál nincs OpenAI-hívás és nem számít a napi korlátba.
+  const cKey = cacheKey(industry, city);
+  const cached = await readCache(cKey);
+  if (cached?.fresh) {
+    await writeCache({ key: cKey, industry, city, prev: cached });
+    return Response.json({ success: true, question: cached.question, items: cached.items });
   }
 
   const ip = request.headers.get("x-forwarded-for")?.split(",")[0].trim() || "local";
@@ -102,7 +119,9 @@ export async function POST(request) {
 
   try {
     const { question, items } = JSON.parse(text);
-    return Response.json({ success: true, question, items: items.slice(0, 3) });
+    const top = items.slice(0, 3);
+    await writeCache({ key: cKey, industry, city, prev: cached, answer: { question, items: top } });
+    return Response.json({ success: true, question, items: top });
   } catch {
     console.error("OpenAI parse error:", text);
     return Response.json({ success: false, error: "Bad response" }, { status: 502 });

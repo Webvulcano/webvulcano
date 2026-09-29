@@ -1,10 +1,9 @@
 "use client";
 
-import { useState } from "react";
-import Button from "@/components/ui/Button";
-import GuideModal from "@/components/ui/GuideModal";
+import { useCallback, useState } from "react";
+import AiResults from "@/components/ui/AiResults";
+import ChatOverlay from "@/components/ui/ChatOverlay";
 import Icon from "@/components/ui/Icon";
-import { site } from "@/data/site";
 
 // „ChatGPT téged ajánl?” — a /api/ai-ajanlas route kérdezi az OpenAI-t webes kereséssel.
 
@@ -44,6 +43,8 @@ export default function AiDemo() {
   const [state, setState] = useState("idle"); // idle | thinking | done | error
   const [result, setResult] = useState(null);
   const [error, setError] = useState("");
+  const [open, setOpen] = useState(false); // teljes képernyős ChatGPT-nézet
+  const closeChat = useCallback(() => setOpen(false), []);
 
   async function submit(e) {
     e.preventDefault();
@@ -55,6 +56,7 @@ export default function AiDemo() {
     const localQuestion = `Kit ajánlasz, ha ${x.toLowerCase()} kell ${inCity(cap(y))}?`;
     setResult({ question: localQuestion, items: [] });
     setState("thinking");
+    setOpen(true);
 
     try {
       const res = await fetch("/api/ai-ajanlas", {
@@ -115,57 +117,19 @@ export default function AiDemo() {
             <Icon name="search" className="mt-1 size-4 shrink-0 text-highlight" strokeWidth={2} />
             „{result.question}”
           </p>
-
-          {state === "thinking" ? (
-            <p className="mt-4 animate-pulse text-sm text-paper/50">ChatGPT keres a weben… (10–15 mp)</p>
-          ) : state === "error" ? (
-            <p className="mt-4 text-sm text-danger">{error}</p>
-          ) : result.items.length === 0 ? (
-            <p className="mt-4 text-sm text-paper/60">Erre nem találtam ajánlható vállalkozást – próbáld más szakmával vagy várossal.</p>
-          ) : (
-            <>
-              <ol className="mt-4 space-y-2.5">
-                {result.items.map((it, i) => (
-                  <li
-                    key={it.name}
-                    className="rise flex items-center justify-between gap-3 rounded-xl bg-paper/5 px-4 py-3"
-                    style={{ "--d": `${i * 180}ms` }}
-                  >
-                    <span className="min-w-0">
-                      <span className="block text-base text-paper/90">
-                        <span className="mr-2 text-paper/40">{i + 1}.</span>
-                        {it.name}
-                      </span>
-                      {it.reason && <span className="mt-0.5 block text-sm text-paper/50">{it.reason}</span>}
-                    </span>
-                    {it.rating != null && (
-                      <span className="shrink-0 text-sm text-paper/60">
-                        <span className="text-highlight">★</span> {String(it.rating).replace(".", ",")}
-                        {it.reviews != null && ` (${it.reviews})`}
-                      </span>
-                    )}
-                  </li>
-                ))}
-              </ol>
-
-              <div className="rise mt-5 flex flex-wrap items-center justify-between gap-4" style={{ "--d": "700ms" }}>
-                <p className="text-base font-bold text-paper">
-                  Nem vagy a listán? <span className="font-normal text-paper/70">Ezen tudunk változtatni.</span>
-                </p>
-                <Button href={site.ctaHref} size="sm">
-                  {site.cta}
-                </Button>
-              </div>
-              <GuideModal
-                industry={industry}
-                city={city}
-                className="rise mt-5"
-              />
-              <p className="mt-4 text-sm text-paper/40">A választ a ChatGPT adta, élő webes kereséssel.</p>
-            </>
-          )}
+          <AiResults result={result} state={state} error={error} industry={industry} city={city} />
         </div>
       )}
+
+      <ChatOverlay
+        open={open}
+        onClose={closeChat}
+        result={result}
+        state={state}
+        error={error}
+        industry={industry}
+        city={city}
+      />
     </div>
   );
 }
