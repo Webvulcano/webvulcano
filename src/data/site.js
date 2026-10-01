@@ -4,7 +4,7 @@ export const site = {
   email: "info@webvulcano.hu",
   phone: "+36 30 904 1618",
   location: "Budapest",
-  privacyUrl: "https://webvulcano.hu/adatkezeles",
+  privacyUrl: "/adatkezeles",
   cta: "Lépjünk kapcsolatba",
   ctaShort: "Kapcsolat",
   ctaHref: "/#kapcsolat",
