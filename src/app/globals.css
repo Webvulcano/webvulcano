@@ -412,6 +412,22 @@ textarea {
   animation-delay: var(--d, 0ms);
 }
 
+/* blur placeholder → éles kép: betöltéskor finoman kiélesedik */
+@keyframes img-sharpen {
+  from {
+    filter: blur(14px);
+    opacity: 0.7;
+  }
+}
+.img-sharpen {
+  animation: img-sharpen 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .img-sharpen {
+    animation: none;
+  }
+}
+
 /* ---------- Hero „3”: kontúr lefelé rajzolódik, a kitöltés alulról feltöltődik ---------- */
 @keyframes wipe-down {
   from {

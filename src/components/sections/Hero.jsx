@@ -2,7 +2,7 @@ import Image from "next/image";
 import Accent from "@/components/ui/Accent";
 import Button from "@/components/ui/Button";
 import Icon from "@/components/ui/Icon";
-import ParallaxGroup from "@/components/ui/ParallaxGroup";
+import HeroPortrait from "@/components/ui/HeroPortrait";
 import { site } from "@/data/site";
 
 const lines = [
@@ -20,10 +20,6 @@ const features = [
   { icon: "search", label: "Google Business profil" },
   { icon: "laurel", label: "Automatikus értékelésszerzés" },
 ];
-
-// Parallax-mélységek (--mx/--my: -1…1, ParallaxGroup írja).
-const shadowDepth = { transform: "translate3d(calc(var(--mx, 0) * -6px), calc(var(--my, 0) * -4px), 0)" };
-const portraitDepth = { transform: "translate3d(calc(var(--mx, 0) * 10px), calc(var(--my, 0) * 6px), 0)" };
 
 const thumbs = [
   "/projects/mik-eloteto/mikeloteto_1.jpg",
@@ -96,33 +92,7 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Rétegek: z-[5] vetett árnyék → z-10 portré (parallax). */}
-          <ParallaxGroup className="relative h-[520px] sm:h-[640px] lg:h-full">
-            <div aria-hidden="true" className="absolute inset-0 z-[5]" style={shadowDepth}>
-              <Image
-                src="/images/hero_.png"
-                alt=""
-                width={1972}
-                height={2900}
-                sizes="(min-width: 1024px) 38vw, 80vw"
-                className="fade-up absolute bottom-0 left-[46%] h-[90%] w-auto max-w-none -translate-x-1/2 opacity-25 blur-xl brightness-0 lg:left-[54%]"
-                style={{ "--d": "400ms" }}
-              />
-            </div>
-
-            <div className="absolute inset-0 z-10" style={portraitDepth}>
-              <Image
-                src="/images/hero_.png"
-                alt="Bognár Lehel, weboldalfejlesztő"
-                width={1972}
-                height={2900}
-                preload
-                sizes="(min-width: 1024px) 38vw, 80vw"
-                className="fade-up absolute bottom-0 left-[40%] h-[92%] w-auto max-w-none -translate-x-1/2 lg:left-[48%]"
-                style={{ "--d": "250ms" }}
-              />
-            </div>
-          </ParallaxGroup>
+          <HeroPortrait />
         </div>
       </section>
     </div>
