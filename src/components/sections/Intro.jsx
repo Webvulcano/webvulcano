@@ -54,7 +54,7 @@ export default function Intro() {
         <div className="relative mx-auto aspect-square w-full max-w-[480px] overflow-hidden rounded-full border border-paper/10 bg-[radial-gradient(circle_at_50%_35%,var(--highlight),var(--accent)_70%)] shadow-[0_30px_80px_-30px_rgba(0,0,0,0.9)]"
         >
           <Image
-            src="/images/lehel3.png"
+            src="/images/profil_.png"
             alt="Bognár Lehel, webfejlesztő"
             width={2000}
             height={2000}

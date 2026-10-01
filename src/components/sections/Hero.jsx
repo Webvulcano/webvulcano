@@ -100,7 +100,7 @@ export default function Hero() {
           <ParallaxGroup className="relative h-[520px] sm:h-[640px] lg:h-full">
             <div aria-hidden="true" className="absolute inset-0 z-[5]" style={shadowDepth}>
               <Image
-                src="/images/hero6.png"
+                src="/images/hero_.png"
                 alt=""
                 width={1972}
                 height={2900}
@@ -112,7 +112,7 @@ export default function Hero() {
 
             <div className="absolute inset-0 z-10" style={portraitDepth}>
               <Image
-                src="/images/hero6.png"
+                src="/images/hero_.png"
                 alt="Bognár Lehel, weboldalfejlesztő"
                 width={1972}
                 height={2900}
