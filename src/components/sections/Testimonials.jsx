@@ -16,7 +16,7 @@ export default function Testimonials() {
       </p>
 
       <div className="container-x relative">
-        <h2 data-reveal className="text-3xl font-bold md:text-4xl lg:text-5xl">
+        <h2 data-reveal className="type-h2 font-bold">
           Mit mondanak az <Accent>ügyfeleim</Accent>
         </h2>
 
@@ -30,7 +30,7 @@ export default function Testimonials() {
                 i % 2 ? "md:translate-y-10" : ""
               }`}
             >
-              <blockquote className="text-lg font-medium lg:text-xl">„{t.quote}”</blockquote>
+              <blockquote className="type-h4 font-medium">„{t.quote}”</blockquote>
               <figcaption className="mt-8 flex items-center gap-3">
                 {t.avatar && (
                   <Image

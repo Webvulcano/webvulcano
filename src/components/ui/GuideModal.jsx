@@ -100,7 +100,7 @@ export default function GuideModal({ industry = "", city = "", className = "" })
               <span className="mx-auto grid size-12 place-items-center rounded-full bg-highlight/15 text-highlight">
                 <Icon name="check" className="size-6" strokeWidth={2.4} />
               </span>
-              <h3 className="mt-4 text-xl font-bold">Indul a letöltés!</h3>
+              <h3 className="mt-4 type-h4 font-bold">Indul a letöltés!</h3>
               <p className="mt-2 text-base text-paper/70">
                 Ha nem indult el magától,{" "}
                 <a href={url} download className="text-highlight underline underline-offset-4">
@@ -112,7 +112,7 @@ export default function GuideModal({ industry = "", city = "", className = "" })
           ) : (
             <form onSubmit={submit} noValidate={false}>
               <p className="text-sm font-medium tracking-label text-highlight uppercase">Ingyenes útmutató</p>
-              <h3 className="mt-2 pr-8 text-xl font-bold">{guideTitle}</h3>
+              <h3 className="mt-2 pr-8 type-h4 font-bold">{guideTitle}</h3>
               <p className="mt-1 text-base text-paper/70">
                 {guideSubtitle}. Add meg az adataidat, és azonnal letöltheted.
               </p>

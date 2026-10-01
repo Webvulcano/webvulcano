@@ -9,7 +9,7 @@ export default function OtherSteps({ current }) {
   return (
     <section id="tobbi-lepes" className="border-t border-paper/10 py-20 lg:py-28">
       <p className="text-sm font-medium tracking-eyebrow text-highlight uppercase">Így dolgozom</p>
-      <h2 className="mt-6 text-3xl font-bold md:text-4xl lg:text-5xl">
+      <h2 className="mt-6 type-h2 font-bold">
         <span className="block">A folyamat</span>
         <span className="block">többi lépése.</span>
       </h2>
@@ -24,7 +24,7 @@ export default function OtherSteps({ current }) {
               >
                 <span className="text-sm font-medium text-paper/60 tabular-nums">{pad(i + 1)}</span>
                 <span>
-                  <span className="block text-xl font-medium lg:text-2xl">{s.title}</span>
+                  <span className="block type-h3 font-medium">{s.title}</span>
                   <span className="mt-1 block text-base text-paper/65">{s.teaser}</span>
                 </span>
                 <Icon

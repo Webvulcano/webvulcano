@@ -2,7 +2,7 @@ import SectionRail from "@/components/sections/SectionRail";
 import Hero from "@/components/sections/Hero";
 import Problem from "@/components/sections/Problem";
 import Intro from "@/components/sections/Intro";
-import Guarantees from "@/components/sections/Guarantees";
+// import Guarantees from "@/components/sections/Guarantees"; // kivéve: „Amit minden ügyfelem megkap”
 import Statement from "@/components/sections/Statement";
 import Services from "@/components/sections/Services";
 // import FeaturedProject from "@/components/sections/FeaturedProject";
@@ -24,7 +24,7 @@ export default function Home() {
         <div className="relative z-10">
           <Problem />
           <Intro />
-          <Guarantees />
+          {/* <Guarantees /> */}
           <Statement />
           <Services />
           {/* <FeaturedProject /> */}

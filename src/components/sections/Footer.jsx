@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import { steps, stepPath } from "@/data/steps";
+import Icon from "@/components/ui/Icon";
+import CopyEmail from "@/components/ui/CopyEmail";
 import { navLinks, site } from "@/data/site";
 
 const heading = "text-sm font-medium tracking-label text-paper/60 uppercase";
@@ -8,7 +9,7 @@ const heading = "text-sm font-medium tracking-label text-paper/60 uppercase";
 export default function Footer() {
   return (
     <footer className="border-t border-paper/10 bg-night text-paper">
-      <div className="container-x grid gap-12 py-16 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1.2fr_1fr]">
+      <div className="container-x grid gap-12 py-16 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr]">
         <div>
           <Link href="/" className="flex items-center gap-3">
             <Image src="/brand/logo.png" alt="" width={44} height={44} className="size-11 rounded-full" />
@@ -19,8 +20,8 @@ export default function Footer() {
             </span>
           </Link>
           <p className="mt-5 max-w-[36ch] text-sm text-paper/65">
-            Weboldalkészítés budapesti vállalkozásoknak – számokkal alátámasztva hozom az
-            érdeklődőidet.
+            Weboldalkészítés budapesti vállalkozásoknak, hogy a neten is megtaláljanak, és
+            megbízzanak benned.
           </p>
         </div>
 
@@ -42,26 +43,11 @@ export default function Footer() {
           </ul>
         </nav>
 
-        <nav aria-label="A folyamat lépései">
-          <p className={heading}>Így dolgozom</p>
-          <ul className="mt-4 space-y-2.5 text-base text-paper/70">
-            {steps.map((s) => (
-              <li key={s.slug}>
-                <Link href={stepPath(s.slug)} className="transition hover:text-paper">
-                  {s.title}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
-
         <div>
           <p className={heading}>Elérhetőség</p>
           <ul className="mt-4 space-y-2.5 text-base text-paper/70">
             <li>
-              <a href={`mailto:${site.email}`} className="transition hover:text-paper">
-                {site.email}
-              </a>
+              <CopyEmail icon={false} className="text-base" />
             </li>
             {site.phone && (
               <li>
@@ -70,7 +56,21 @@ export default function Footer() {
                 </a>
               </li>
             )}
-            <li>{site.location}</li>
+          </ul>
+          <ul className="mt-5 flex gap-2.5">
+            {site.socials.map((s) => (
+              <li key={s.href}>
+                <a
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener"
+                  aria-label={s.label}
+                  className="grid size-10 place-items-center rounded-full border border-paper/15 text-paper/70 transition hover:border-highlight hover:text-highlight"
+                >
+                  <Icon name={s.icon} className="size-5" />
+                </a>
+              </li>
+            ))}
           </ul>
         </div>
       </div>

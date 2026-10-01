@@ -10,6 +10,7 @@
     "utmutato": "\"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\" --headless=new --disable-gpu --no-pdf-header-footer --virtual-time-budget=8000 --allow-file-access-from-files --print-to-pdf=\"$PWD/public/utmutato/chatgpt-ajanlas-utmutato.pdf\" \"file://$PWD/content/utmutato/chatgpt-ajanlas-utmutato.html\""
   },
   "dependencies": {
+    "motion": "^13.4.6",
     "next": "16.3.6",
     "react": "19.2.8",
     "react-dom": "19.2.8"

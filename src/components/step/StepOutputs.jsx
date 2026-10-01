@@ -1,7 +1,7 @@
 
 // „Mit kapsz ebből a lépésből” — referencia: „What this stage produces”.
 // A feltöltődő címek skála-lépcsője a hasábszélességhez igazítva (egy sor = egy kitöltési sor).
-export const fillHeading = "text-2xl font-bold sm:text-3xl md:text-4xl";
+export const fillHeading = "type-h2 font-bold";
 
 export default function StepOutputs({ step }) {
   return (
@@ -28,7 +28,7 @@ export default function StepOutputs({ step }) {
             key={o}
             data-reveal
             style={{ "--d": `${i * 80}ms` }}
-            className="border-b border-paper/10 py-6 text-lg text-paper/90 lg:text-xl"
+            className="border-b border-paper/10 py-6 type-h4 text-paper/90"
           >
             {o}
           </li>

@@ -42,7 +42,7 @@ export default function Hero() {
         <div className="container-x grid h-full grid-cols-1 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)]">
           <div className="relative z-30 flex flex-col justify-center pt-32 pb-6 lg:pt-[72px] lg:pb-0">
 
-            <h1 className="text-4xl font-extrabold text-ink sm:text-5xl lg:text-6xl lg:[font-size:min(4.7684rem,5vw)]">
+            <h1 className="type-display font-extrabold text-ink">
               {lines.map((line, i) => (
                 <span key={i} className="-mr-[0.2em] block overflow-hidden pt-[0.04em] pr-[0.2em] pb-[0.08em]">
                   <span className="rise block" style={{ "--d": `${120 + i * 90}ms` }}>
@@ -100,7 +100,7 @@ export default function Hero() {
           <ParallaxGroup className="relative h-[520px] sm:h-[640px] lg:h-full">
             <div aria-hidden="true" className="absolute inset-0 z-[5]" style={shadowDepth}>
               <Image
-                src="/images/hero4.png"
+                src="/images/hero6.png"
                 alt=""
                 width={1972}
                 height={2900}
@@ -112,7 +112,7 @@ export default function Hero() {
 
             <div className="absolute inset-0 z-10" style={portraitDepth}>
               <Image
-                src="/images/hero4.png"
+                src="/images/hero6.png"
                 alt="Bognár Lehel, weboldalfejlesztő"
                 width={1972}
                 height={2900}

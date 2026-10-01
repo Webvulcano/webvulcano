@@ -104,7 +104,7 @@ export default function Process() {
     >
       <div className="container-x grid gap-x-14 pt-24 lg:grid-cols-[minmax(0,1fr)_1px_minmax(0,1.1fr)] lg:pt-32">
         <div ref={colRef} className="lg:sticky lg:top-[112px] lg:flex lg:flex-col lg:self-start">
-          <h2 className="max-w-[20ch] text-2xl font-bold lg:text-3xl">
+          <h2 className="max-w-[20ch] type-h2 font-bold">
             Így készül a <Accent>Te</Accent> weboldalad –{" "}
             <span className="underline decoration-2 underline-offset-[0.2em]">lépésről lépésre</span>
           </h2>
@@ -123,8 +123,9 @@ export default function Process() {
         </div>
 
         {/* idővonal: a pötty sticky a képernyő közepén, a kék vonal belőle nyúlik felfelé és az
-            overflow-y-clip vágja a tetejét — natív görgetés, nincs JS-késés/rángás */}
-        <div aria-hidden="true" className="relative hidden overflow-x-visible overflow-y-clip bg-ink/10 lg:block">
+            overflow-y-clip vágja a tetejét — natív görgetés, nincs JS-késés/rángás.
+            py-3 + bg-clip-content: a pötty a szürke vonal végén áll meg, a halo nem lóg a clip-élre */}
+        <div aria-hidden="true" className="relative hidden overflow-x-visible overflow-y-clip bg-ink/10 bg-clip-content py-3 lg:block">
           <div className="sticky top-[50svh] h-0">
             <div className="absolute bottom-0 left-0 h-[200svh] w-px bg-accent" />
             <span className="absolute top-0 left-1/2 size-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent glow-highlight-dot" />
@@ -143,7 +144,7 @@ export default function Process() {
                   {pad(i + 1)}.
                 </p>
                 <h3
-                  className={`text-3xl font-bold transition-colors duration-500 md:text-4xl lg:text-5xl ${
+                  className={`type-h2 font-bold transition-colors duration-500 ${
                     on ? "text-ink" : "lg:text-ink/25"
                   }`}
                 >

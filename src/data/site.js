@@ -5,9 +5,14 @@ export const site = {
   phone: "+36 30 904 1618",
   location: "Budapest",
   privacyUrl: "https://webvulcano.hu/adatkezeles",
-  cta: "Kérek ingyen vázlatot",
-  ctaShort: "Ingyen vázlat",
+  cta: "Lépjünk kapcsolatba",
+  ctaShort: "Kapcsolat",
   ctaHref: "/#kapcsolat",
+  socials: [
+    { label: "LinkedIn", icon: "linkedin", href: "https://www.linkedin.com/company/webvulcano" },
+    { label: "Instagram", icon: "instagram", href: "https://www.instagram.com/webvulcano/" },
+    { label: "Facebook", icon: "facebook", href: "https://www.facebook.com/people/WebVulcano/61594139248272/" },
+  ],
 };
 
 // Abszolút (/#…) linkek: a főoldalon oldalon belüli ugrás, aloldalról visszavisznek.

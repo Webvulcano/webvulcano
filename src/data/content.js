@@ -41,7 +41,7 @@ export const benefits = [
   {
     icon: "code",
     title: "Fejlesztői háttér",
-    text: "Két évig banki rendszereken dolgoztam fejlesztőként. Ott tanultam meg, mit jelent megbízható, hibamentes munkát szállítani – ezt hozom a te oldaladra is.",
+    text: "4 év fejlesztői tapasztalattal rendelkezem, ebből 2 évig banki rendszereken dolgoztam fejlesztőként. Ott tanultam meg, mit jelent megbízható, hibamentes munkát szállítani – ezt hozom a te oldaladra is.",
   },
   {
     icon: "package",
@@ -151,9 +151,3 @@ export const faq = [
   },
 ];
 
-export const challenges = [
-  "Nincs weboldalunk",
-  "Elavult vagy nem profi a weboldalunk",
-  "Lassú a weboldalunk",
-  "Van weboldalunk, de nem hoz érdeklődőt",
-];

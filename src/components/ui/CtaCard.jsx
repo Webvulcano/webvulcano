@@ -14,7 +14,7 @@ export default function CtaCard() {
         aria-hidden="true"
         className="absolute -bottom-40 left-1/2 h-[380px] w-[760px] -translate-x-1/2 rounded-full bg-accent/30 blur-[120px]"
       />
-      <h2 className="relative mx-auto max-w-[20ch] text-2xl font-bold sm:text-3xl md:text-4xl lg:text-5xl">
+      <h2 className="relative mx-auto max-w-[20ch] type-h2 font-bold">
         Nézzük meg, mit tudnék kihozni a <Accent>te</Accent> vállalkozásodból.
       </h2>
       <p className="relative mx-auto mt-6 max-w-[48ch] text-base text-paper/70 md:text-lg">

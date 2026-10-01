@@ -28,7 +28,7 @@ export default function StepHero({ step, index, total }) {
         Lépés {pad(index + 1)}&nbsp;/&nbsp;{pad(total)}
       </p>
       <h1
-        className="rise mt-4 max-w-[16ch] text-4xl font-bold md:text-5xl lg:text-6xl"
+        className="rise mt-4 max-w-[16ch] type-h1 font-bold"
         style={{ "--d": "140ms" }}
       >
         {step.title}

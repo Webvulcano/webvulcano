@@ -37,7 +37,7 @@ export default function FeaturedProject() {
             <h2
               data-reveal
               style={{ "--d": "80ms" }}
-              className="mt-6 text-2xl font-bold md:text-3xl lg:text-4xl"
+              className="mt-6 type-h2 font-bold"
             >
               Weboldal nélkül indultak. Most egy oldal <Accent>dolgozik</Accent> nekik.
             </h2>
@@ -54,7 +54,7 @@ export default function FeaturedProject() {
             <dl className="mt-12 grid gap-8 sm:grid-cols-3">
               {facts.map((f, i) => (
                 <div key={f.value} data-reveal style={{ "--d": `${200 + i * 90}ms` }}>
-                  <dt className="text-3xl leading-none font-bold text-highlight lg:text-4xl">
+                  <dt className="type-stat font-bold text-highlight">
                     {f.value}
                   </dt>
                   <dd className="mt-3 text-sm text-paper/70">{f.label}</dd>

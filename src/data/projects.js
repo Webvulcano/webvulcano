@@ -32,6 +32,7 @@ export const featuredProjects = [
     image: "/projects/cold-email-sender/email-sender1.png",
     width: 3420,
     height: 2146,
+    demo: "/munkaim/hideg-email",
   },
 ];
 
@@ -44,6 +45,26 @@ export const otherProjects = [
     summary:
       "Napi 100+\u00a0hibajegy automatikus kategorizálása, átnevezése és összefoglalása – hogy a csapat a megoldásra figyeljen, ne az adminisztrációra.",
     tags: ["Node-RED", "Otobo", "Gemini API"],
+    demo: "/munkaim/ticketing",
+  },
+  {
+    title: "Automatikus Google-értékelés gyűjtő",
+    kind: "AI automatizáció",
+    stat: "0 perc",
+    statLabel: "kézi munka egy értékelés-kérésre",
+    summary:
+      "Amikor egy munka véget ér, a rendszer kiolvassa a naptárból, és 1–2 nappal később magától küld egy személyes hangú emailt az ügyfélnek: ha elégedett volt, értékeljen a Google-ön. Egyetlen kérés sem marad el, az értékelések automatikusan érkeznek majd.",
+    tags: ["Make.com", "Google Calendar", "Email", "Google értékelés"],
+    demo: "/munkaim/ertekeles",
+  },
+  {
+    title: "Érted hallásgondozó",
+    kind: "Weboldal · hallásgondozás",
+    stat: "Folyamatban",
+    statLabel: "teljes újjáépítés, élesítés előtt",
+    summary:
+      "Teljes újjáépítés: jól olvasható, egyszerű oldal, ahol a látogató gyorsan megtalálja, amit keres, és könnyen időpontot kér. A főoldalon kiemelve jelennek meg az aktuális akciók, mellette termékoldal és blog. Mögé admin felület készül: a tulajdonos látja, hányan jöttek, mire kattintottak és mennyi időt töltöttek az oldalon, ezenkívül maga tudja szerkeszteni az akciókat és a blogcikkeket.",
+    tags: ["Weboldal", "Admin felület", "Analitika", "Blog"],
   },
   {
     title: "Mooira",

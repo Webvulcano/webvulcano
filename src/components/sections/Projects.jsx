@@ -1,5 +1,7 @@
 import Image from "next/image";
+import Link from "next/link";
 import Accent from "@/components/ui/Accent";
+import Carousel from "@/components/ui/Carousel";
 import Icon from "@/components/ui/Icon";
 import { featuredProjects, otherProjects } from "@/data/projects";
 
@@ -23,7 +25,9 @@ export default function Projects() {
     <section id="munkaim" className="bg-night text-paper">
       <div className="container-x pt-24 lg:pt-36">
         <h2 data-reveal>
-          <span className="block text-3xl font-bold md:text-4xl lg:text-5xl">Kiemelt</span>
+          <span className="block type-h2 font-bold">
+            Kiemelt
+          </span>
           <Accent className="block text-5xl text-paper/85 md:text-6xl lg:text-7xl">
             projektjeim
           </Accent>
@@ -39,7 +43,7 @@ export default function Projects() {
             style={{ zIndex: i + 1 }}
           >
             <a
-              href={p.url || "/#kapcsolat"}
+              href={p.url || p.demo || "/#kapcsolat"}
               target={p.url ? "_blank" : undefined}
               rel={p.url ? "noopener" : undefined}
               className="group block overflow-hidden rounded-2xl border border-paper/10 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.9)]"
@@ -58,8 +62,12 @@ export default function Projects() {
               <p className="text-sm font-medium tracking-label text-paper/60 uppercase">
                 {String(i + 1).padStart(2, "0")} · {p.kind}
               </p>
-              <h3 className="mt-4 text-2xl font-medium lg:text-3xl">{p.title}</h3>
-              <p className="mt-5 max-w-[48ch] text-base text-paper/65">{p.summary}</p>
+              <h3 className="mt-4 type-h3 font-medium">
+                {p.title}
+              </h3>
+              <p className="mt-5 max-w-[48ch] text-base text-paper/65">
+                {p.summary}
+              </p>
               <div className="mt-7">
                 <Tags tags={p.tags} />
               </div>
@@ -71,35 +79,65 @@ export default function Projects() {
                   className="mt-8 inline-flex items-center gap-2 text-base font-medium text-paper underline decoration-paper/30 underline-offset-[0.2em] transition hover:decoration-paper"
                 >
                   {p.url.replace("https://", "")}
-                  <Icon name="arrowUpRight" className="size-4" strokeWidth={2} />
+                  <Icon
+                    name="arrowUpRight"
+                    className="size-4"
+                    strokeWidth={2}
+                  />
                 </a>
+              )}
+              {p.demo && (
+                <Link
+                  href={p.demo}
+                  className="mt-8 inline-flex items-center gap-2 text-base font-medium text-paper underline decoration-paper/30 underline-offset-[0.2em] transition hover:decoration-paper"
+                >
+                  Nézd meg élőben hogy működik
+                  <Icon
+                    name="arrowUpRight"
+                    className="size-4"
+                    strokeWidth={2}
+                  />
+                </Link>
               )}
             </div>
           </article>
         ))}
       </div>
 
-      <div className="container-x grid gap-5 pb-24 md:grid-cols-2 lg:pb-36">
-        {otherProjects.map((p, i) => (
+      <Carousel
+        label="További munkák"
+        className="pb-24 lg:pb-36"
+        itemClassName="w-[86%] md:w-[46%] lg:w-[44%]"
+      >
+        {otherProjects.map((p) => (
           <article
             key={p.title}
-            data-reveal
-            style={{ "--d": `${i * 100}ms` }}
-            className="noise flex flex-col rounded-2xl border border-paper/10 bg-night-2 p-8 lg:p-10"
+            className="noise flex w-full flex-col rounded-2xl border border-paper/10 bg-night-2 p-8 lg:p-10"
           >
-            <p className="text-sm font-medium tracking-label text-paper/60 uppercase">{p.kind}</p>
-            <p className="mt-6 text-3xl leading-none font-bold text-highlight lg:text-4xl">
+            <p className="text-sm font-medium tracking-label text-paper/60 uppercase">
+              {p.kind}
+            </p>
+            <p className="mt-6 type-stat font-bold text-highlight">
               {p.stat}
             </p>
             <p className="mt-2 text-sm text-paper/65">{p.statLabel}</p>
-            <h3 className="mt-8 text-xl font-medium">{p.title}</h3>
+            <h3 className="mt-8 type-h4 font-medium">{p.title}</h3>
             <p className="mt-3 mb-7 text-base text-paper/65">{p.summary}</p>
             <div className="mt-auto">
               <Tags tags={p.tags} />
             </div>
+            {p.demo && (
+              <Link
+                href={p.demo}
+                className="mt-7 inline-flex items-center gap-2 self-start text-base font-medium text-paper underline decoration-paper/30 underline-offset-[0.2em] transition hover:decoration-paper"
+              >
+                Nézd meg élőben hogy működik
+                <Icon name="arrowUpRight" className="size-4" strokeWidth={2} />
+              </Link>
+            )}
           </article>
         ))}
-      </div>
+      </Carousel>
     </section>
   );
 }

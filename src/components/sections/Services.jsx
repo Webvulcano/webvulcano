@@ -38,7 +38,7 @@ export default function Services() {
         <h2
           data-reveal
           style={{ "--d": "80ms" }}
-          className="mx-auto mt-8 max-w-[18ch] text-3xl font-bold md:text-5xl lg:text-6xl"
+          className="mx-auto mt-8 max-w-[18ch] type-h2 font-bold"
         >
           A <Accent>Szomorú igazság</Accent>, amit senki sem mond el weboldal készítés előtt.
         </h2>
@@ -65,7 +65,7 @@ export default function Services() {
               >
                 {f.step}. lépés
               </p>
-              <h3 className="mt-1 text-2xl font-bold md:text-3xl">{f.title}</h3>
+              <h3 className="mt-1 type-h3 font-bold">{f.title}</h3>
               <p
                 className={`mx-auto mt-3 max-w-[46ch] text-base ${f.highlight ? "text-on-accent/90" : "text-ink/65"}`}
               >
@@ -79,7 +79,7 @@ export default function Services() {
               {f.tags && (
                 <div className="mt-4 flex flex-wrap justify-center gap-2">
                   {f.tags.map((t) => (
-                    <span key={t} className="rounded-full bg-ink/6 px-3 py-1 text-xs text-ink/70">
+                    <span key={t} className="rounded-full bg-ink/6 px-3 py-1 text-sm text-ink/70">
                       {t}
                     </span>
                   ))}
@@ -91,7 +91,7 @@ export default function Services() {
 
         <p
           data-reveal
-          className="mx-auto mt-28 max-w-[26ch] text-2xl font-bold md:text-3xl lg:text-4xl"
+          className="mx-auto mt-28 max-w-[26ch] type-h2 font-bold"
         >
           Ugyanannyi látogatóból több ügyfél. Erre való egy jó weboldal.
         </p>
@@ -101,7 +101,6 @@ export default function Services() {
             {site.cta}
             <Icon name="arrow" className="size-5" strokeWidth={2} />
           </Button>
-          <p className="text-sm text-ink/60">Ingyen vázlat • Nem kötelez semmire</p>
         </div>
       </div>
     </section>

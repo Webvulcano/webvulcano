@@ -20,19 +20,17 @@ export default function Intro() {
     <section id="bemutatkozas" className="relative overflow-clip bg-night text-paper">
       <div className="container-x grid items-center gap-16 py-24 lg:grid-cols-2 lg:py-36">
         <div>
-          <p data-reveal className="text-lg text-paper/70 md:text-xl">
+          <p className="type-lead text-paper/70">
             Szia, Lehel vagyok 👋
           </p>
-          <h2 data-reveal className="mt-3 text-3xl font-bold md:text-4xl lg:text-5xl">
+          <h2 className="mt-3 type-h2 font-bold">
             Miben tudok segíteni?
           </h2>
 
           <ul className="mt-8 space-y-3.5">
-            {services.map((p, i) => (
+            {services.map((p) => (
               <li
                 key={p}
-                data-reveal
-                style={{ "--d": `${100 + i * 70}ms` }}
                 className="flex items-center gap-3 text-base font-medium text-paper/90 md:text-lg"
               >
                 <span className="grid size-6 shrink-0 place-items-center rounded-full bg-highlight/15 text-highlight">
@@ -43,19 +41,17 @@ export default function Intro() {
             ))}
           </ul>
 
-          <p data-reveal className="mt-6 pl-9 text-base text-paper/50 md:text-lg">
+          <p className="mt-6 pl-9 text-base text-paper/50 md:text-lg">
             …és még sok minden, ami informatika
           </p>
 
-          <div data-reveal className="mt-10">
+          <div className="mt-10">
             <Button href={site.ctaHref}>{site.cta}</Button>
           </div>
         </div>
 
         {/* <IntroWall rows={rows} /> */}
-        <div
-          data-reveal
-          className="relative mx-auto aspect-square w-full max-w-[480px] overflow-hidden rounded-full border border-paper/10 bg-[radial-gradient(circle_at_50%_35%,var(--highlight),var(--accent)_70%)] shadow-[0_30px_80px_-30px_rgba(0,0,0,0.9)]"
+        <div className="relative mx-auto aspect-square w-full max-w-[480px] overflow-hidden rounded-full border border-paper/10 bg-[radial-gradient(circle_at_50%_35%,var(--highlight),var(--accent)_70%)] shadow-[0_30px_80px_-30px_rgba(0,0,0,0.9)]"
         >
           <Image
             src="/images/lehel3.png"

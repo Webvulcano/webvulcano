@@ -5,7 +5,7 @@ import { navLinks, site } from "@/data/site";
 
 export default function Nav() {
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-ink/5 bg-canvas/80 backdrop-blur-md">
+    <header className="absolute inset-x-0 top-0 z-50 border-b border-ink/5 bg-canvas/80 backdrop-blur-md">
       <nav className="container-x flex h-[72px] items-center justify-between gap-6">
         <Link href="/" className="flex items-center gap-2.5" aria-label="Webvulcano – kezdőlap">
           <Image

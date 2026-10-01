@@ -102,15 +102,52 @@ const paths = {
       <path d="M12 5.2v14.4" />
     </>
   ),
+  send: (
+    <>
+      <path d="M21 3 10.5 13.5" />
+      <path d="M21 3 14.5 21l-4-7.5L3 9.5 21 3Z" />
+    </>
+  ),
+  arrowUp: <path d="M12 19V5m-6 6 6-6 6 6" />,
+  smile: (
+    <>
+      <circle cx="12" cy="12" r="8.5" />
+      <path d="M8.5 14.2a4.4 4.4 0 0 0 7 0" />
+      <path d="M9 9.6v.6M15 9.6v.6" strokeWidth="2.2" />
+    </>
+  ),
   quote: (
     <>
       <path d="M4 4.5h16v11.5H9.5L4 20.5v-16Z" />
       <path d="M9.2 8.2v3.2a1.4 1.4 0 0 1-1.4 1.4M14.8 8.2v3.2a1.4 1.4 0 0 1-1.4 1.4" />
     </>
   ),
+  linkedin: (
+    <>
+      <rect x="3" y="3" width="18" height="18" rx="3" />
+      <path d="M8 10.5V16M8 7.5v.01M12 16v-5.5M12 13a2.5 2.5 0 0 1 5 0v3" />
+    </>
+  ),
+  facebook: (
+    <>
+      <rect x="3" y="3" width="18" height="18" rx="3" />
+      <path d="M15.5 8h-1.5a2 2 0 0 0-2 2v11M9.5 13h5" />
+    </>
+  ),
+  instagram: (
+    <>
+      <rect x="3" y="3" width="18" height="18" rx="5" />
+      <circle cx="12" cy="12" r="4" />
+      <path d="M17.5 6.5v.01" />
+    </>
+  ),
 };
 
-export default function Icon({ name, className = "size-5", strokeWidth = 1.6 }) {
+export default function Icon({
+  name,
+  className = "size-5",
+  strokeWidth = 1.6,
+}) {
   return (
     <svg
       viewBox="0 0 24 24"

@@ -13,14 +13,14 @@ export default function Pricing() {
           <p data-reveal className="text-sm font-medium tracking-eyebrow text-paper/60 uppercase">
             Csomagok és árak
           </p>
-          <h2 className="mt-6 text-3xl font-bold md:text-5xl lg:text-4xl xl:text-5xl">
+          <h2 className="mt-6 type-h2 font-bold">
             {headline.map((w, i) => (
               <span key={i} data-reveal style={{ "--d": `${i * 70}ms` }} className="block">
                 {w}
               </span>
             ))}
           </h2>
-          <p data-reveal className="mt-8 max-w-[30ch] text-lg text-muted-soft lg:text-xl">
+          <p data-reveal className="mt-8 max-w-[30ch] type-lead text-muted-soft">
             Egy összecsapott oldal azt üzeni: nem veszed komolyan a saját munkád.
           </p>
         </div>
@@ -38,7 +38,7 @@ export default function Pricing() {
               }`}
             >
               <p className="text-sm font-medium tracking-label text-highlight uppercase">{p.label}</p>
-              <h3 className="mt-3 text-2xl font-medium">{p.name}</h3>
+              <h3 className="mt-3 type-h3 font-medium">{p.name}</h3>
               <p className="mt-4 max-w-[52ch] text-base text-paper/75">{p.text}</p>
               <p className="mt-2 text-sm text-paper/60">{p.forWhom}</p>
 
@@ -47,7 +47,7 @@ export default function Pricing() {
                   <p className="text-sm font-medium tracking-label text-highlight uppercase">
                     Befektetés
                   </p>
-                  <p className="mt-1 text-3xl leading-none font-bold text-highlight lg:text-4xl">
+                  <p className="mt-1 type-stat font-bold text-highlight">
                     {p.price}
                   </p>
                 </div>

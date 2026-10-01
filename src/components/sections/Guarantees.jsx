@@ -23,7 +23,7 @@ export default function Guarantees() {
             >
               <div className="flex items-center gap-3 text-decor">
                 <Laurel className="h-20 w-auto" />
-                <p className="text-xl leading-tight font-medium text-paper">
+                <p className="type-h4 font-medium text-paper">
                   {g.title[0]}
                   <br />
                   <span className="text-paper/80">{g.title[1]}</span>
