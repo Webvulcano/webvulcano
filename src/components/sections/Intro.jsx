@@ -1,4 +1,4 @@
-import Image from "next/image";
+import FadeImage from "@/components/ui/FadeImage";
 import profil from "@/assets/profil.webp";
 // import IntroWall from "./IntroWall"; // félretéve: görgetésre mozgó weboldal-képsorok
 import Button from "@/components/ui/Button";
@@ -54,10 +54,9 @@ export default function Intro() {
         {/* <IntroWall rows={rows} /> */}
         <div className="relative mx-auto aspect-square w-full max-w-[480px] overflow-hidden rounded-full border border-paper/10 bg-[radial-gradient(circle_at_50%_35%,var(--highlight),var(--accent)_70%)] shadow-[0_30px_80px_-30px_rgba(0,0,0,0.9)]"
         >
-          <Image
+          <FadeImage
             src={profil}
             alt="Bognár Lehel, webfejlesztő"
-            placeholder="blur"
             sizes="(min-width: 1024px) 480px, 90vw"
             className="size-full object-cover object-bottom"
           />

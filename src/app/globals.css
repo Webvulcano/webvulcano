@@ -412,19 +412,16 @@ textarea {
   animation-delay: var(--d, 0ms);
 }
 
-/* blur placeholder → éles kép: betöltéskor finoman kiélesedik */
-@keyframes img-sharpen {
-  from {
-    filter: blur(14px);
-    opacity: 0.7;
-  }
+/* FadeImage: betöltésig rejtve, utána sima áttűnés (JS nélkül azonnal látszik) */
+.fade-image {
+  transition: opacity 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
-.img-sharpen {
-  animation: img-sharpen 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+.js .fade-image:not([data-loaded]) {
+  opacity: 0;
 }
 @media (prefers-reduced-motion: reduce) {
-  .img-sharpen {
-    animation: none;
+  .fade-image {
+    transition: none;
   }
 }
 
