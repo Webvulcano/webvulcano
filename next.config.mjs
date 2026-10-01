@@ -5,7 +5,6 @@ const nextConfig = {
   // A régi webvulcano.hu URL-jei (Google-index) → új helyük.
   async redirects() {
     return [
-      { source: "/ertekeles", destination: "/munkaim/ertekeles", permanent: true },
       { source: "/projektek", destination: "/#munkaim", permanent: true },
       { source: "/projektek/:path*", destination: "/#munkaim", permanent: true },
     ];
