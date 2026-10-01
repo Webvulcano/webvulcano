@@ -24,6 +24,7 @@ export default function HeroPortrait() {
           <Image
             src={hero}
             alt=""
+            quality={90}
             sizes={sizes}
             className="fade-up absolute bottom-0 left-[46%] h-[90%] w-auto max-w-none -translate-x-1/2 opacity-25 blur-xl brightness-0 lg:left-[54%]"
             style={{ "--d": "150ms" }}
@@ -37,6 +38,7 @@ export default function HeroPortrait() {
           src={hero}
           alt="Bognár Lehel, weboldalfejlesztő"
           placeholder="blur"
+          quality={90}
           preload
           sizes={sizes}
           onLoad={() => setLoaded(true)}
