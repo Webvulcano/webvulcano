@@ -325,6 +325,11 @@ body {
   overflow-x: clip;
 }
 
+/* textarea sort tör, vízszintes görgő sosem kell (macOS „mindig látszó” görgősávnál se jelenjen meg) */
+textarea {
+  overflow-x: hidden;
+}
+
 /* ---------- Tördelés ---------- */
 @layer base {
   /* címek: kiegyensúlyozott sorok, elválasztás nélkül */
