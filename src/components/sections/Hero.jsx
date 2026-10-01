@@ -22,9 +22,9 @@ const features = [
 ];
 
 const thumbs = [
-  "/projects/mik-eloteto/mikeloteto_1.jpg",
-  "/projects/stillsoulproduction/still_1.jpg",
-  "/projects/cold-email-sender/email-sender1.png",
+  "/projects/mik-eloteto/mikeloteto_1.webp",
+  "/projects/stillsoulproduction/still_1.webp",
+  "/projects/cold-email-sender/email-sender1.webp",
 ];
 
 // Sticky hero: a külső wrapper 200svh magas, -100svh margóval — a következő
@@ -80,6 +80,7 @@ export default function Hero() {
                       alt=""
                       width={80}
                       height={80}
+                      sizes="40px"
                       className="size-10 rounded-full border-2 border-canvas object-cover object-left-top"
                     />
                   ))}

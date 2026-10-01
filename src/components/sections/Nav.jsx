@@ -9,7 +9,7 @@ export default function Nav() {
       <nav className="container-x flex h-[72px] items-center justify-between gap-6">
         <Link href="/" className="flex items-center gap-2.5" aria-label="Webvulcano – kezdőlap">
           <Image
-            src="/brand/logo.png"
+            src="/brand/logo.webp"
             alt=""
             width={40}
             height={40}

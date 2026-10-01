@@ -12,7 +12,7 @@ export default function Footer() {
       <div className="container-x grid gap-12 py-16 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr]">
         <div>
           <Link href="/" className="flex items-center gap-3">
-            <Image src="/brand/logo.png" alt="" width={44} height={44} className="size-11 rounded-full" />
+            <Image src="/brand/logo.webp" alt="" width={44} height={44} className="size-11 rounded-full" />
             <span className="text-base leading-none font-bold">
               Web
               <br />

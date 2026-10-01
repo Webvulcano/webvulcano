@@ -21,7 +21,7 @@ export default function FeaturedProject() {
               className="absolute inset-x-8 bottom-0 h-3/4 rounded-t-[200px] bg-gradient-to-t from-highlight/20 to-transparent"
             />
             <Image
-              src="/projects/stillsoulproduction/card-preview.png"
+              src="/projects/stillsoulproduction/card-preview.webp"
               alt="A StillSoul Production csapata"
               width={1117}
               height={1285}
