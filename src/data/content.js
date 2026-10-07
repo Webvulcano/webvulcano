@@ -89,6 +89,7 @@ export const pricing = [
     name: "Landing oldal",
     text: "Egyetlen, fókuszált oldal egy világos céllal: hívás vagy üzenet.",
     forWhom: "Induló vállalkozásoknak, egy-egy szolgáltatásra",
+    highlights: ["1 egyszerű, fókuszált oldal", "Hívás vagy üzenet gomb", "Mobilbarát"],
     price: "120e\u00a0Ft-tól",
   },
   {
@@ -104,6 +105,8 @@ export const pricing = [
     name: "Ultra Weboldal",
     text: "Admin felület, egyedi automatizációk - vállalkozásodra szabva",
     forWhom: "Ha több kell, mint egy bemutatkozó oldal",
+    // rövid kiemelések a mobilos kompakt kártyán (Pricing.jsx), ahol a leírás rejtve van
+    highlights: ["Egyedi automatizációk", "Chatbot", "AI integráció", "Admin felület"],
     price: "450e\u00a0Ft-ig",
   },
 ];

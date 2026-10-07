@@ -388,6 +388,47 @@ textarea {
   opacity: 1;
   transform: none;
 }
+/* .reveal-trigger: maga nem animál, csak az .is-visible osztályt kapja meg (a gyerekei animálnak rá) */
+.js [data-reveal].reveal-trigger {
+  opacity: 1;
+  transform: none;
+  transition: none;
+}
+
+/* Process lépései mobilon: idővonalas láncolt belépő. Lépésenként 800ms: beúszik a lépés (pötty +
+   tartalom), utána a türkiz csík lefelé kihúzódik a következő pöttyig, végén megjelenik a nyílhegy. */
+@media (width < 64rem) and (prefers-reduced-motion: no-preference) {
+  .js .steps-seq > li {
+    --t: calc(var(--i) * 800ms);
+  }
+  .js .steps-seq .step-body,
+  .js .steps-seq .step-dot {
+    opacity: 0;
+    transform: translateY(14px);
+    transition:
+      opacity 0.5s ease-out var(--t),
+      transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) var(--t);
+  }
+  .js .steps-seq .step-dot {
+    transform: scale(0.3);
+  }
+  .js .steps-seq .step-line {
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1) calc(var(--t) + 300ms);
+  }
+  .js .steps-seq .step-arrow {
+    opacity: 0;
+    transition: opacity 0.2s ease-out calc(var(--t) + 680ms);
+  }
+  .js .steps-seq.is-visible .step-body,
+  .js .steps-seq.is-visible .step-dot,
+  .js .steps-seq.is-visible .step-line,
+  .js .steps-seq.is-visible .step-arrow {
+    opacity: 1;
+    transform: none;
+  }
+}
 
 /* ---------- Hero belépő animáció ---------- */
 /* ---------- Link-ösztönző mozgás (mobil, ahol nincs hover) ----------

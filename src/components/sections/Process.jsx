@@ -14,6 +14,7 @@ export default function Process() {
   const colRef = useRef(null);
   const numRef = useRef(null);
   const [active, setActive] = useState(0);
+  const [open, setOpen] = useState(null); // mobilos lenyitás: melyik lépés leírása látszik
 
   // Egyetlen rAF-fojtott scroll listener. React state csak lépésváltáskor változik; a szám
   // pozícióját közvetlenül a DOM-ba írjuk (transform), a pötty/vonal pedig tisztán CSS (sticky).
@@ -132,27 +133,66 @@ export default function Process() {
           </div>
         </div>
 
-        <ol ref={listRef} className="mt-12 lg:mt-0">
+        {/* Mobilon (lg alatt) bal oldali idővonal: pötty a sorszámnál, a lépés megjelenése után egy
+            türkiz csík lefelé kihúzódik a következő pöttyig (nyílheggyel), majd jön a következő lépés.
+            Az egész lánc egyszerre indul, amikor a lista a képbe ér (globals.css → .steps-seq). */}
+        <ol ref={listRef} data-reveal className="reveal-trigger steps-seq mt-12 lg:mt-0">
           {steps.map((s, i) => {
             const on = i === active;
+            const expanded = open === i;
             return (
               <li
                 key={s.slug}
-                className="flex flex-col justify-center border-t border-ink/10 py-10 lg:min-h-[72svh] lg:border-0 lg:py-0"
+                style={{ "--i": i }}
+                className="relative flex flex-col justify-center py-6 pl-9 lg:min-h-[72svh] lg:py-0 lg:pl-0"
               >
+                <span
+                  aria-hidden="true"
+                  className="step-dot absolute top-[29px] left-0 size-3 rounded-full bg-accent ring-4 ring-accent/15 lg:hidden"
+                />
+                {i < steps.length - 1 && (
+                  <span
+                    aria-hidden="true"
+                    className="step-line absolute top-[48px] -bottom-[24px] left-[5px] w-0.5 rounded-full bg-accent lg:hidden"
+                  >
+                    <Icon
+                      name="chevron"
+                      className="step-arrow absolute -bottom-1.5 left-1/2 size-3.5 -translate-x-1/2 text-accent"
+                      strokeWidth={3}
+                    />
+                  </span>
+                )}
+                <div className="step-body">
                 <p className="mb-3 text-sm font-medium tracking-label text-ink/75 lg:hidden">
                   {pad(i + 1)}.
                 </p>
+                {/* Mobilon (lg alatt) a cím gomb: lenyitja/becsukja a leírást; desktopon mindig nyitva. */}
                 <h3
                   className={`type-h2 font-bold transition-colors duration-500 ${
                     on ? "text-ink" : "lg:text-ink/25"
                   }`}
                 >
-                  {s.title}
+                  <button
+                    type="button"
+                    onClick={() => setOpen(expanded ? null : i)}
+                    aria-expanded={expanded}
+                    aria-controls={`step-${s.slug}`}
+                    className="flex w-full items-center justify-between gap-4 text-left lg:pointer-events-none lg:cursor-default"
+                  >
+                    {s.title}
+                    <Icon
+                      name="chevron"
+                      className={`size-6 shrink-0 text-ink/50 transition-transform duration-300 lg:hidden ${expanded ? "rotate-180" : ""}`}
+                    />
+                  </button>
                 </h3>
                 <div
-                  className={`transition-opacity duration-500 ${on ? "opacity-100" : "lg:opacity-30"}`}
+                  id={`step-${s.slug}`}
+                  className={`grid transition-[grid-template-rows,opacity] duration-500 ease-out lg:grid-rows-[1fr] ${
+                    expanded ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+                  } ${on ? "lg:opacity-100" : "lg:opacity-30"}`}
                 >
+                  <div className="overflow-hidden">
                   <p className="mt-5 max-w-[46ch] text-base text-ink/80 md:text-lg">{s.short}</p>
                   {/* ideiglenesen kivéve:
                   <Link
@@ -163,6 +203,8 @@ export default function Process() {
                     <Icon name="arrow" className="size-4" strokeWidth={2} />
                   </Link>
                   */}
+                  </div>
+                </div>
                 </div>
               </li>
             );
