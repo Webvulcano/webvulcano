@@ -1,23 +1,30 @@
+import { site } from "@/data/site";
 import { steps, stepPath } from "@/data/steps";
 
-const baseUrl = "https://www.webvulcano.hu";
+// Fix dátum: írd át, ha az adott oldal tartalma érdemben változik. (A `new Date()` minden
+// buildnél „friss”-nek jelölne mindent → a Google figyelmen kívül hagyja a lastModified-ot.)
+const updated = {
+  home: "2026-10-07",
+  demos: "2026-10-07",
+  steps: "2026-10-07",
+  privacy: "2026-10-01",
+};
 
 export default function sitemap() {
-  const now = new Date();
   return [
-    { url: baseUrl, lastModified: now, changeFrequency: "weekly", priority: 1 },
+    { url: site.url, lastModified: updated.home, changeFrequency: "weekly", priority: 1 },
     ...["ertekeles", "hideg-email", "ticketing"].map((slug) => ({
-      url: `${baseUrl}/munkaim/${slug}`,
-      lastModified: now,
+      url: `${site.url}/munkaim/${slug}`,
+      lastModified: updated.demos,
       changeFrequency: "monthly",
       priority: 0.8,
     })),
     ...steps.map((s) => ({
-      url: `${baseUrl}${stepPath(s.slug)}`,
-      lastModified: now,
+      url: `${site.url}${stepPath(s.slug)}`,
+      lastModified: updated.steps,
       changeFrequency: "monthly",
       priority: 0.6,
     })),
-    { url: `${baseUrl}/adatkezeles`, lastModified: now, changeFrequency: "yearly", priority: 0.2 },
+    { url: `${site.url}/adatkezeles`, lastModified: updated.privacy, changeFrequency: "yearly", priority: 0.2 },
   ];
 }

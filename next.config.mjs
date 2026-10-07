@@ -7,6 +7,13 @@ const nextConfig = {
   // A régi webvulcano.hu URL-jei (Google-index) → új helyük.
   async redirects() {
     return [
+      // Kanonikus domain: webvulcano.hu (www nélkül). Vercelben NE állíts be fordított (→ www) redirectet, mert hurok lesz.
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "www.webvulcano.hu" }],
+        destination: "https://webvulcano.hu/:path*",
+        permanent: true,
+      },
       { source: "/projektek", destination: "/#munkaim", permanent: true },
       { source: "/projektek/:path*", destination: "/#munkaim", permanent: true },
     ];

@@ -3,7 +3,10 @@ import "./globals.css";
 import Nav from "@/components/sections/Nav";
 import Footer from "@/components/sections/Footer";
 import HashLinkScroll from "@/components/ui/HashLinkScroll";
+import JsonLd from "@/components/ui/JsonLd";
+import { site } from "@/data/site";
 import { theme, themes } from "@/data/theme";
+import { businessSchema, websiteSchema } from "@/lib/seo";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -19,10 +22,27 @@ const instrumentSerif = Instrument_Serif({
   weight: "400",
 });
 
+const homeTitle = "Weboldalkészítés Budapesten | Webvulcano – Bognár Lehel";
+const homeDescription =
+  "Egyedi, gyors weboldal budapesti vállalkozásoknak, ami érdeklődőt hoz. Díjmentes vázlat, átlátható ár, mérhető eredmény, 3 hónap ingyen karbantartás.";
+
+// Alap metadata (főoldal). Aloldalak: pageMeta() a src/lib/seo.js-ből (saját canonical + OG).
 export const metadata = {
-  title: "Weboldalkészítés Budapesten | Webvulcano – Bognár Lehel",
-  description:
-    "Egyedi, gyors weboldal budapesti vállalkozásoknak, ami érdeklődőt hoz. Díjmentes vázlat, átlátható ár, mérhető eredmény, 3 hónap ingyen karbantartás.",
+  metadataBase: new URL(site.url),
+  title: { default: homeTitle, template: `%s | ${site.brand}` },
+  description: homeDescription,
+  applicationName: site.brand,
+  authors: [{ name: site.owner, url: site.url }],
+  creator: site.owner,
+  openGraph: {
+    title: homeTitle,
+    description: homeDescription,
+    url: "/",
+    type: "website",
+    locale: "hu_HU",
+    siteName: site.brand,
+  },
+  twitter: { card: "summary_large_image", title: homeTitle, description: homeDescription },
 };
 
 // Festés előtt fut: 1) .js osztály (reveal-animációk), 2) ?theme=<név> előnézet
@@ -42,6 +62,7 @@ export default function RootLayout({ children }) {
         <script dangerouslySetInnerHTML={{ __html: bootScript }} />
       </head>
       <body>
+        <JsonLd data={[businessSchema(), websiteSchema()]} />
         <Nav />
         {children}
         <Footer />

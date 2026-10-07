@@ -43,7 +43,14 @@ export default function Hero() {
         <div className="container-x grid h-full grid-cols-1 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)]">
           <div className="z-30 flex flex-col pt-28 lg:relative lg:justify-center lg:pt-[72px]">
 
-            <h1 className="type-display font-extrabold text-ink max-lg:text-center">
+            {/* SEO: a kulcsszavas eyebrow a H1; a szlogen vizuálisan a fő cím, de <p>. */}
+            <h1
+              className="rise mb-4 text-sm font-medium tracking-eyebrow text-accent-ink uppercase max-lg:text-center"
+              style={{ "--d": "60ms" }}
+            >
+              Weboldalkészítés Budapesten
+            </h1>
+            <p className="type-display font-extrabold text-balance hyphens-none text-ink max-lg:text-center">
               {lines.map((line, i) => (
                 <span key={i} className="-mr-[0.2em] block overflow-hidden pt-[0.04em] pr-[0.2em] pb-[0.08em]">
                   <span className="rise block" style={{ "--d": `${120 + i * 90}ms` }}>
@@ -51,7 +58,7 @@ export default function Hero() {
                   </span>
                 </span>
               ))}
-            </h1>
+            </p>
 
             <ul
               className="rise mt-7 flex flex-wrap gap-x-5 max-lg:hidden gap-y-2 text-sm font-medium text-ink/80"

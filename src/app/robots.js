@@ -1,6 +1,8 @@
+import { site } from "@/data/site";
+
 export default function robots() {
   return {
-    rules: { userAgent: "*", allow: "/" },
-    sitemap: "https://www.webvulcano.hu/sitemap.xml",
+    rules: { userAgent: "*", allow: "/", disallow: "/api/" },
+    sitemap: `${site.url}/sitemap.xml`,
   };
 }

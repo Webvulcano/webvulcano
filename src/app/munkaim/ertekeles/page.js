@@ -2,18 +2,29 @@ import Link from "next/link";
 import DemoFullscreen from "@/components/demo/DemoFullscreen";
 import Accent from "@/components/ui/Accent";
 import CtaCard from "@/components/ui/CtaCard";
+import JsonLd from "@/components/ui/JsonLd";
 import RevealObserver from "@/components/ui/RevealObserver";
 import { benefits, facts } from "@/data/reviewDemo";
+import { breadcrumbSchema, pageMeta } from "@/lib/seo";
 
-export const metadata = {
-  title: "Automatikus Google-értékelés gyűjtő – Próbáld ki | Webvulcano",
+const path = "/munkaim/ertekeles";
+
+export const metadata = pageMeta({
+  title: "Automatikus Google-értékelés gyűjtő – Próbáld ki",
   description:
     "Lezárt munka a naptárban → 1–2 nap múlva személyes email → új Google-értékelés. Magától, kézi munka nélkül. Próbáld ki a szimulációt.",
-};
+  path,
+});
+
+const breadcrumb = breadcrumbSchema([
+  { name: "Munkáim", path: "/#munkaim" },
+  { name: "Automatikus Google-értékelés gyűjtő", path },
+]);
 
 export default function ReviewDemoPage() {
   return (
     <>
+      <JsonLd data={breadcrumb} />
       <main className="bg-night text-paper">
         <div className="container-x">
           <header className="pt-40 pb-16 lg:pt-48 lg:pb-24">

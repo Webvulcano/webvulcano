@@ -1,9 +1,11 @@
 import { site } from "@/data/site";
+import { pageMeta } from "@/lib/seo";
 
-export const metadata = {
-  title: "Adatkezelési tájékoztató | Webvulcano",
-  description: "Adatkezelési tájékoztató és GDPR információk.",
-};
+export const metadata = pageMeta({
+  title: "Adatkezelési tájékoztató",
+  description: "A Webvulcano adatkezelési tájékoztatója: milyen adatokat kezelünk, miért, meddig, és milyen jogaid vannak (GDPR).",
+  path: "/adatkezeles",
+});
 
 // Tartalom: a régi webvulcano.hu/adatkezeles alapján, a variant-2 űrlapjaihoz és szolgáltatóihoz igazítva.
 const sections = [

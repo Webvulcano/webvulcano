@@ -13,11 +13,18 @@ import Testimonials from "@/components/sections/Testimonials";
 import Pricing from "@/components/sections/Pricing";
 import Faq from "@/components/sections/Faq";
 import ContactForm from "@/components/sections/ContactForm";
+import JsonLd from "@/components/ui/JsonLd";
 import RevealObserver from "@/components/ui/RevealObserver";
+import { faq } from "@/data/content";
+import { faqSchema } from "@/lib/seo";
+
+// Title/description/OG: a layout alapértéke. Canonical csak itt, hogy a 404 ne örökölje.
+export const metadata = { alternates: { canonical: "/" } };
 
 export default function Home() {
   return (
     <>
+      <JsonLd data={faqSchema(faq)} />
       <SectionRail />
       <main>
         <Hero />

@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "utmutato": "\"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\" --headless=new --disable-gpu --no-pdf-header-footer --virtual-time-budget=8000 --allow-file-access-from-files --print-to-pdf=\"$PWD/public/utmutato/chatgpt-ajanlas-utmutato.pdf\" \"file://$PWD/content/utmutato/chatgpt-ajanlas-utmutato.html\""
+    "utmutato": "\"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\" --headless=new --disable-gpu --no-pdf-header-footer --virtual-time-budget=8000 --allow-file-access-from-files --print-to-pdf=\"$PWD/public/utmutato/chatgpt-ajanlas-utmutato.pdf\" \"file://$PWD/content/utmutato/chatgpt-ajanlas-utmutato.html\"",
+    "og": "\"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\" --headless=new --disable-gpu --hide-scrollbars --force-device-scale-factor=1 --window-size=1200,630 --virtual-time-budget=8000 --allow-file-access-from-files --screenshot=\"$PWD/og.png\" \"file://$PWD/content/og/og-image.html\" && node -e \"require('sharp')('og.png').jpeg({quality:88,mozjpeg:true}).toFile('src/app/opengraph-image.jpg').then(()=>require('fs').unlinkSync('og.png'))\""
   },
   "dependencies": {
     "motion": "^13.4.6",

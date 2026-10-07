@@ -2,18 +2,29 @@ import Link from "next/link";
 import DemoFullscreen from "@/components/demo/DemoFullscreen";
 import Accent from "@/components/ui/Accent";
 import CtaCard from "@/components/ui/CtaCard";
+import JsonLd from "@/components/ui/JsonLd";
 import RevealObserver from "@/components/ui/RevealObserver";
 import { benefits, facts } from "@/data/ticketDemo";
+import { breadcrumbSchema, pageMeta } from "@/lib/seo";
 
-export const metadata = {
-  title: "Ticketing rendszer AI integráció – Próbáld ki | Webvulcano",
+const path = "/munkaim/ticketing";
+
+export const metadata = pageMeta({
+  title: "Ticketing rendszer AI integráció – Próbáld ki",
   description:
     "Hibajegyek automatikus átnevezése, kategorizálása és egy kattintásos összefoglalója AI-val. Próbáld ki a szimulációt.",
-};
+  path,
+});
+
+const breadcrumb = breadcrumbSchema([
+  { name: "Munkáim", path: "/#munkaim" },
+  { name: "Ticketing rendszer AI integráció", path },
+]);
 
 export default function TicketDemoPage() {
   return (
     <>
+      <JsonLd data={breadcrumb} />
       <main className="bg-night text-paper">
         <div className="container-x">
           <header className="pt-40 pb-16 lg:pt-48 lg:pb-24">

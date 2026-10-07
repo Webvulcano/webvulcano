@@ -1,5 +1,7 @@
 export const site = {
   brand: "Webvulcano",
+  // Kanonikus domain (www nélkül) — canonical, sitemap, OG, JSON-LD innen.
+  url: "https://webvulcano.hu",
   owner: "Bognár Lehel",
   email: "info@webvulcano.hu",
   phone: "+36 30 904 1618",

@@ -2,14 +2,24 @@ import Link from "next/link";
 import DemoFullscreen from "@/components/demo/DemoFullscreen";
 import Accent from "@/components/ui/Accent";
 import CtaCard from "@/components/ui/CtaCard";
+import JsonLd from "@/components/ui/JsonLd";
 import RevealObserver from "@/components/ui/RevealObserver";
 import { benefits } from "@/data/emailDemo";
+import { breadcrumbSchema, pageMeta } from "@/lib/seo";
 
-export const metadata = {
-  title: "Hideg email automatizáló – Próbáld ki | Webvulcano",
+const path = "/munkaim/hideg-email";
+
+export const metadata = pageMeta({
+  title: "Hideg email automatizáló – Próbáld ki",
   description:
     "Egy mondat Claude-nak, és lefut a napi ügyfélszerzés: cégek keresése, személyre szabott emailek, emlékeztetők, érdeklődők jelzése. Próbáld ki a szimulációt.",
-};
+  path,
+});
+
+const breadcrumb = breadcrumbSchema([
+  { name: "Munkáim", path: "/#munkaim" },
+  { name: "Hideg email automatizáló", path },
+]);
 
 const facts = [
   { value: "1 perc", label: "napi 2–3 óra keresés és emailezés helyett" },
@@ -20,6 +30,7 @@ const facts = [
 export default function EmailDemoPage() {
   return (
     <>
+      <JsonLd data={breadcrumb} />
       <main className="bg-night text-paper">
         <div className="container-x">
           <header className="pt-40 pb-16 lg:pt-48 lg:pb-24">

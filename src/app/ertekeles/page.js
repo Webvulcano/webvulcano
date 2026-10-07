@@ -2,7 +2,7 @@ import StarRating from "@/components/ui/StarRating";
 
 // Ügyfeleknek küldött értékelő link (nem publikus oldal): 4–5★ → Google, 1–3★ → privát visszajelzés.
 export const metadata = {
-  title: "Értékelés | Webvulcano",
+  title: "Értékelés",
   description: "Mondd el, mennyire voltál elégedett a munkával.",
   robots: { index: false, follow: false },
 };
