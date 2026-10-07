@@ -15,7 +15,7 @@ export async function POST(request) {
     return Response.json({ success: false, error: "Invalid JSON" }, { status: 400 });
   }
 
-  const { name, email, website, painpoint, goal } = body ?? {};
+  const { name, email, phone, website, painpoint, goal } = body ?? {};
 
   if (!name || !email) {
     return Response.json({ success: false, error: "Missing fields" }, { status: 400 });
@@ -28,6 +28,7 @@ export async function POST(request) {
     Goal: goal || "",
   };
   if (website) fields.Website = website;
+  if (phone) fields.Phone = phone;
 
   const res = await fetch(`https://api.airtable.com/v0/${BASE_ID}/${TABLE_ID}`, {
     method: "POST",
