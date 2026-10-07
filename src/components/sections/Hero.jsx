@@ -43,9 +43,10 @@ export default function Hero() {
         <div className="container-x grid h-full grid-cols-1 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)]">
           <div className="z-30 flex flex-col pt-28 lg:relative lg:justify-center lg:pt-[72px]">
 
-            {/* SEO: a kulcsszavas eyebrow a H1; a szlogen vizuálisan a fő cím, de <p>. */}
+            {/* SEO: a kulcsszavas eyebrow a H1; a szlogen vizuálisan a fő cím, de <p>.
+                Mobilon csak vizuálisan rejtett (sr-only, nem display:none) → a Google mobil-indexe is látja. */}
             <h1
-              className="rise mb-4 text-sm font-medium tracking-eyebrow text-accent-ink uppercase max-lg:text-center"
+              className="rise mb-4 text-sm font-medium tracking-eyebrow text-accent-ink uppercase max-lg:sr-only"
               style={{ "--d": "60ms" }}
             >
               Weboldalkészítés Budapesten
