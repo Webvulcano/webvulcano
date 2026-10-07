@@ -37,10 +37,10 @@ export default function Pricing() {
               key={p.name}
               data-reveal
               style={{ "--d": `${i * 100}ms` }}
-              className={`noise flex flex-col rounded-2xl border bg-gradient-to-b from-night-2 to-night-3 lg:block lg:p-10 ${
+              className={`noise flex flex-col rounded-2xl bg-gradient-to-b from-night-2 to-night-3 lg:block lg:p-10 ${
                 p.featured
-                  ? "col-span-2 order-first p-7 border-highlight/50 glow-highlight lg:order-none"
-                  : "p-5 border-paper/10 lg:p-8"
+                  ? "col-span-2 order-first p-7 lg:order-none"
+                  : "p-5 lg:p-8"
               }`}
             >
               <p className={`font-medium tracking-label text-highlight uppercase ${p.featured ? "text-sm" : "text-xs lg:text-sm"}`}>{p.label}</p>
@@ -80,7 +80,7 @@ export default function Pricing() {
 
           <div
             data-reveal
-            className="col-span-2 flex flex-col gap-3 rounded-2xl border border-dashed border-paper/15 p-6 sm:flex-row sm:items-center sm:justify-between lg:px-10"
+            className="col-span-2 flex flex-col gap-3 rounded-2xl bg-paper/[0.03] p-6 sm:flex-row sm:items-center sm:justify-between lg:px-10"
           >
             <p className="text-base text-paper/75">
               <span className="font-bold text-paper">Karbantartás + hosting:</span>{" "}

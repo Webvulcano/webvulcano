@@ -67,8 +67,9 @@ export default function Hero() {
               ))}
             </ul>
 
+            {/* md–lg között (tablet) rejtve: ott a navban már kint van a CTA */}
             <div
-              className="rise flex flex-col items-center gap-4 max-lg:absolute max-lg:inset-x-0 max-lg:bottom-8 max-lg:z-30 lg:mt-8 lg:flex-row lg:flex-wrap lg:gap-x-6"
+              className="rise flex flex-col items-center gap-4 md:max-lg:hidden max-lg:absolute max-lg:inset-x-0 max-lg:bottom-8 max-lg:z-30 lg:mt-8 lg:flex-row lg:flex-wrap lg:gap-x-6"
               style={{ "--d": "750ms" }}
             >
               <Button href={site.ctaHref}>

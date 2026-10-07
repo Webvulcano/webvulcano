@@ -431,11 +431,11 @@ textarea {
 }
 
 /* ---------- Hero belépő animáció ---------- */
-/* ---------- Link-ösztönző mozgás (mobil, ahol nincs hover) ----------
+/* ---------- Link-ösztönző mozgás (globális: mobilon és desktopon is) ----------
    .nudge-text: ismétlődő (krém → színes sáv → krém) mintázat, ami lineárisan, megállás és
    visszaugrás nélkül áramlik balról jobbra – a csempe pontosan egy hosszal tolódik, így a
    ciklus vége = az eleje (végtelen hatás). .nudge-icon (nyíl): folyamatos, szünet nélküli lebegés
-   ugyanabban a ritmusban. Csak lg alatt és teljes mozgásnál. */
+   ugyanabban a ritmusban. Minden szélességen, csak teljes mozgásnál. */
 @keyframes nudge-text {
   /* background-size 200% mellett a -200% pozíció = +1 csempényi eltolás jobbra */
   to { background-position: -200% 0; }
@@ -444,7 +444,7 @@ textarea {
   0%, 100% { transform: translate(0, 0); }
   50% { transform: translate(2.5px, -2.5px); }
 }
-@media (width < 64rem) and (prefers-reduced-motion: no-preference) {
+@media (prefers-reduced-motion: no-preference) {
   .nudge-link .nudge-icon {
     animation: nudge-icon 1.8s ease-in-out infinite;
   }

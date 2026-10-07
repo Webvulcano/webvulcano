@@ -310,7 +310,7 @@ export default function ContactForm() {
           <h2
             data-reveal
             style={{ "--d": "80ms" }}
-            className="mt-6 type-h2 font-bold"
+            className="mt-6 max-w-[24ch] type-h2 font-bold text-balance"
           >
             Engedd meg hogy adjak neked egy <Accent className="text-muted-soft">ajándékot</Accent>
           </h2>

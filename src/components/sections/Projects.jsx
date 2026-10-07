@@ -23,7 +23,7 @@ function Tags({ tags }) {
 export default function Projects() {
   return (
     <section id="munkaim" className="bg-night text-paper">
-      <div className="container-x pt-24 lg:pt-36">
+      <div className="container-x pt-12 lg:pt-16">
         <h2 data-reveal>
           <span className="block type-h2 font-bold">
             Kiemelt
