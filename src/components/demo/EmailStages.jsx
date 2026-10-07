@@ -11,6 +11,7 @@ import {
   newLeadIds,
   notify,
   placeholders,
+  summary,
   template,
 } from "@/data/emailDemo";
 
@@ -72,28 +73,21 @@ function Progress({ value }) {
 }
 
 // ---------- Indítás előtt ----------
-export function StageIdle({ typing }) {
+// A Futtatás gomb itt van (nincs külön indítósor a panelen).
+export function StageIdle({ onRun }) {
   return (
     <div className="grid h-full place-items-center text-center">
-      <div>
-        <motion.p
-          animate={typing ? { opacity: 0.4 } : { y: [0, -6, 0] }}
-          transition={{ repeat: Infinity, duration: 1.6 }}
-          className="text-2xl text-highlight"
-          aria-hidden="true"
+      <div className="flex flex-col items-center">
+        <button
+          type="button"
+          onClick={onRun}
+          className="inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 text-base font-medium text-on-accent transition-colors hover:bg-accent-hover"
         >
-          ↑
-        </motion.p>
-        <p className="mt-3 text-sm text-paper/60">
-          {typing ? (
-            "Claude megkapta a parancsot…"
-          ) : (
-            <>
-              Nyomd meg a <span className="text-paper">Futtatás</span> gombot —
-              <br />
-              végignézheted, mi történik minden reggel.
-            </>
-          )}
+          Futtatás
+          <Icon name="arrow" className="size-4" strokeWidth={2} />
+        </button>
+        <p className="mt-4 text-sm text-paper/60">
+          Végignézheted, mi történik minden reggel.
         </p>
       </div>
     </div>
@@ -773,8 +767,8 @@ function StageFollowup({ onApply, reduced, ...props }) {
 }
 
 // ---------- 8. Érdeklődő ----------
-// 1: telefon · 2: értesítés · 3: vázlat gépelése · 4: státusz · 5: összegzés
-const T_INTERESTED = [200, 800, 1900, 4700, 5300];
+// 1: telefon · 2: értesítés · 3: vázlat gépelése · 4: státusz
+const T_INTERESTED = [200, 800, 1900, 4700];
 
 function Toast() {
   return (
@@ -845,23 +839,93 @@ function StageInterested({ onApply, reduced, ...props }) {
           </p>
         </motion.div>
       </div>
+    </div>
+  );
+}
 
-      <div className="hidden min-h-8 shrink-0 flex-wrap items-center gap-2 text-xs sm:flex">
-        {phase >= 5 &&
-          ["3 új email", "1 emlékeztető", "1 érdeklődő", "kb. 1 perc"].map(
-            (t, i) => (
-              <motion.span
-                key={t}
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.1 }}
-                className="rounded-full border border-highlight/30 bg-highlight/10 px-2.5 py-1 text-highlight"
-              >
-                {t}
-              </motion.span>
-            ),
-          )}
-      </div>
+// ---------- 9. Összefoglaló ----------
+// 1: kártya · 2: bevezető gépelése · 3–7: számok · 8: teendő · 9: következő kör
+const T_SUMMARY = [150, 500, 1700, 1900, 2100, 2300, 2500, 3100, 3700];
+
+function StageSummary({ reduced, ...props }) {
+  const phase = usePhase(T_SUMMARY, { ...props, reduced });
+  const lead = leadById[summary.todo.lead];
+
+  return (
+    <div className="@container flex h-full flex-col justify-center gap-3">
+      {phase >= 1 && (
+        <motion.div {...rise} className="flex items-start gap-3">
+          <span className="hidden size-8 shrink-0 place-items-center rounded-full bg-highlight/20 text-highlight @xl:grid">
+            <Icon name="bolt" className="size-4" />
+          </span>
+          <div className="min-w-0 flex-1 rounded-2xl rounded-tl-md bg-paper/10 px-4 py-3">
+            <p className="text-xs font-medium tracking-label text-paper/50 uppercase">
+              Mai kör összefoglalója
+            </p>
+            <p className="mt-1.5 min-h-[1.5em] text-sm text-paper/85">
+              <Typewriter
+                text={summary.intro}
+                start={phase >= 2}
+                reduced={reduced}
+              />
+            </p>
+            <div className="mt-3 grid grid-cols-3 gap-1.5 @xl:grid-cols-5 @xl:gap-2">
+              {summary.stats.map((st, i) => (
+                <motion.div
+                  key={st.label}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{
+                    opacity: phase >= 3 + i ? 1 : 0,
+                    y: phase >= 3 + i ? 0 : 10,
+                  }}
+                  transition={{ duration: 0.35, ease }}
+                  className={`rounded-xl px-1.5 py-2 text-center ${
+                    st.hot
+                      ? "bg-highlight text-night"
+                      : "bg-night/50 text-paper"
+                  }`}
+                >
+                  <p className="text-xl leading-none font-bold tabular-nums @xl:text-2xl">
+                    {st.value}
+                  </p>
+                  <p
+                    className={`mt-1 text-xs leading-tight ${st.hot ? "text-night/75" : "text-paper/55"}`}
+                  >
+                    {st.label}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </motion.div>
+      )}
+
+      <AnimatePresence>
+        {phase >= 8 && (
+          <motion.div
+            {...rise}
+            className="flex items-center gap-3 rounded-xl border border-highlight/40 bg-highlight/[0.07] px-3 py-2 text-sm @xl:ml-11"
+          >
+            <Monogram lead={lead} className="size-7 text-xs" />
+            <span className="min-w-0 flex-1">
+              <span className="block text-xs tracking-label text-highlight uppercase">
+                Teendőd
+              </span>
+              <span className="block leading-snug text-paper/85">
+                {lead.company} — {summary.todo.text}
+              </span>
+            </span>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <motion.p
+        initial={{ opacity: 0 }}
+        animate={{ opacity: phase >= 9 ? 1 : 0 }}
+        className="text-xs text-paper/45 @xl:ml-11"
+      >
+        {summary.next}
+      </motion.p>
     </div>
   );
 }
@@ -875,4 +939,5 @@ export const stages = [
   StageInbox,
   StageFollowup,
   StageInterested,
+  StageSummary,
 ];

@@ -13,7 +13,7 @@ export const guarantees = [
     text: "Az átadás után sem maradsz egyedül.",
   },
   {
-    title: ["Ingyen vázlat", "fizetés előtt"],
+    title: ["Díjmentes vázlat", "fizetés előtt"],
     text: "Előbb látod az oldalad, csak utána döntesz.",
   },
   {
@@ -114,11 +114,11 @@ export const pricing = [
 export const faq = [
   {
     q: "Mennyibe kerül egy weboldal?",
-    a: "120 és 450\u00a0ezer\u00a0Ft között, a komplexitástól függően. A legtöbb helyi vállalkozásnak szóló oldal nagyjából 160\u00a0ezer\u00a0Ft. Az ingyen vázlat után pontos, fix árajánlatot kapsz.",
+    a: "120 és 450\u00a0ezer\u00a0Ft között, a komplexitástól függően. A legtöbb helyi vállalkozásnak szóló oldal nagyjából 160\u00a0ezer\u00a0Ft. A díjmentes vázlat után pontos, fix árajánlatot kapsz.",
   },
   {
-    q: "Tényleg ingyen van a vázlat? Mire kötelez?",
-    a: "Igen, ingyen van, és semmire nem kötelez. Megnézed, és ha tetszik, adok árajánlatot. Ha nem, nincs vele több dolgod.",
+    q: "Tényleg díjmentes a vázlat? Mire kötelez?",
+    a: "Igen, díjmentes, és semmire nem kötelez. Megnézed, és ha tetszik, adok árajánlatot. Ha nem, nincs vele több dolgod.",
   },
   {
     q: "Mit kell nekem csinálnom?",

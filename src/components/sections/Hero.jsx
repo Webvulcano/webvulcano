@@ -30,12 +30,15 @@ const thumbs = [
 // Sticky hero: a külső wrapper 200svh magas, -100svh margóval — a következő
 // (sötét) szekció így „rácsúszik” a kitűzött hero-ra (desktopon).
 // Mobilon (<lg): cím fent balra, portré középen alul (abszolút), CTA alul középen a portré előtt;
-// a feature-pill-ek és az „ingyen vázlat” sor mobilon rejtve.
+// a feature-pill-ek és a „díjmentes vázlat” sor mobilon rejtve.
 export default function Hero() {
   return (
     <div id="top" className="relative bg-canvas lg:mb-[-100svh] lg:h-[200svh]">
+      {/* Mobilon a háttérfény külön rétegen, ami 28px-rel (= a következő sötét szekció sarokíve) lelóg a
+          hero alá: így a lekerekített sarkok mögött is a türkiz fény látszik, nem a világos háttér. */}
+      <div aria-hidden="true" className="hero-glow pointer-events-none absolute inset-x-0 top-0 -bottom-[28px] lg:hidden" />
       <section
-        className="hero-glow relative min-h-svh overflow-clip lg:sticky lg:top-0 lg:h-svh lg:min-h-[680px]"
+        className="lg:hero-glow relative min-h-svh overflow-clip lg:sticky lg:top-0 lg:h-svh lg:min-h-[680px]"
       >
         <div className="container-x grid h-full grid-cols-1 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)]">
           <div className="z-30 flex flex-col pt-28 lg:relative lg:justify-center lg:pt-[72px]">
@@ -88,7 +91,7 @@ export default function Hero() {
                   ))}
                 </div>
                 <p className="text-sm text-ink/75">
-                  <span className="block font-bold text-ink">Ingyen vázlatot kapsz</span>
+                  <span className="block font-bold text-ink">Díjmentes vázlatot kapsz</span>
                   mielőtt bármit fizetnél
                 </p>
               </div>

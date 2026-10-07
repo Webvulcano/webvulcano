@@ -39,6 +39,8 @@ const paths = {
   arrow: <path d="M5 12h14m-6-6 6 6-6 6" />,
   arrowUpRight: <path d="M7 17 17 7M8 7h9v9" />,
   plus: <path d="M12 5v14M5 12h14" />,
+  close: <path d="M6 6l12 12M18 6 6 18" />,
+  expand: <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" />,
   chevron: <path d="m6 9 6 6 6-6" />,
   shield: <path d="M12 3 4 6v6c0 4.5 3.4 8.3 8 9 4.6-.7 8-4.5 8-9V6l-8-3Z" />,
   grid: (

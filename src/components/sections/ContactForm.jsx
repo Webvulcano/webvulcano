@@ -120,9 +120,13 @@ export default function ContactForm() {
               <form onSubmit={handleSubmit} className="space-y-7">
                 {/* két lépcső: 1) weboldal + vállalkozás, 2) elérhetőség + beküldés.
                     1. lépés kötelező mezői (required) → a „Tovább” csak kitöltve enged tovább. */}
-                <p className="text-sm font-medium tracking-label text-paper/55 uppercase">
-                  {step}. lépés / 2
-                </p>
+                <div>
+                  {/* cím csak desktopon (mobilon a popup már a „Kitöltöm az űrlapot” gombról nyílik) */}
+                  <h3 className="mb-3 hidden type-h3 font-bold lg:block">Lépjünk kapcsolatba</h3>
+                  <p className="text-sm font-medium tracking-label text-paper/55 uppercase">
+                    {step}. lépés / 2
+                  </p>
+                </div>
 
                 {step === 1 ? (
                   <>
@@ -377,7 +381,7 @@ export default function ContactForm() {
               onClick={(e) => e.target === e.currentTarget && setFormOpen(false)}
               role="dialog"
               aria-modal="true"
-              aria-label="Ingyen vázlat kérése"
+              aria-label="Díjmentes vázlat kérése"
               className="fixed inset-0 z-[200] flex justify-center overflow-y-auto overscroll-contain bg-black/60 p-3 text-paper backdrop-blur-sm lg:hidden"
             >
               {card}

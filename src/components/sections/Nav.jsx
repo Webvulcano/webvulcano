@@ -16,7 +16,12 @@ export default function Nav() {
             className="size-10 rounded-full"
             preload
           />
-          <span className="text-sm leading-none font-bold">
+          {/* Mobilon (md alatt): „WebVulcano – weboldal & automatizáció” egy sorban; desktopon a régi kétsoros logo-felirat */}
+          <span className="flex items-baseline gap-1.5 whitespace-nowrap md:hidden">
+            <span className="text-base font-bold">WebVulcano</span>
+            <span className="text-sm text-ink/60 max-[359px]:text-xs">– weboldal &amp; automatizáció</span>
+          </span>
+          <span className="hidden text-sm leading-none font-bold md:inline">
             Web
             <br />
             vulcano
@@ -46,10 +51,13 @@ export default function Nav() {
             </a>
           )}
 
-          <Button href={site.ctaHref} size="sm" className="sm:px-5">
-            <span className="sm:hidden">{site.ctaShort}</span>
-            <span className="hidden sm:inline">{site.cta}</span>
-          </Button>
+          {/* mobilon (md alatt) nincs CTA a navban — a hero és a szekciók gombjai viszik a kapcsolatra */}
+          <div className="hidden md:block">
+            <Button href={site.ctaHref} size="sm" className="sm:px-5">
+              <span className="sm:hidden">{site.ctaShort}</span>
+              <span className="hidden sm:inline">{site.cta}</span>
+            </Button>
+          </div>
         </div>
       </nav>
     </header>

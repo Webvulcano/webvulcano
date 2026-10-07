@@ -44,7 +44,7 @@ export default function Projects() {
             style={{ zIndex: i + 1 }}
           >
             <a
-              href={p.url || p.demo || "/#kapcsolat"}
+              href={p.url || (p.demo && `${p.demo}?demo=1`) || "/#kapcsolat"}
               target={p.url ? "_blank" : undefined}
               rel={p.url ? "noopener" : undefined}
               className="group block overflow-hidden rounded-2xl border border-paper/10 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.9)]"
@@ -90,7 +90,7 @@ export default function Projects() {
               )}
               {p.demo && (
                 <Link
-                  href={p.demo}
+                  href={`${p.demo}?demo=1`}
                   className="nudge-link mt-8 inline-flex items-center gap-2 text-base font-medium text-paper underline max-lg:order-1 max-lg:mt-4 decoration-paper/30 underline-offset-[0.2em] transition hover:decoration-paper"
                 >
                   <span className={`nudge-text ${p.flow ? `flow-${p.flow}` : ""}`}>Nézd meg élőben hogy működik</span>
@@ -143,7 +143,7 @@ export default function Projects() {
             </div>
             {p.demo && (
               <Link
-                href={p.demo}
+                href={`${p.demo}?demo=1`}
                 className="nudge-link mt-7 inline-flex items-center gap-2 self-start text-base font-medium text-paper underline decoration-paper/30 underline-offset-[0.2em] transition hover:decoration-paper"
               >
                 <span className="nudge-text">Nézd meg élőben hogy működik</span>

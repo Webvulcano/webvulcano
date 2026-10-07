@@ -1,5 +1,5 @@
 import Link from "next/link";
-import TicketDemo from "@/components/demo/TicketDemo";
+import DemoFullscreen from "@/components/demo/DemoFullscreen";
 import Accent from "@/components/ui/Accent";
 import CtaCard from "@/components/ui/CtaCard";
 import RevealObserver from "@/components/ui/RevealObserver";
@@ -86,7 +86,7 @@ export default function TicketDemoPage() {
             >
               Próbáld <Accent>ki</Accent>
             </h2>
-            <TicketDemo />
+            <DemoFullscreen demo="ticket" title="Ticketing rendszer AI integráció" />
           </section>
 
           <section

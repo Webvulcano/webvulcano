@@ -310,7 +310,7 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 88px;
+  /* nincs scroll-padding-top: a Nav nem tapad (absolute), így a hash-célok a képernyő tetejére érkeznek */
   background: var(--color-night);
 }
 

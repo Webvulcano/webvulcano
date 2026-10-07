@@ -2,6 +2,7 @@ import { Inter, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 import Nav from "@/components/sections/Nav";
 import Footer from "@/components/sections/Footer";
+import HashLinkScroll from "@/components/ui/HashLinkScroll";
 import { theme, themes } from "@/data/theme";
 
 const inter = Inter({
@@ -21,7 +22,7 @@ const instrumentSerif = Instrument_Serif({
 export const metadata = {
   title: "Weboldalkészítés Budapesten | Webvulcano – Bognár Lehel",
   description:
-    "Egyedi, gyors weboldal budapesti vállalkozásoknak, ami érdeklődőt hoz. Ingyen vázlat, átlátható ár, mérhető eredmény, 3 hónap ingyen karbantartás.",
+    "Egyedi, gyors weboldal budapesti vállalkozásoknak, ami érdeklődőt hoz. Díjmentes vázlat, átlátható ár, mérhető eredmény, 3 hónap ingyen karbantartás.",
 };
 
 // Festés előtt fut: 1) .js osztály (reveal-animációk), 2) ?theme=<név> előnézet
@@ -44,6 +45,7 @@ export default function RootLayout({ children }) {
         <Nav />
         {children}
         <Footer />
+        <HashLinkScroll />
       </body>
     </html>
   );

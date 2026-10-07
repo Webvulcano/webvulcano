@@ -125,6 +125,7 @@ export const steps = [
     title: "Az eredmény",
     text: "Minden lezárt munka után magától megy a kérés — az értékelések gyűlnek, te közben dolgozol.",
     tag: "Eredmény",
+    hideLog: true, // az alsó napló/lista becsukódik, az eredmény kap helyet
     log: [
       "● Összesítés",
       "  ✓ 1 lezárt munka → 1 kérés → 1 új értékelés",

@@ -34,22 +34,21 @@ function Stars({ n = 5, className = "size-4" }) {
 }
 
 // ---------- Indítás előtt ----------
-export function StageIdle() {
+// A Futtatás gomb itt van (nincs külön indítósor a panelen).
+export function StageIdle({ onRun }) {
   return (
     <div className="grid h-full place-items-center text-center">
-      <div>
-        <motion.p
-          animate={{ y: [0, -6, 0] }}
-          transition={{ repeat: Infinity, duration: 1.6 }}
-          className="text-2xl text-highlight"
-          aria-hidden="true"
+      <div className="flex flex-col items-center">
+        <button
+          type="button"
+          onClick={onRun}
+          className="inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 text-base font-medium text-on-accent transition-colors hover:bg-accent-hover"
         >
-          ↑
-        </motion.p>
-        <p className="mt-3 text-sm text-paper/60">
-          Nyomd meg a <span className="text-paper">Futtatás</span> gombot —
-          <br />
-          így lesz egy lezárt munkából Google-értékelés.
+          Futtatás
+          <Icon name="arrow" className="size-4" strokeWidth={2} />
+        </button>
+        <p className="mt-4 text-sm text-paper/60">
+          Így lesz egy lezárt munkából Google-értékelés.
         </p>
       </div>
     </div>

@@ -47,7 +47,7 @@ export const steps = [
   },
   {
     slug: "ingyen-vazlat",
-    title: "Ingyen vázlatot kapsz",
+    title: "Díjmentes vázlat",
     short:
       "Elkészítem az oldalad első vázlatát. Így már azelőtt látod, mit kapsz, hogy bármit fizetnél.",
     teaser: "Látod az oldalad első vázlatát, mielőtt bármit fizetnél.",
@@ -127,7 +127,7 @@ export const steps = [
   },
   {
     slug: "kivitelezes",
-    title: "Megcsinálom",
+    title: "Fejlesztés",
     short:
       "Szöveg, design, fejlesztés – mindent én intézek. Menet közben látod a haladást, és bármikor szólhatsz, ha valamit másképp szeretnél.",
     teaser: "Szöveg, design, fejlesztés – egy kézben, nálam.",

@@ -252,6 +252,7 @@ export const steps = [
     title: "Az eredmény",
     text: "Pár másodperc alatt: minden jegy érthető címet és kategóriát kapott, a jó emberhez került — a hosszú jegyet pedig bárki fél perc alatt átlátja.",
     tag: "Eredmény",
+    hideLog: true, // az alsó napló/lista becsukódik, az eredmény kap helyet
     log: [
       "● Összesítés",
       "  ✓ 3 jegy átnevezve",

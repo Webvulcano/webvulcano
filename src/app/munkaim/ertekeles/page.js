@@ -1,5 +1,5 @@
 import Link from "next/link";
-import ReviewDemo from "@/components/demo/ReviewDemo";
+import DemoFullscreen from "@/components/demo/DemoFullscreen";
 import Accent from "@/components/ui/Accent";
 import CtaCard from "@/components/ui/CtaCard";
 import RevealObserver from "@/components/ui/RevealObserver";
@@ -85,7 +85,7 @@ export default function ReviewDemoPage() {
             >
               Próbáld <Accent>ki</Accent>
             </h2>
-            <ReviewDemo />
+            <DemoFullscreen demo="review" title="Automatikus Google-értékelés gyűjtő" />
           </section>
 
           <section

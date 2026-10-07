@@ -149,9 +149,21 @@ export const steps = [
       "  🔔 Értesítés küldve Lehelnek",
       "  ✓ Válaszvázlat elkészült — jóváhagyásra vár",
       "  ✓ Napfény Fogászat → Érdeklődik",
-      "Kész. 3 új email · 1 emlékeztető · 1 érdeklődő — kb. 1 perc alatt.",
     ],
     changes: { napfeny: { status: "interested", next: "hívás" } },
+  },
+  {
+    title: "Összefoglaló",
+    text: "A kör végén Claude összefoglalja, mi történt és mi a teendőm. Egy pillantás, és tudom, hol tartok.",
+    tag: "Összegzés",
+    hideLog: true, // az alsó napló/tábla becsukódik, az összefoglaló kap helyet
+    log: [
+      "● Napi összefoglaló",
+      "  3 új cég · 3 email kiküldve · 1 emlékeztető",
+      "  1 válasz · 1 érdeklődő (Napfény Fogászat)",
+      "  Teendőd: vázlat jóváhagyása + hívás egyeztetése",
+      "Kész — kb. 1 perc alatt.",
+    ],
   },
 ];
 
@@ -193,13 +205,27 @@ export const inbox = [
 ];
 
 export const followup =
-  "Szia Gábor! Csak ránéztem, eljutott-e hozzád a múltkori levelem. Ha érdekel, szívesen megmutatok egy ingyenes vázlatot.";
+  "Szia Gábor! Csak ránéztem, eljutott-e hozzád a múltkori levelem. Ha érdekel, szívesen megmutatok egy díjmentes vázlatot.";
 
 export const notify = {
   title: "Új érdeklődő: Napfény Fogászat",
   reply: "„Érdekel, mennyibe kerülne egy új oldal?”",
   draft:
-    "Szia Anna! Köszönöm a választ! Egy ilyen oldal nálam fix áron készül, és az első vázlatot ingyen megmutatom. Mikor lenne jó egy 15 perces hívás a héten?",
+    "Szia Anna! Köszönöm a választ! Egy ilyen oldal nálam fix áron készül, és az első vázlatot díjmentesen megmutatom. Mikor lenne jó egy 15 perces hívás a héten?",
+};
+
+// Az utolsó lépés összefoglalója.
+export const summary = {
+  intro: "Lefutott a mai kör. Röviden, mi történt:",
+  stats: [
+    { value: "3", label: "új cég" },
+    { value: "3", label: "email kiküldve" },
+    { value: "1", label: "emlékeztető" },
+    { value: "1", label: "válasz" },
+    { value: "1", label: "érdeklődő", hot: true },
+  ],
+  todo: { lead: "napfeny", text: "Vázlat jóváhagyása + hívás egyeztetése" },
+  next: "Következő kör: holnap · Kovács 2. emlékeztető 4 nap múlva",
 };
 
 export const benefits = [

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useEffectEvent, useRef, useState } from "react";
 import {
   AnimatePresence,
   LayoutGroup,
@@ -22,7 +22,9 @@ const GAP_MS = 2600; // szünet két lépés között, hogy a végállapot is ol
 const pad = (n) => String(n).padStart(2, "0");
 const SUMMARY_STEP = steps.length - 2;
 
-export default function TicketDemo() {
+// fullscreen: teljes képernyős overlay-elrendezés (DemoFullscreen) — kitölti a magasságot,
+// mobilon csak a panel látszik. autoStart: megnyitáskor magától indul.
+export default function TicketDemo({ fullscreen = false, autoStart = false }) {
   const [step, setStep] = useState(-1);
   const [applied, setApplied] = useState([]);
   const [stepDone, setStepDone] = useState(false);
@@ -65,6 +67,14 @@ export default function TicketDemo() {
     setPlaying(true);
   };
 
+  // Teljes képernyős megnyitáskor magától indul (kis szünettel, hogy a belépő animáció lefusson).
+  const autoRun = useEffectEvent(run);
+  useEffect(() => {
+    if (!autoStart) return;
+    const t = setTimeout(() => autoRun(), 500);
+    return () => clearTimeout(t);
+  }, [autoStart]);
+
   const jump = (i) => {
     setPlaying(false);
     go(Math.max(0, Math.min(steps.length - 1, i)));
@@ -89,10 +99,23 @@ export default function TicketDemo() {
   const finishStep = () => setStepDone(true);
 
   const started = step >= 0;
+  // teljes képernyőn mobilon alacsonyabb, hogy a színpad kiférjen
+  const logHeight = fullscreen ? "h-20 lg:h-[13rem]" : "h-[13rem]";
   const done = step === steps.length - 1;
   const waiting = step === SUMMARY_STEP && !summarized; // a látogató kattintására vár
   const rows = tableAt(step, stepDone ? null : applied);
   const current = started ? steps[step] : null;
+  // hideLog-os lépésnél (eredmény) az alsó panel becsukódik, a színpad pont ennyivel nő
+  // (fülsor ~34 px + napló + vonal) → a panel teljes magassága nem változik, nem ugrál.
+  // Nincs indítósor (a Futtatás gomb a kezdő színpadon van) → +4rem a színpadnak.
+  const collapsed = !!current?.hideLog;
+  const stageHeight = fullscreen
+    ? collapsed
+      ? "h-[clamp(419px,calc(100dvh-17.8rem),599px)] lg:h-[clamp(547px,calc(100dvh-14.3rem),727px)]"
+      : "h-[clamp(304px,calc(100dvh-25rem),484px)] lg:h-[clamp(304px,calc(100dvh-29.5rem),484px)]"
+    : collapsed
+      ? "h-[687px] sm:h-[607px]"
+      : "h-[444px] sm:h-[364px]";
   const Stage = started ? stages[step] : null;
   // az összefoglaló-lépés naplója csak a kattintás után jelenik meg
   const logSteps = steps
@@ -105,9 +128,17 @@ export default function TicketDemo() {
 
   return (
     <MotionConfig reducedMotion="user">
-      <div className="grid gap-10 lg:grid-cols-[1fr_1.45fr] lg:gap-14">
+      <div
+        className={`grid gap-10 lg:grid-cols-[1fr_1.45fr] lg:gap-14 ${fullscreen ? "h-full lg:grid-rows-1" : ""}`}
+      >
         {/* Lépések */}
-        <ol className="order-2 lg:order-1">
+        <ol
+          className={
+            fullscreen
+              ? "hidden max-h-full min-h-0 overflow-y-auto lg:order-1 lg:block lg:self-center"
+              : "order-2 lg:order-1"
+          }
+        >
           {steps.map((s, i) => {
             const active = i === step;
             const past = i < step || (i === step && done);
@@ -160,11 +191,19 @@ export default function TicketDemo() {
         </ol>
 
         {/* Élő panel */}
-        <div className="order-1 min-w-0 lg:order-2 lg:sticky lg:top-24 lg:self-start">
+        <div
+          className={
+            fullscreen
+              ? "min-w-0 lg:order-2 lg:self-center"
+              : "order-1 min-w-0 lg:order-2 lg:sticky lg:top-24 lg:self-start"
+          }
+        >
           <LayoutGroup>
             <div className="noise overflow-hidden rounded-2xl border border-paper/10 bg-night-2 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.9)]">
               {/* Fejléc */}
-              <div className="flex items-center justify-between gap-4 border-b border-paper/10 px-5 py-3">
+              <div
+                className={`flex items-center justify-between gap-4 border-b border-paper/10 px-5 py-3 ${fullscreen ? "max-lg:hidden" : ""}`}
+              >
                 <div className="flex gap-1.5" aria-hidden="true">
                   <span className="size-2.5 rounded-full bg-paper/20" />
                   <span className="size-2.5 rounded-full bg-paper/20" />
@@ -183,41 +222,22 @@ export default function TicketDemo() {
                   key={step}
                   className="demo-line border-b border-paper/10 px-5 py-4 lg:hidden"
                 >
-                  <p className="font-medium text-paper">{current.title}</p>
+                  <p className="flex items-baseline justify-between gap-3 font-medium text-paper">
+                    {current.title}
+                    {fullscreen && (
+                      <span className="shrink-0 text-xs tracking-label text-paper/50 uppercase">
+                        {pad(step + 1)} / {pad(steps.length)}
+                      </span>
+                    )}
+                  </p>
                   <p className="mt-1 text-sm text-paper/65">{current.text}</p>
                 </div>
               )}
 
-              {/* Indítósor */}
-              <div className="flex items-center gap-3 border-b border-paper/10 px-5 py-3.5">
-                <span
-                  className="relative flex size-2.5 shrink-0"
-                  aria-hidden="true"
-                >
-                  {started && !done && (
-                    <span className="absolute inset-0 animate-ping rounded-full bg-highlight/70" />
-                  )}
-                  <span
-                    className={`relative size-2.5 rounded-full ${started ? "bg-highlight" : "bg-paper/25"}`}
-                  />
-                </span>
-                <p className="min-w-0 flex-1 truncate font-mono text-sm text-paper/80 sm:text-base">
-                  {started
-                    ? "helpdesk — AI-asszisztens aktív"
-                    : "helpdesk — bejövő jegyek"}
-                </p>
-                <button
-                  type="button"
-                  onClick={run}
-                  className="inline-flex shrink-0 items-center gap-2 rounded-full bg-accent px-4 py-2 text-sm font-medium text-on-accent transition-colors hover:bg-accent-hover"
-                >
-                  {started ? "Újra" : "Futtatás"}
-                  <Icon name="arrow" className="size-4" strokeWidth={2} />
-                </button>
-              </div>
-
               {/* Színpad */}
-              <div className="relative h-[380px] border-b border-paper/10 px-5 py-5 sm:h-[300px]">
+              <div
+                className={`relative border-b border-paper/10 px-5 py-5 transition-[height] duration-500 ease-out ${stageHeight}`}
+              >
                 <AnimatePresence mode="popLayout" initial={false}>
                   <motion.div
                     key={started ? runId : "idle"}
@@ -236,130 +256,140 @@ export default function TicketDemo() {
                         onSummarize={summarize}
                       />
                     ) : (
-                      <StageIdle />
+                      <StageIdle onRun={run} />
                     )}
                   </motion.div>
                 </AnimatePresence>
               </div>
 
-              {/* Alsó panel — napló VAGY jegylista, fülekkel */}
+              {/* Összecsukható alsó rész (hideLog-os lépésnél 0 magasság, nem fókuszálható) */}
               <div
-                role="tablist"
-                className="flex gap-1 border-b border-paper/10 px-3 pt-2.5"
+                inert={collapsed}
+                className={`grid transition-[grid-template-rows] duration-500 ease-out ${collapsed ? "grid-rows-[0fr]" : "grid-rows-[1fr]"}`}
               >
-                {[
-                  ["log", "Napló"],
-                  ["list", `Jegyek (${rows.length})`, "Otobo · "],
-                ].map(([id, label, prefix]) => (
-                  <button
-                    key={id}
-                    type="button"
-                    role="tab"
-                    aria-selected={view === id}
-                    onClick={() => setView(id)}
-                    className={`-mb-px border-b-2 px-2.5 pb-2 text-xs font-medium tracking-label whitespace-nowrap uppercase transition-colors ${
-                      view === id
-                        ? "border-highlight text-paper"
-                        : "border-transparent text-paper/45 hover:text-paper/80"
-                    }`}
+                <div className="min-h-0 overflow-hidden">
+                  {/* Alsó panel — napló VAGY jegylista, fülekkel */}
+                  <div
+                    role="tablist"
+                    className="flex gap-1 border-b border-paper/10 px-3 pt-2.5"
                   >
-                    {prefix && (
-                      <span className="hidden sm:inline">{prefix}</span>
-                    )}
-                    {label}
-                  </button>
-                ))}
-              </div>
-
-              {view === "log" ? (
-                <div
-                  ref={logRef}
-                  aria-live="polite"
-                  className="h-[13rem] overflow-y-auto bg-night/40 px-5 py-3 font-mono text-xs leading-relaxed [mask-image:linear-gradient(to_bottom,transparent,black_1.1rem)]"
-                >
-                  {!started && (
-                    <p className="text-paper/35">
-                      $ várakozás bejövő jegyekre…
-                    </p>
-                  )}
-                  {logSteps.map((s, i) =>
-                    s.log.map((line, j) => (
-                      <p
-                        key={`${i}-${j}-${line}`}
-                        className={`demo-line whitespace-pre-wrap ${i === step ? "text-paper/85" : "text-paper/35"}`}
-                        style={{ "--d": `${j * 180}ms` }}
-                      >
-                        {line}
-                      </p>
-                    )),
-                  )}
-                </div>
-              ) : (
-                <div className="h-[13rem] overflow-hidden px-5 py-3">
-                  <div className="grid grid-cols-[minmax(0,1fr)_auto] gap-x-3 pb-1.5 text-xs text-paper/40">
-                    <span>Jegy</span>
-                    <span>Kategória</span>
-                  </div>
-                  <div className="flex flex-col">
-                    {rows.map((r) => (
-                      <motion.div
-                        key={r.id}
-                        layout
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.35 }}
-                        className={`-mx-2 grid grid-cols-[minmax(0,1fr)_auto] items-center gap-x-3 rounded-lg border-t border-paper/[0.07] px-2 py-2 transition-colors duration-700 ${
-                          r.changed
-                            ? "bg-highlight/[0.09] ring-1 ring-highlight/25 ring-inset"
-                            : ""
+                    {[
+                      ["log", "Napló"],
+                      ["list", `Jegyek (${rows.length})`, "Otobo · "],
+                    ].map(([id, label, prefix]) => (
+                      <button
+                        key={id}
+                        type="button"
+                        role="tab"
+                        aria-selected={view === id}
+                        onClick={() => setView(id)}
+                        className={`-mb-px border-b-2 px-2.5 pb-2 text-xs font-medium tracking-label whitespace-nowrap uppercase transition-colors ${
+                          view === id
+                            ? "border-highlight text-paper"
+                            : "border-transparent text-paper/45 hover:text-paper/80"
                         }`}
                       >
-                        <span className="min-w-0">
-                          <AnimatePresence mode="popLayout" initial={false}>
-                            <motion.span
-                              key={r.renamed ? "new" : "raw"}
-                              initial={{ opacity: 0, y: 8 }}
-                              animate={{ opacity: 1, y: 0 }}
-                              exit={{ opacity: 0, y: -8 }}
-                              transition={{ duration: 0.3 }}
-                              className={`block truncate text-sm ${r.renamed ? "text-paper/90" : "font-mono text-paper/50"}`}
-                            >
-                              {r.renamed ? r.title : `„${r.raw}”`}
-                            </motion.span>
-                          </AnimatePresence>
-                          <span className="flex items-center gap-2 text-xs text-paper/40">
-                            {r.no}
-                            {r.comments && <span>💬 {r.comments}</span>}
-                            {r.summarized && (
-                              <span className="text-highlight">
-                                ✦ összefoglalva
-                              </span>
-                            )}
-                          </span>
-                        </span>
-                        <span className="flex gap-1">
-                          {r.categorized ? (
-                            <>
-                              <TypeChip type={r.type} />
-                              <ServiceChip
-                                service={r.service}
-                                className="hidden sm:inline"
-                              />
-                            </>
-                          ) : (
-                            <span className="rounded-full border border-dashed border-paper/20 px-2 py-0.5 text-xs text-paper/35">
-                              ?
-                            </span>
-                          )}
-                        </span>
-                      </motion.div>
+                        {prefix && (
+                          <span className="hidden sm:inline">{prefix}</span>
+                        )}
+                        {label}
+                      </button>
                     ))}
                   </div>
+
+                  {view === "log" ? (
+                    <div
+                      ref={logRef}
+                      aria-live="polite"
+                      className={`${logHeight} overflow-y-auto bg-night/40 px-5 py-3 font-mono text-xs leading-relaxed [mask-image:linear-gradient(to_bottom,transparent,black_1.1rem)]`}
+                    >
+                      {!started && (
+                        <p className="text-paper/35">
+                          $ várakozás bejövő jegyekre…
+                        </p>
+                      )}
+                      {logSteps.map((s, i) =>
+                        s.log.map((line, j) => (
+                          <p
+                            key={`${i}-${j}-${line}`}
+                            className={`demo-line whitespace-pre-wrap ${i === step ? "text-paper/85" : "text-paper/35"}`}
+                            style={{ "--d": `${j * 180}ms` }}
+                          >
+                            {line}
+                          </p>
+                        )),
+                      )}
+                    </div>
+                  ) : (
+                    <div className={`${logHeight} overflow-hidden px-5 py-3`}>
+                      <div className="grid grid-cols-[minmax(0,1fr)_auto] gap-x-3 pb-1.5 text-xs text-paper/40">
+                        <span>Jegy</span>
+                        <span>Kategória</span>
+                      </div>
+                      <div className="flex flex-col">
+                        {rows.map((r) => (
+                          <motion.div
+                            key={r.id}
+                            layout
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.35 }}
+                            className={`-mx-2 grid grid-cols-[minmax(0,1fr)_auto] items-center gap-x-3 rounded-lg border-t border-paper/[0.07] px-2 py-2 transition-colors duration-700 ${
+                              r.changed
+                                ? "bg-highlight/[0.09] ring-1 ring-highlight/25 ring-inset"
+                                : ""
+                            }`}
+                          >
+                            <span className="min-w-0">
+                              <AnimatePresence mode="popLayout" initial={false}>
+                                <motion.span
+                                  key={r.renamed ? "new" : "raw"}
+                                  initial={{ opacity: 0, y: 8 }}
+                                  animate={{ opacity: 1, y: 0 }}
+                                  exit={{ opacity: 0, y: -8 }}
+                                  transition={{ duration: 0.3 }}
+                                  className={`block truncate text-sm ${r.renamed ? "text-paper/90" : "font-mono text-paper/50"}`}
+                                >
+                                  {r.renamed ? r.title : `„${r.raw}”`}
+                                </motion.span>
+                              </AnimatePresence>
+                              <span className="flex items-center gap-2 text-xs text-paper/40">
+                                {r.no}
+                                {r.comments && <span>💬 {r.comments}</span>}
+                                {r.summarized && (
+                                  <span className="text-highlight">
+                                    ✦ összefoglalva
+                                  </span>
+                                )}
+                              </span>
+                            </span>
+                            <span className="flex gap-1">
+                              {r.categorized ? (
+                                <>
+                                  <TypeChip type={r.type} />
+                                  <ServiceChip
+                                    service={r.service}
+                                    className="hidden sm:inline"
+                                  />
+                                </>
+                              ) : (
+                                <span className="rounded-full border border-dashed border-paper/20 px-2 py-0.5 text-xs text-paper/35">
+                                  ?
+                                </span>
+                              )}
+                            </span>
+                          </motion.div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                 </div>
-              )}
+              </div>
 
               {/* Vezérlés */}
-              <div className="flex flex-wrap items-center gap-2 border-t border-paper/10 px-5 py-3 text-sm">
+              <div
+                className={`flex flex-wrap items-center gap-2 border-paper/10 px-5 py-3 text-sm ${collapsed ? "" : "border-t"}`}
+              >
                 <button
                   type="button"
                   onClick={() => jump(step - 1)}
@@ -382,18 +412,27 @@ export default function TicketDemo() {
                   <button
                     type="button"
                     onClick={() => setPlaying((p) => !p)}
+                    aria-label={playing ? "Szünet" : "Lejátszás"}
                     className="rounded-full px-3.5 py-1.5 text-paper/60 transition hover:text-paper"
                   >
-                    {playing ? "❚❚ Szünet" : "▶ Lejátszás"}
+                    {playing ? "❚❚" : "▶"}
+                    <span className={fullscreen ? "max-sm:hidden" : ""}>
+                      {playing ? " Szünet" : " Lejátszás"}
+                    </span>
                   </button>
                 )}
                 {started && (
                   <button
                     type="button"
                     onClick={reset}
+                    aria-label="Alaphelyzet"
                     className="ml-auto rounded-full px-3.5 py-1.5 text-paper/50 transition hover:text-paper"
                   >
-                    ↺ Alaphelyzet
+                    ↺
+                    <span className={fullscreen ? "max-sm:hidden" : ""}>
+                      {" "}
+                      Alaphelyzet
+                    </span>
                   </button>
                 )}
               </div>

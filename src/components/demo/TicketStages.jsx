@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "motion/react";
+import Icon from "@/components/ui/Icon";
 import {
   comments,
   insights,
@@ -54,22 +55,21 @@ function Sparkle({ className = "size-4" }) {
 }
 
 // ---------- Indítás előtt ----------
-export function StageIdle() {
+// A Futtatás gomb itt van (nincs külön indítósor a panelen).
+export function StageIdle({ onRun }) {
   return (
     <div className="grid h-full place-items-center text-center">
-      <div>
-        <motion.p
-          animate={{ y: [0, -6, 0] }}
-          transition={{ repeat: Infinity, duration: 1.6 }}
-          className="text-2xl text-highlight"
-          aria-hidden="true"
+      <div className="flex flex-col items-center">
+        <button
+          type="button"
+          onClick={onRun}
+          className="inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 text-base font-medium text-on-accent transition-colors hover:bg-accent-hover"
         >
-          ↑
-        </motion.p>
-        <p className="mt-3 text-sm text-paper/60">
-          Nyomd meg a <span className="text-paper">Futtatás</span> gombot —
-          <br />
-          végignézheted, mi történik egy hibajeggyel.
+          Futtatás
+          <Icon name="arrow" className="size-4" strokeWidth={2} />
+        </button>
+        <p className="mt-4 text-sm text-paper/60">
+          Végignézheted, mi történik egy hibajeggyel.
         </p>
       </div>
     </div>
@@ -596,28 +596,38 @@ function StageSummary({ summarized, onSummarize, ...props }) {
 
 // ---------- 7. Eredmény ----------
 // Előtte (nyers jegyek) → utána (érthető cím + kategória + összefoglaló), alul összesítő chipek.
+// Mobilon (sm alatt) egymás alatt: előtte = áthúzott chip-sor, ↓, utána = 2 soros címek, 2×2 chip.
 const T_RECAP = [200, 900, 1300, 1700, 2100, 2700];
+const RECAP_EXAMPLES = 2; // ennyi példajegy az előtte/utána összevetésben
 
 function StageRecap(props) {
   const phase = usePhase(T_RECAP, props);
+  const examples = tickets.slice(0, RECAP_EXAMPLES);
 
   return (
-    <div className="flex h-full flex-col gap-3">
-      <div className="grid min-h-0 flex-1 gap-2 sm:grid-cols-[minmax(0,0.8fr)_auto_minmax(0,1.2fr)] sm:gap-3">
+    <div className="flex h-full flex-col justify-center gap-3 sm:justify-start">
+      <div className="grid gap-2 sm:min-h-0 sm:flex-1 sm:grid-cols-[minmax(0,0.8fr)_auto_minmax(0,1.2fr)] sm:gap-3">
         {/* Előtte */}
         <motion.div
           {...rise}
-          className="rounded-xl border border-paper/10 bg-night-3/60 px-3 py-2.5"
+          className="min-w-0 rounded-xl border border-paper/10 bg-night-3/60 px-3 py-2.5"
         >
           <p className="text-xs tracking-label text-paper/45 uppercase">
             Előtte
           </p>
-          <ul className="mt-1.5 flex flex-col gap-1 sm:mt-2 sm:gap-2">
-            {tickets.map((t) => (
-              <li
+          <div className="mt-1.5 flex flex-wrap gap-1.5 sm:hidden">
+            {examples.map((t) => (
+              <span
                 key={t.id}
-                className="flex items-center gap-2 text-xs sm:text-sm"
+                className="rounded-full border border-paper/10 px-2 py-0.5 font-mono text-xs text-paper/45 line-through decoration-paper/30"
               >
+                „{t.raw}”
+              </span>
+            ))}
+          </div>
+          <ul className="mt-2 hidden flex-col gap-2 sm:flex">
+            {examples.map((t) => (
+              <li key={t.id} className="flex items-center gap-2 text-sm">
                 <span className="min-w-0 flex-1 truncate font-mono text-paper/50">
                   „{t.raw}”
                 </span>
@@ -626,7 +636,7 @@ function StageRecap(props) {
                 </span>
               </li>
             ))}
-            <li className="hidden text-xs text-paper/40 sm:block">
+            <li className="text-xs text-paper/40">
               💬 {comments.length} hozzászólás, végigolvasni
             </li>
           </ul>
@@ -635,29 +645,30 @@ function StageRecap(props) {
         <motion.span
           initial={{ opacity: 0, scale: 0.6 }}
           animate={{ opacity: phase >= 2 ? 1 : 0, scale: phase >= 2 ? 1 : 0.6 }}
-          className="hidden self-center text-xl text-highlight sm:block"
+          className="justify-self-center text-base leading-none text-highlight sm:self-center sm:text-xl"
           aria-hidden="true"
         >
-          →
+          <span className="sm:hidden">↓</span>
+          <span className="hidden sm:inline">→</span>
         </motion.span>
 
         {/* Utána */}
         <div
-          className={`rounded-xl border border-highlight/30 bg-highlight/[0.05] px-3 py-2.5 transition-opacity duration-500 ${phase >= 2 ? "opacity-100" : "opacity-0"}`}
+          className={`min-w-0 rounded-xl border border-highlight/30 bg-highlight/[0.05] px-3 py-2.5 transition-opacity duration-500 ${phase >= 2 ? "opacity-100" : "opacity-0"}`}
         >
           <p className="flex items-center gap-1.5 text-xs tracking-label text-highlight uppercase">
             <Sparkle className="size-3" /> Utána
           </p>
-          <ul className="mt-1.5 flex flex-col gap-1 sm:mt-2 sm:gap-1.5">
-            {tickets.map(
+          <ul className="mt-2 flex flex-col gap-2 sm:gap-1.5">
+            {examples.map(
               (t, i) =>
                 phase >= 3 + i && (
                   <motion.li
                     key={t.id}
                     {...rise}
-                    className="flex items-center gap-2 text-xs sm:text-sm"
+                    className="flex items-start gap-2 text-sm sm:items-center"
                   >
-                    <span className="min-w-0 flex-1 truncate text-paper/90">
+                    <span className="line-clamp-2 min-w-0 flex-1 leading-snug text-paper/90 sm:line-clamp-1">
                       {t.title}
                     </span>
                     <TypeChip type={t.type} className="shrink-0 !text-xs" />
@@ -673,7 +684,7 @@ function StageRecap(props) {
         </div>
       </div>
 
-      <div className="flex min-h-7 shrink-0 flex-wrap gap-1.5 text-xs sm:gap-2">
+      <div className="grid min-h-7 shrink-0 grid-cols-2 gap-1.5 text-xs sm:flex sm:flex-wrap sm:gap-2">
         {phase >= 6 &&
           recap.map((t, i) => (
             <motion.span
@@ -681,7 +692,7 @@ function StageRecap(props) {
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.12 }}
-              className="rounded-full border border-highlight/30 bg-highlight/10 px-2 py-0.5 text-xs text-highlight sm:px-2.5 sm:py-1 sm:text-xs"
+              className="grid place-items-center rounded-xl border border-highlight/30 bg-highlight/10 px-2 py-1.5 text-center leading-tight text-highlight sm:rounded-full sm:px-2.5 sm:py-1"
             >
               {t}
             </motion.span>

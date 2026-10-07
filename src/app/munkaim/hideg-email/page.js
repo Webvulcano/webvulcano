@@ -1,5 +1,5 @@
 import Link from "next/link";
-import EmailDemo from "@/components/demo/EmailDemo";
+import DemoFullscreen from "@/components/demo/DemoFullscreen";
 import Accent from "@/components/ui/Accent";
 import CtaCard from "@/components/ui/CtaCard";
 import RevealObserver from "@/components/ui/RevealObserver";
@@ -13,7 +13,7 @@ export const metadata = {
 
 const facts = [
   { value: "1 perc", label: "napi 2–3 óra keresés és emailezés helyett" },
-  { value: "8 lépés", label: "egyetlen parancsra, magától" },
+  { value: "9 lépés", label: "egyetlen parancsra, magától" },
   { value: "0", label: "elfelejtett emlékeztető vagy érdeklődő" },
 ];
 
@@ -91,7 +91,7 @@ export default function EmailDemoPage() {
             >
               Próbáld <Accent>ki</Accent>
             </h2>
-            <EmailDemo />
+            <DemoFullscreen demo="email" title="Hideg email automatizáló" />
           </section>
 
           <section

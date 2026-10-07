@@ -19,7 +19,7 @@ export default function CtaCard() {
         Nézzük meg, mit tudnék kihozni a <Accent>te</Accent> vállalkozásodból.
       </h2>
       <p className="relative mx-auto mt-6 hidden max-w-[48ch] text-base text-paper/70 md:block md:text-lg">
-        A vállalkozásod jó. A weboldalad is ezt mutassa. Kérj egy ingyen vázlatot – utána
+        A vállalkozásod jó. A weboldalad is ezt mutassa. Kérj egy díjmentes vázlatot – utána
         döntesz.
       </p>
       <div className="relative mt-8 flex justify-center md:mt-10">
