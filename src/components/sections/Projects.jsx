@@ -34,12 +34,13 @@ export default function Projects() {
         </h2>
       </div>
 
-      {/* Sticky, egymásra csúszó projektkártyák (desktop) */}
+      {/* Sticky, egymásra csúszó projektkártyák (mobilon és desktopon is). A Nav nem tapad (absolute),
+          ezért mobilon a kártya a képernyő tetejére ül (top-0). */}
       <div className="container-x mt-12 pb-10">
         {featuredProjects.map((p, i) => (
           <article
             key={p.title}
-            className="relative grid items-center gap-8 border-t border-paper/10 bg-night py-10 not-last:lg:mb-[16vh] lg:sticky lg:top-[88px] lg:grid-cols-[1.35fr_1fr] lg:gap-14 lg:py-14"
+            className="sticky top-0 grid items-center gap-6 border-t border-paper/10 bg-night pt-5 pb-8 not-last:mb-[12vh] lg:top-[88px] lg:grid-cols-[1.35fr_1fr] lg:gap-14 lg:py-14 not-last:lg:mb-[16vh]"
             style={{ zIndex: i + 1 }}
           >
             <a
@@ -58,17 +59,18 @@ export default function Projects() {
               />
             </a>
 
-            <div>
+            {/* Mobilon (lg alatt) a link a cím alá kerül (order), hogy jobban látsszon. */}
+            <div className="flex flex-col items-start">
               <p className="text-sm font-medium tracking-label text-paper/60 uppercase">
                 {String(i + 1).padStart(2, "0")} · {p.kind}
               </p>
               <h3 className="mt-4 type-h3 font-medium">
                 {p.title}
               </h3>
-              <p className="mt-5 max-w-[48ch] text-base text-paper/65">
+              <p className="mt-5 max-w-[48ch] text-base text-paper/65 max-lg:order-2">
                 {p.summary}
               </p>
-              <div className="mt-7">
+              <div className="mt-7 max-lg:order-3">
                 <Tags tags={p.tags} />
               </div>
               {p.url && (
@@ -76,12 +78,12 @@ export default function Projects() {
                   href={p.url}
                   target="_blank"
                   rel="noopener"
-                  className="mt-8 inline-flex items-center gap-2 text-base font-medium text-paper underline decoration-paper/30 underline-offset-[0.2em] transition hover:decoration-paper"
+                  className="nudge-link mt-8 inline-flex items-center gap-2 text-base font-medium text-paper underline max-lg:order-1 max-lg:mt-4 decoration-paper/30 underline-offset-[0.2em] transition hover:decoration-paper"
                 >
-                  {p.url.replace("https://", "")}
+                  <span className={`nudge-text ${p.flow ? `flow-${p.flow}` : ""}`}>{p.url.replace("https://", "")}</span>
                   <Icon
                     name="arrowUpRight"
-                    className="size-4"
+                    className="nudge-icon size-4"
                     strokeWidth={2}
                   />
                 </a>
@@ -89,12 +91,12 @@ export default function Projects() {
               {p.demo && (
                 <Link
                   href={p.demo}
-                  className="mt-8 inline-flex items-center gap-2 text-base font-medium text-paper underline decoration-paper/30 underline-offset-[0.2em] transition hover:decoration-paper"
+                  className="nudge-link mt-8 inline-flex items-center gap-2 text-base font-medium text-paper underline max-lg:order-1 max-lg:mt-4 decoration-paper/30 underline-offset-[0.2em] transition hover:decoration-paper"
                 >
-                  Nézd meg élőben hogy működik
+                  <span className={`nudge-text ${p.flow ? `flow-${p.flow}` : ""}`}>Nézd meg élőben hogy működik</span>
                   <Icon
                     name="arrowUpRight"
-                    className="size-4"
+                    className="nudge-icon size-4"
                     strokeWidth={2}
                   />
                 </Link>
@@ -102,6 +104,15 @@ export default function Projects() {
             </div>
           </article>
         ))}
+      </div>
+
+      {/* Kisebb cím a lapozható sor fölött; a lapozási tipp csak mobilon (md alatt) látszik. */}
+      <div data-reveal className="container-x mt-10 mb-6">
+        <h3 className="type-h4 font-bold">További munkáim</h3>
+        <p className="mt-2 flex items-center gap-2 text-sm text-paper/60 md:hidden">
+          Húzd oldalra a többi munkámért
+          <Icon name="arrow" className="size-4 shrink-0" strokeWidth={2} />
+        </p>
       </div>
 
       <Carousel
@@ -122,17 +133,21 @@ export default function Projects() {
             </p>
             <p className="mt-2 text-sm text-paper/65">{p.statLabel}</p>
             <h3 className="mt-8 type-h4 font-medium">{p.title}</h3>
-            <p className="mt-3 mb-7 text-base text-paper/65">{p.summary}</p>
-            <div className="mt-auto">
+            <p className="mt-3 mb-7 hidden text-base text-paper/65 md:block">{p.summary}</p>
+            <p className="mt-3 mb-7 text-base text-paper/65 md:hidden">
+              {p.summaryMobile ?? p.summary}
+            </p>
+            {/* A stack-címkék mobilon (md alatt) nem kellenek a lapozós kártyákon. */}
+            <div className="mt-auto hidden md:block">
               <Tags tags={p.tags} />
             </div>
             {p.demo && (
               <Link
                 href={p.demo}
-                className="mt-7 inline-flex items-center gap-2 self-start text-base font-medium text-paper underline decoration-paper/30 underline-offset-[0.2em] transition hover:decoration-paper"
+                className="nudge-link mt-7 inline-flex items-center gap-2 self-start text-base font-medium text-paper underline decoration-paper/30 underline-offset-[0.2em] transition hover:decoration-paper"
               >
-                Nézd meg élőben hogy működik
-                <Icon name="arrowUpRight" className="size-4" strokeWidth={2} />
+                <span className="nudge-text">Nézd meg élőben hogy működik</span>
+                <Icon name="arrowUpRight" className="nudge-icon size-4" strokeWidth={2} />
               </Link>
             )}
           </article>

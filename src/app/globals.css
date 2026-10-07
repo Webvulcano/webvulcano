@@ -138,7 +138,7 @@
 
 /* ── Tipográfiai szerepek ─────────────────────────────────────────────────
    A címek mérete CSAK ezeken keresztül állítható (Major Third skála, fent).
-   type-display  hero h1         4xl → 5xl → 6xl (6xl csak ≥1280px)
+   type-display  hero h1         2xl → 5xl → 6xl (6xl csak ≥1280px)
    type-h1       aloldal h1      4xl → 5xl → 6xl
    type-h2       szekciócím      2xl → 3xl → 4xl
    type-h3       blokk-/kártyacím xl → 2xl
@@ -149,9 +149,9 @@
    Törzs: text-base · címke/meta: text-sm · mikro-UI: text-xs
    ───────────────────────────────────────────────────────────────────────── */
 @utility type-display {
-  font-size: var(--text-4xl);
-  line-height: var(--text-4xl--line-height);
-  letter-spacing: var(--text-4xl--letter-spacing);
+  font-size: var(--text-2xl);
+  line-height: var(--text-2xl--line-height);
+  letter-spacing: var(--text-2xl--letter-spacing);
   @media (width >= 48rem) {
     font-size: var(--text-5xl);
     line-height: var(--text-5xl--line-height);
@@ -390,6 +390,49 @@ textarea {
 }
 
 /* ---------- Hero belépő animáció ---------- */
+/* ---------- Link-ösztönző mozgás (mobil, ahol nincs hover) ----------
+   .nudge-text: ismétlődő (krém → színes sáv → krém) mintázat, ami lineárisan, megállás és
+   visszaugrás nélkül áramlik balról jobbra – a csempe pontosan egy hosszal tolódik, így a
+   ciklus vége = az eleje (végtelen hatás). .nudge-icon (nyíl): folyamatos, szünet nélküli lebegés
+   ugyanabban a ritmusban. Csak lg alatt és teljes mozgásnál. */
+@keyframes nudge-text {
+  /* background-size 200% mellett a -200% pozíció = +1 csempényi eltolás jobbra */
+  to { background-position: -200% 0; }
+}
+@keyframes nudge-icon {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(2.5px, -2.5px); }
+}
+@media (width < 64rem) and (prefers-reduced-motion: no-preference) {
+  .nudge-link .nudge-icon {
+    animation: nudge-icon 1.8s ease-in-out infinite;
+  }
+  .nudge-link .nudge-text {
+    /* krém szöveg, rajta áramló sáv; a sáv 3 színe (--flow-a/b/c) projektenként felülírható
+       (.flow-* osztályok), alapból a téma türkize (highlight) */
+    background-image: linear-gradient(
+      90deg,
+      var(--color-paper) 20%,
+      var(--flow-a, var(--color-highlight)) 40%,
+      var(--flow-b, var(--color-highlight)) 50%,
+      var(--flow-c, var(--color-highlight)) 60%,
+      var(--color-paper) 80%
+    );
+    background-size: 200% 100%;
+    background-repeat: repeat-x;
+    background-position: 0 0;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: nudge-text 1.8s linear infinite;
+  }
+}
+
+/* projektenkénti sávszínek (Projects.jsx → p.flow); ha a téma nem adja, highlight marad */
+.flow-coral { --flow-a: var(--flow-coral); --flow-b: var(--flow-coral); --flow-c: var(--flow-coral); }
+.flow-black { --flow-a: var(--flow-black); --flow-b: var(--flow-black); --flow-c: var(--flow-black); }
+.flow-blue { --flow-a: var(--flow-blue-1); --flow-b: var(--flow-blue-2); --flow-c: var(--flow-blue-3); }
+
 @keyframes rise {
   from {
     opacity: 0;

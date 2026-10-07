@@ -3,25 +3,26 @@ import Button from "@/components/ui/Button";
 import Icon from "@/components/ui/Icon";
 import { site } from "@/data/site";
 
-// Tölcsér: elérés → weboldal → akció. Minden szint az előző 84%-a (a clip-path 8%-8% saját szélességből vág); a trapéz alja
-// pontosan a következő szint tetejével egyezik, így folytonos tölcsért ad (md-től).
+// Tölcsér: elérés → weboldal → akció. md-től minden szint az előző 84%-a (a clip-path 8%-8% saját szélességből vág);
+// mobilon enyhébb: 90% és 5%-5%, hogy a szöveg elférjen. A trapéz alja pontosan a következő szint tetejével egyezik,
+// így folytonos tölcsért ad.
 const funnel = [
   {
     step: "1",
     title: "Elérés",
-    text: "Facebook- vagy Instagram-poszt, TikTok, YouTube-videó, hirdetés, szórólap – bármi, amivel eléred az embereket. Ez hozza a látogatót.",
+    text: "Bármi, amivel eléred az embereket. Ez hozza a látogatót.",
     tags: ["Facebook", "Instagram", "TikTok", "YouTube", "Szórólap"],
   },
   {
     step: "2",
     title: "Weboldal",
-    text: "Itt ismerik meg a szolgáltatásod, itt döntik el, hogy megbíznak-e benned. A látogatóból itt lesz érdeklődő.",
+    text: "Itt ismerik meg a szolgáltatásod, itt döntik el, hogy megbíznak‑e benned. A látogatóból itt lesz érdeklődő.",
     highlight: true,
   },
   {
     step: "3",
     title: "Akció",
-    text: "Időpontfoglalás, hívás, ajánlatkérés vagy vásárlás. A jó oldal ide tereli.",
+    text: "Időpontfoglalás, hívás, ajánlatkérés vagy vásárlás. A jó weboldal ide tereli.",
   },
 ];
 
@@ -48,16 +49,16 @@ export default function Services() {
           érdeklődő – majd ügyfél – legyen. Képzelj el egy tölcsért:
         </p>
 
-        <ol className="mx-auto mt-16 flex max-w-4xl flex-col items-center gap-3 md:gap-0">
+        <ol className="mx-auto mt-16 flex max-w-4xl flex-col items-center">
           {funnel.map((f, i) => (
             <li
               key={f.title}
               data-reveal
-              style={{ "--d": `${i * 120}ms`, "--w": `${100 * 0.84 ** i}%` }}
-              className={`noise w-full rounded-2xl border px-8 py-8 md:w-[var(--w)] md:rounded-none md:border-0 md:px-[12%] md:[clip-path:polygon(0_0,100%_0,92%_100%,8%_100%)] ${
+              style={{ "--d": `${i * 120}ms`, "--w": `${100 * 0.84 ** i}%`, "--w-m": `${100 * 0.9 ** i}%` }}
+              className={`noise w-[var(--w-m)] px-[9%] py-8 [clip-path:polygon(0_0,100%_0,95%_100%,5%_100%)] md:w-[var(--w)] md:px-[12%] md:[clip-path:polygon(0_0,100%_0,92%_100%,8%_100%)] ${
                 f.highlight
-                  ? "border-accent/50 bg-gradient-to-b from-accent to-accent-hover text-on-accent"
-                  : "border-ink/10 bg-canvas-2 text-ink"
+                  ? "bg-gradient-to-b from-accent to-accent-hover text-on-accent"
+                  : "bg-canvas-2 text-ink"
               }`}
             >
               <p

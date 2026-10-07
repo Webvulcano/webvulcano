@@ -6,7 +6,7 @@ import Intro from "@/components/sections/Intro";
 import Statement from "@/components/sections/Statement";
 import Services from "@/components/sections/Services";
 // import FeaturedProject from "@/components/sections/FeaturedProject";
-import WhyMe from "@/components/sections/WhyMe";
+// import WhyMe from "@/components/sections/WhyMe"; // kivéve: „Mit kapsz, ha velem dolgozol?”
 import Projects from "@/components/sections/Projects";
 import Process from "@/components/sections/Process";
 import Testimonials from "@/components/sections/Testimonials";
@@ -28,7 +28,7 @@ export default function Home() {
           <Statement />
           <Services />
           {/* <FeaturedProject /> */}
-          <WhyMe />
+          {/* <WhyMe /> */}
           <Projects />
           <Process />
           <Testimonials />

@@ -10,7 +10,7 @@ const lines = [
     A neten, <Accent>megbízhatónak</Accent>
   </span>,
   <>
-    és <Accent>0-24ben elérhetőnek</Accent>
+    és <Accent><span className="whitespace-nowrap">0-24ben</span> elérhetőnek</Accent>
   </>,
   "kell lenned",
 ];
@@ -29,16 +29,18 @@ const thumbs = [
 
 // Sticky hero: a külső wrapper 200svh magas, -100svh margóval — a következő
 // (sötét) szekció így „rácsúszik” a kitűzött hero-ra (desktopon).
+// Mobilon (<lg): cím fent balra, portré középen alul (abszolút), CTA alul középen a portré előtt;
+// a feature-pill-ek és az „ingyen vázlat” sor mobilon rejtve.
 export default function Hero() {
   return (
     <div id="top" className="relative bg-canvas lg:mb-[-100svh] lg:h-[200svh]">
       <section
-        className="hero-glow relative overflow-clip lg:sticky lg:top-0 lg:h-svh lg:min-h-[680px]"
+        className="hero-glow relative min-h-svh overflow-clip lg:sticky lg:top-0 lg:h-svh lg:min-h-[680px]"
       >
         <div className="container-x grid h-full grid-cols-1 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)]">
-          <div className="relative z-30 flex flex-col justify-center pt-32 pb-6 lg:pt-[72px] lg:pb-0">
+          <div className="z-30 flex flex-col pt-28 lg:relative lg:justify-center lg:pt-[72px]">
 
-            <h1 className="type-display font-extrabold text-ink">
+            <h1 className="type-display font-extrabold text-ink max-lg:text-center">
               {lines.map((line, i) => (
                 <span key={i} className="-mr-[0.2em] block overflow-hidden pt-[0.04em] pr-[0.2em] pb-[0.08em]">
                   <span className="rise block" style={{ "--d": `${120 + i * 90}ms` }}>
@@ -49,7 +51,7 @@ export default function Hero() {
             </h1>
 
             <ul
-              className="rise mt-7 flex flex-wrap gap-x-5 gap-y-2 text-sm font-medium text-ink/80"
+              className="rise mt-7 flex flex-wrap gap-x-5 max-lg:hidden gap-y-2 text-sm font-medium text-ink/80"
               style={{ "--d": "650ms" }}
             >
               {features.map((f) => (
@@ -63,7 +65,7 @@ export default function Hero() {
             </ul>
 
             <div
-              className="rise mt-8 flex flex-wrap items-center gap-x-6 gap-y-4"
+              className="rise flex flex-col items-center gap-4 max-lg:absolute max-lg:inset-x-0 max-lg:bottom-8 max-lg:z-30 lg:mt-8 lg:flex-row lg:flex-wrap lg:gap-x-6"
               style={{ "--d": "750ms" }}
             >
               <Button href={site.ctaHref}>
@@ -71,7 +73,7 @@ export default function Hero() {
                 <Icon name="arrow" className="size-4" strokeWidth={2} />
               </Button>
 
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-3 max-lg:hidden">
                 <div className="flex -space-x-3">
                   {thumbs.map((src) => (
                     <Image

@@ -14,6 +14,11 @@
   --pal-cream: #fbf7f2;
   --pal-taupe: #7c8085;
   --pal-cocoa: #2e3033;
+  --pal-coral: #f2a07b;
+  --pal-black: #0b0b0c;
+  --pal-sky: #7dd3fc;
+  --pal-blue: #3b82f6;
+  --pal-blue-soft: #93c5fd;
 
   /* 2) Szerepek — a komponensek csak ezeket használják (Tailwind: bg-canvas, text-ink, …) */
 
@@ -38,6 +43,12 @@
   --muted: var(--pal-taupe); /* dőlt kiemelés világoson, ikon-sín */
   --muted-soft: color-mix(in oklab, var(--pal-taupe) 55%, var(--pal-cream)); /* dőlt kiemelés sötéten */
   --decor: var(--muted-soft); /* babérkoszorú */
+  /* mobilos link-ösztönző áramló sáv színei (globals.css → .nudge-text, .flow-*) */
+  --flow-coral: var(--pal-coral);
+  --flow-black: var(--pal-black);
+  --flow-blue-1: var(--pal-sky);
+  --flow-blue-2: var(--pal-blue);
+  --flow-blue-3: var(--pal-blue-soft);
   --feature: color-mix(in oklab, var(--pal-taupe) 30%, var(--pal-cocoa)); /* kiemelt projekt kártya */
   --hero-number: color-mix(in oklab, var(--pal-teal) 18%, var(--pal-cream)); /* hero „3” kitöltés */
   --danger: #ff9e8f;

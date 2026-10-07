@@ -11,6 +11,7 @@ export const featuredProjects = [
     width: 2394,
     height: 1373,
     url: "https://mikeloteto.hu",
+    flow: "coral", // mobilos link-sáv színe (globals.css → .flow-*)
   },
   {
     title: "StillSoul Production",
@@ -22,6 +23,7 @@ export const featuredProjects = [
     width: 2394,
     height: 1374,
     url: "https://stillsoulproduction.hu",
+    flow: "black", // mobilos link-sáv színe (globals.css → .flow-*)
   },
   {
     title: "Hideg email automatizáló",
@@ -33,9 +35,11 @@ export const featuredProjects = [
     width: 2400,
     height: 1506,
     demo: "/munkaim/hideg-email",
+    flow: "blue", // mobilos link-sáv színe (globals.css → .flow-*)
   },
 ];
 
+// summaryMobile: rövid leírás a mobilos lapozó kártyákhoz (md alatt ez látszik a summary helyett).
 export const otherProjects = [
   {
     title: "Ticketing rendszer AI integráció",
@@ -44,6 +48,7 @@ export const otherProjects = [
     statLabel: "megtakarítás havonta, fejenként",
     summary:
       "Napi 100+\u00a0hibajegy automatikus kategorizálása, átnevezése és összefoglalása – hogy a csapat a megoldásra figyeljen, ne az adminisztrációra.",
+    summaryMobile: "Napi 100+\u00a0hibajegyet rendez és foglal össze az AI, a csapat a megoldásra figyelhet.",
     tags: ["Node-RED", "Otobo", "Gemini API"],
     demo: "/munkaim/ticketing",
   },
@@ -54,6 +59,7 @@ export const otherProjects = [
     statLabel: "kézi munka egy értékelés-kérésre",
     summary:
       "Amikor egy munka véget ér, a rendszer kiolvassa a naptárból, és 1–2 nappal később magától küld egy személyes hangú emailt az ügyfélnek: ha elégedett volt, értékeljen a Google-ön. Egyetlen kérés sem marad el, az értékelések automatikusan érkeznek majd.",
+    summaryMobile: "Munka után magától kér Google-értékelést az ügyféltől. Egy kérés sem marad el.",
     tags: ["Make.com", "Google Calendar", "Email", "Google értékelés"],
     demo: "/munkaim/ertekeles",
   },
@@ -61,9 +67,10 @@ export const otherProjects = [
     title: "Érted hallásgondozó",
     kind: "Weboldal · hallásgondozás",
     stat: "Folyamatban",
-    statLabel: "teljes újjáépítés, élesítés előtt",
+    statLabel: "régi oldal teljes újjáépítése",
     summary:
       "Teljes újjáépítés: jól olvasható, egyszerű oldal, ahol a látogató gyorsan megtalálja, amit keres, és könnyen időpontot kér. A főoldalon kiemelve jelennek meg az aktuális akciók, mellette termékoldal és blog. Mögé admin felület készül: a tulajdonos látja, hányan jöttek, mire kattintottak és mennyi időt töltöttek az oldalon, ezenkívül maga tudja szerkeszteni az akciókat és a blogcikkeket.",
+    summaryMobile: "Egyszerű, gyors oldal könnyű időpontkéréssel, akciókkal, bloggal és saját admin felülettel.",
     tags: ["Weboldal", "Admin felület", "Analitika", "Blog"],
   },
   {
@@ -73,6 +80,7 @@ export const otherProjects = [
     statLabel: "régi oldal teljes újjáépítése",
     summary:
       "Egy elavult weboldal modernizálása: letisztult, könnyen navigálható és gyors oldal, ami jól mutatja be a szolgáltatásokat és a referenciákat.",
+    summaryMobile: "Elavult oldal helyett letisztult, gyors weboldal, ami igényesen mutatja be a tervező munkáit.",
     tags: ["Weboldal", "Next.js", "Redesign"],
   },
 ];
