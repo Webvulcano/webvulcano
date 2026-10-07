@@ -35,6 +35,14 @@ export function pageMeta({ title, description, path }) {
 }
 
 // Helyi vállalkozás: összeköti az oldalt a Google Cégprofillal és a közösségi profilokkal.
+// Több entitás egy scriptben: @graph (nem nyers tömb — azt egyes parserek, pl. Safari, nem kezelik).
+export function graphSchema(...items) {
+  return {
+    "@context": "https://schema.org",
+    "@graph": items.map(({ "@context": _, ...rest }) => rest),
+  };
+}
+
 export function businessSchema() {
   return {
     "@context": "https://schema.org",

@@ -6,7 +6,7 @@ import HashLinkScroll from "@/components/ui/HashLinkScroll";
 import JsonLd from "@/components/ui/JsonLd";
 import { site } from "@/data/site";
 import { theme, themes } from "@/data/theme";
-import { businessSchema, websiteSchema } from "@/lib/seo";
+import { businessSchema, graphSchema, websiteSchema } from "@/lib/seo";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -43,6 +43,9 @@ export const metadata = {
     siteName: site.brand,
   },
   twitter: { card: "summary_large_image", title: homeTitle, description: homeDescription },
+  // iOS Safari a telefonszámokat <a>-ba csomagolja hidratálás előtt → hydration mismatch.
+  // A kattintható számok explicit tel: linkek.
+  formatDetection: { telephone: false, email: false, address: false },
 };
 
 // Festés előtt fut: 1) .js osztály (reveal-animációk), 2) ?theme=<név> előnézet
@@ -62,7 +65,7 @@ export default function RootLayout({ children }) {
         <script dangerouslySetInnerHTML={{ __html: bootScript }} />
       </head>
       <body>
-        <JsonLd data={[businessSchema(), websiteSchema()]} />
+        <JsonLd data={graphSchema(businessSchema(), websiteSchema())} />
         <Nav />
         {children}
         <Footer />
