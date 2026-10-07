@@ -1,4 +1,5 @@
 import StarRating from '@/components/StarRating'
+import styles from './page.module.css'
 
 export const metadata = {
   title: 'Értékelés — webvulcano',
@@ -8,7 +9,7 @@ export const metadata = {
 
 export default function ErtekelesPage() {
   return (
-    <main className="section section-padded" style={{ paddingTop: 'clamp(3rem,8vh,6rem)', paddingBottom: '4rem' }}>
+    <main className={`section ${styles.main}`}>
       <StarRating />
     </main>
   )

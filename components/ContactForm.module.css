@@ -1,0 +1,27 @@
+.formBody {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  max-width: 640px;
+}
+
+.row {
+  display: flex;
+  gap: 1.25rem;
+}
+
+.row > * {
+  flex: 1;
+}
+
+.successWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+@media (max-width: 640px) {
+  .row {
+    flex-direction: column;
+  }
+}

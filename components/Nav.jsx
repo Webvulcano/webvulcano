@@ -44,6 +44,7 @@ const overlayItemVariants = {
 export default function Nav() {
   const pathname = usePathname()
   const mode = (pathname === '/projektek' || pathname === '/adatkezeles' || pathname === '/ertekeles') ? 'back' : 'home'
+  const hideBackLink = pathname === '/ertekeles'
   const [active, setActive] = useState('home')
   const [isMobile, setIsMobile] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
@@ -126,11 +127,11 @@ export default function Nav() {
             >
               <span /><span /><span />
             </button>
-          ) : (
+          ) : !hideBackLink ? (
             <Link href={pathname === '/adatkezeles' ? '/#form' : '/'} className={styles.topbarBack}>
               ←&nbsp;Vissza
             </Link>
-          )}
+          ) : null}
         </nav>
 
         <AnimatePresence>
@@ -199,7 +200,7 @@ export default function Nav() {
                 </motion.li>
               ))}
             </motion.ul>
-          ) : (
+          ) : !hideBackLink ? (
             <motion.div
               key="back"
               className={`nav-links ${styles.links}`}
@@ -212,7 +213,7 @@ export default function Nav() {
                 ←&nbsp;Vissza
               </Link>
             </motion.div>
-          )}
+          ) : null}
         </AnimatePresence>
       </div>
     </nav>

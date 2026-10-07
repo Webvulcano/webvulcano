@@ -12,10 +12,7 @@ export default function ThemeProvider({ children }) {
 
   useEffect(() => {
     const saved = localStorage.getItem('wv-theme')
-    if (saved === 'light' || saved === 'dark') {
-      setTheme(saved)
-      document.documentElement.setAttribute('data-theme', saved)
-    }
+    setTheme(saved === 'dark' ? 'dark' : 'light')
   }, [])
 
   function toggleTheme() {

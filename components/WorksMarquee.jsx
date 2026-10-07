@@ -7,10 +7,11 @@ const CARD_IMAGE = '/projects/card-preview.png'
 const HOLD_MS = 2000
 const TRANSITION_MS = 600
 const COPIES = 3
-const SLOT_PERCENT = 114
+const SLOT_PERCENT = 145
 
 const BADGES = {
   'm-i-k-eloteto': { chip: 'Webfejlesztés', big: 'M.I.K Előtető', small: 'Kész · React.js' },
+  'stillsoul-production': { chip: 'Webfejlesztés', big: 'StillSoul Production', small: 'Előkészítés alatt · Next.js' },
   'hideg-email-automatizalo-asszisztens': { chip: 'AI automatizáció', big: '2-3 óra → 1 perc', small: 'napi időmegtakarítás' },
   'ticketing-rendszer-ai-integracio': { chip: 'AI automatizáció', big: 'havi 20 óra', small: 'megtakarítva fejenként' },
 }
@@ -83,12 +84,21 @@ export default function WorksMarquee({ projects }) {
               >
                 <span className={styles.frame} aria-hidden="true" />
                 <img
-                  src={CARD_IMAGE}
+                  src={project.cardImage || CARD_IMAGE}
                   alt={`${project.title} weboldal készítés Budapest`}
                   className={styles.image}
+                  style={(project.cardImageFit || project.cardImagePosition) ? {
+                    objectFit: project.cardImageFit || 'contain',
+                    objectPosition: project.cardImagePosition || 'center',
+                    position: 'absolute',
+                    left: '11%',
+                    top: '7%',
+                    width: '89%',
+                    height: '93%',
+                  } : undefined}
                   loading="lazy"
                 />
-                {isCenter && badge && (
+                {!hiddenFar && badge && (
                   <>
                     <span className={styles.chip}>{badge.chip}</span>
                     <div className={styles.statBadge}>

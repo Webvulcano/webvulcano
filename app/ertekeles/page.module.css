@@ -1,0 +1,13 @@
+.main {
+  padding-top: clamp(3rem, 8vh, 6rem);
+  padding-bottom: 4rem;
+}
+
+@media (max-width: 950px) {
+  .main {
+    /* body reserves 56px for the fixed mobile topbar, which stays hidden
+       (translateY(-100%)) on this page since it's not the home scroll flow */
+    margin-top: -56px;
+    padding-top: 1rem;
+  }
+}

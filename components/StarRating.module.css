@@ -33,6 +33,12 @@
   max-width: 560px;
 }
 
+@media (max-width: 950px) {
+  .successWrap {
+    margin-top: 0;
+  }
+}
+
 .signatureText {
   display: flex;
   flex-direction: column;
