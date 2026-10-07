@@ -6,7 +6,7 @@ export const featuredProjects = [
     kind: "Weboldal · helyi szolgáltató",
     summary:
       "A vállalkozónak eddig nem volt weboldala. A cél egy átlátható, bizalomkeltő és egyszerű oldal volt, aminek egyetlen dolga van: hogy felvegyék vele a kapcsolatot.",
-    tags: ["Weboldal", "Mobilbarát", "React", "Kész"],
+    tags: ["Weboldal", "Mobilbarát", "React"],
     image: "/projects/mik-eloteto/mikeloteto_1.webp",
     width: 2394,
     height: 1373,
@@ -18,7 +18,7 @@ export const featuredProjects = [
     kind: "Weboldal · média ügynökség",
     summary:
       "Profi megjelenés, szolgáltatások és referenciák egy helyen, kapcsolatfelvételi űrlappal. Mögé admin felület is készült, amin a tulajdonos maga szerkeszti a tartalmat és a képeket.",
-    tags: ["Weboldal", "Admin felület", "Next.js", "Űrlap"],
+    tags: ["Weboldal", "Admin felület", "Mobilbarát", "Űrlap", "Next.js"],
     image: "/projects/stillsoulproduction/still_1.webp",
     width: 2394,
     height: 1374,
@@ -30,7 +30,7 @@ export const featuredProjects = [
     kind: "AI automatizáció · saját eszköz",
     summary:
       "Megkeresi a megadott iparágban a potenciális ügyfeleket, kiküldi az emailt, és egy Notion adatbázisban követi, melyik kontakt hol tart. A napi 2–3\u00a0órás keresés és emailezés 1\u00a0percre rövidült.",
-    tags: ["AI automatizáció", "Apify", "Notion API", "Resend"],
+    tags: ["AI automatizáció", "Apify", "Notion API", "Resend", "Claude"],
     image: "/projects/cold-email-sender/email-sender1.webp",
     width: 2400,
     height: 1506,
