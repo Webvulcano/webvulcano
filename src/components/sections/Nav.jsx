@@ -13,7 +13,7 @@ export default function Nav() {
             alt=""
             width={40}
             height={40}
-            className="size-10 rounded-full"
+            className="size-10"
             preload
           />
           {/* Mobilon (md alatt): „WebVulcano – weboldal & automatizáció” egy sorban; desktopon a régi kétsoros logo-felirat */}
