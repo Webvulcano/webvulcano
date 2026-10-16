@@ -77,9 +77,14 @@ export default function Footer() {
 
       <div className="container-x flex flex-col gap-3 border-t border-paper/10 py-6 text-sm text-paper/60 sm:flex-row sm:justify-between">
         <p>© 2026 webvulcano · {site.owner}</p>
-        <a href={site.privacyUrl} target="_blank" rel="noopener" className="hover:text-paper">
-          Adatkezelési tájékoztató
-        </a>
+        <div className="flex gap-6">
+          <Link href={site.imprintUrl} className="hover:text-paper">
+            Impresszum
+          </Link>
+          <a href={site.privacyUrl} target="_blank" rel="noopener" className="hover:text-paper">
+            Adatkezelési tájékoztató
+          </a>
+        </div>
       </div>
     </footer>
   );

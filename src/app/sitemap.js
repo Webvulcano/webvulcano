@@ -7,7 +7,8 @@ const updated = {
   home: "2026-10-07",
   demos: "2026-10-07",
   steps: "2026-10-07",
-  privacy: "2026-10-01",
+  privacy: "2026-10-16",
+  imprint: "2026-10-16",
 };
 
 export default function sitemap() {
@@ -26,5 +27,6 @@ export default function sitemap() {
       priority: 0.6,
     })),
     { url: `${site.url}/adatkezeles`, lastModified: updated.privacy, changeFrequency: "yearly", priority: 0.2 },
+    { url: `${site.url}/impresszum`, lastModified: updated.imprint, changeFrequency: "yearly", priority: 0.1 },
   ];
 }

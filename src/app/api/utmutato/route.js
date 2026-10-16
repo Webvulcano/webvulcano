@@ -24,27 +24,26 @@ export async function POST(request) {
   const industry = clean(body?.industry, 60);
   const city = clean(body?.city, 60);
 
-  if (!name || !email || !phone || body?.consent !== true) {
+  if (!name || !email || body?.consent !== true) {
     return Response.json({ success: false, error: "Missing fields" }, { status: 400 });
   }
 
   const searched = industry && city ? ` (keresett: ${industry}, ${city})` : "";
+  const contactOk = body?.contactOk === true ? "igen" : "nem";
+  const fields = {
+    Name: name,
+    Email: email,
+    Status: "Útmutató",
+    Painpoint: `AI-útmutatót töltött le${searched} · megkereshető: ${contactOk}`,
+  };
+  if (phone) fields.Phone = phone;
   const res = await fetch(`https://api.airtable.com/v0/${BASE_ID}/${TABLE_ID}`, {
     method: "POST",
     headers: {
       Authorization: `Bearer ${token}`,
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({
-      fields: {
-        Name: name,
-        Email: email,
-        Phone: phone,
-        Status: "Útmutató",
-        Painpoint: `AI-útmutatót töltött le${searched}`,
-      },
-      typecast: true,
-    }),
+    body: JSON.stringify({ fields, typecast: true }),
   });
 
   if (!res.ok) {

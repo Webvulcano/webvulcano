@@ -232,7 +232,7 @@ export default function ContactForm() {
                     <div>
                     {consentError && (
                       <p role="alert" className="mb-3 text-sm font-medium text-danger">
-                        Kérlek, fogadd el az adatkezelési tájékoztatót.
+                        Kérlek, jelöld be, hogy megismerted az adatkezelési tájékoztatót.
                       </p>
                     )}
                     <label className="flex cursor-pointer items-start gap-3 text-sm text-paper/70">
@@ -246,7 +246,7 @@ export default function ContactForm() {
                         }}
                       />
                       <span>
-                        Elolvastam és elfogadom az{" "}
+                        Megismertem az{" "}
                         <a
                           href={site.privacyUrl}
                           target="_blank"

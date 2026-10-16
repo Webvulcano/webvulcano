@@ -19,6 +19,8 @@ export default function GuideModal({ industry = "", city = "", className = "" })
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [consent, setConsent] = useState(false);
+  // nem kötelező, külön hozzájárulás a megkereséshez (Grt. 6. §) — a leadbe kerül
+  const [contactOk, setContactOk] = useState(false);
   const [sending, setSending] = useState(false);
   const [url, setUrl] = useState("");
   const [error, setError] = useState("");
@@ -35,7 +37,7 @@ export default function GuideModal({ industry = "", city = "", className = "" })
   async function submit(e) {
     e.preventDefault();
     if (!consent) {
-      setError("Kérlek, fogadd el az adatkezelési tájékoztatót.");
+      setError("Kérlek, jelöld be, hogy megismerted az adatkezelési tájékoztatót.");
       return;
     }
     setSending(true);
@@ -44,7 +46,7 @@ export default function GuideModal({ industry = "", city = "", className = "" })
       const res = await fetch("/api/utmutato", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, phone, consent, industry, city }),
+        body: JSON.stringify({ name, email, phone, consent, contactOk, industry, city }),
       });
       const data = await res.json();
       if (!data.success) throw new Error();
@@ -127,8 +129,8 @@ export default function GuideModal({ industry = "", city = "", className = "" })
                   <input id="g-email" type="email" className={input} value={email} onChange={(e) => setEmail(e.target.value)} autoComplete="email" required />
                 </div>
                 <div>
-                  <label htmlFor="g-phone" className={label}>Telefonszám</label>
-                  <input id="g-phone" type="tel" className={input} value={phone} onChange={(e) => setPhone(e.target.value)} autoComplete="tel" placeholder="+36 30 904 1618" required />
+                  <label htmlFor="g-phone" className={label}>Telefonszám <span className="text-paper/40">(nem kötelező)</span></label>
+                  <input id="g-phone" type="tel" className={input} value={phone} onChange={(e) => setPhone(e.target.value)} autoComplete="tel" placeholder="+36 30 904 1618" />
                 </div>
                 <label className="flex items-start gap-2.5 text-sm text-paper/70">
                   <input
@@ -138,11 +140,23 @@ export default function GuideModal({ industry = "", city = "", className = "" })
                     className="mt-0.5 size-4 shrink-0 accent-[var(--accent)]"
                   />
                   <span>
-                    Elfogadom az{" "}
+                    Megismertem az{" "}
                     <a href={site.privacyUrl} target="_blank" rel="noopener" className="underline underline-offset-4 hover:text-paper">
                       adatkezelési tájékoztatót
                     </a>
-                    , és hozzájárulok, hogy az útmutatóval kapcsolatban megkeress.
+                    .
+                  </span>
+                </label>
+                <label className="flex items-start gap-2.5 text-sm text-paper/70">
+                  <input
+                    type="checkbox"
+                    checked={contactOk}
+                    onChange={(e) => setContactOk(e.target.checked)}
+                    className="mt-0.5 size-4 shrink-0 accent-[var(--accent)]"
+                  />
+                  <span>
+                    Hozzájárulok, hogy az útmutatóval kapcsolatban felvedd velem a kapcsolatot.{" "}
+                    <span className="text-paper/45">(nem kötelező)</span>
                   </span>
                 </label>
               </div>

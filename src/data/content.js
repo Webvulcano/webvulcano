@@ -114,7 +114,7 @@ export const pricing = [
 export const faq = [
   {
     q: "Mennyibe kerül egy weboldal?",
-    a: "120 és 450\u00a0ezer\u00a0Ft között, a komplexitástól függően. A legtöbb helyi vállalkozásnak szóló oldal nagyjából 160\u00a0ezer\u00a0Ft. A díjmentes vázlat után pontos, fix árajánlatot kapsz.",
+    a: "120 és 450\u00a0ezer\u00a0Ft között, a komplexitástól függően. A legtöbb helyi vállalkozásnak szóló oldal nagyjából 160\u00a0ezer\u00a0Ft. A díjmentes vázlat után pontos, fix árajánlatot kapsz. Alanyi adómentes vagyok, így ÁFA nem kerül rá.",
   },
   {
     q: "Tényleg díjmentes a vázlat? Mire kötelez?",

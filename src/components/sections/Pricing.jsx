@@ -94,6 +94,8 @@ export default function Pricing() {
               Pontos árajánlatot kérek
             </Link>
           </div>
+
+          <p className="col-span-2 text-sm text-paper/50 lg:px-10">{site.legal.vat}</p>
         </div>
       </div>
     </section>

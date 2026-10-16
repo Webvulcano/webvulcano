@@ -118,7 +118,7 @@ export default function BookingModal({ className = "" }) {
   async function submit(e) {
     e.preventDefault();
     if (!consent) {
-      setError("Kérlek, fogadd el az adatkezelési tájékoztatót.");
+      setError("Kérlek, jelöld be, hogy megismerted az adatkezelési tájékoztatót.");
       return;
     }
     setSending(true);
@@ -251,7 +251,7 @@ export default function BookingModal({ className = "" }) {
                       className="mt-0.5 size-4 shrink-0 accent-[var(--accent)]"
                     />
                     <span>
-                      Elfogadom az{" "}
+                      Megismertem az{" "}
                       <a href={site.privacyUrl} target="_blank" rel="noopener" className="underline underline-offset-4 hover:text-paper">
                         adatkezelési tájékoztatót
                       </a>
