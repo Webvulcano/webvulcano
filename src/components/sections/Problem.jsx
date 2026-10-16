@@ -160,7 +160,7 @@ export default function Problem() {
       </ScrollStory>
 
       {/* AI-teszt: külön világos sáv, a sötét demó-panel így kiugrik */}
-      <section className="relative overflow-clip bg-canvas text-ink">
+      <section id="AI" className="relative overflow-clip bg-canvas text-ink">
         <PixelFade />
         <PixelFade flip />
         <div
