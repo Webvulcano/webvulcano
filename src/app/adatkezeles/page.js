@@ -32,8 +32,8 @@ const purposes = [
   {
     title: "Útmutató letöltése",
     rows: [
-      ["Adatok", "Név, email cím, telefonszám (nem kötelező), az AI-ajánlás demóban keresett szakma és város, valamint az, hogy hozzájárultál-e a megkereséshez."],
-      ["Cél", "Az útmutató elérhetővé tétele; ha külön hozzájárultál, kapcsolatfelvétel az útmutatóval kapcsolatban."],
+      ["Adatok", "Név, email cím, telefonszám (nem kötelező), az AI-ajánlás demóban keresett szakma és város."],
+      ["Cél", "Az útmutató elérhetővé tétele és egy, az útmutatóhoz kapcsolódó követő e-mail."],
       ["Jogalap", "Hozzájárulásod (GDPR 6. cikk (1) a) pont), amelyet bármikor visszavonhatsz."],
       ["Időtartam", "A hozzájárulás visszavonásáig, de legfeljebb 1 évig."],
     ],

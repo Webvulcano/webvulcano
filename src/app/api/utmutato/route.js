@@ -1,6 +1,9 @@
-// AI-útmutató letöltés: a lead a lead-form Airtable táblájába megy (Status = „Útmutató”).
+// AI-útmutató letöltés: a lead az „AI erdeklodes” Airtable táblába megy (Status = „Útmutató”).
+// Válasz: személyre szabott PDF, vagy ha az nem készül el, a kész általános PDF URL-je.
+import { guideFills, renderGuidePdf } from "@/lib/guidePdf";
+
 const BASE_ID = "appd1wTStPNASBYJz";
-const TABLE_ID = "tblZaCWjyWERrOrcu";
+const TABLE_ID = "tblY8lWy4fgiL6A7T"; // AI erdeklodes
 const GUIDE_URL = "/utmutato/chatgpt-ajanlas-utmutato.pdf";
 
 const clean = (v, max = 120) => (typeof v === "string" ? v.trim().slice(0, max) : "");
@@ -29,12 +32,11 @@ export async function POST(request) {
   }
 
   const searched = industry && city ? ` (keresett: ${industry}, ${city})` : "";
-  const contactOk = body?.contactOk === true ? "igen" : "nem";
   const fields = {
     Name: name,
     Email: email,
     Status: "Útmutató",
-    Painpoint: `AI-útmutatót töltött le${searched} · megkereshető: ${contactOk}`,
+    Painpoint: `AI-útmutatót töltött le${searched}`,
   };
   if (phone) fields.Phone = phone;
   const res = await fetch(`https://api.airtable.com/v0/${BASE_ID}/${TABLE_ID}`, {
@@ -49,6 +51,23 @@ export async function POST(request) {
   if (!res.ok) {
     console.error("Airtable error:", await res.text());
     return Response.json({ success: false, error: "Airtable error" }, { status: 502 });
+  }
+
+  const fills = guideFills(body?.question);
+  if (fills) {
+    try {
+      const pdf = await renderGuidePdf(fills);
+      if (pdf) {
+        return new Response(pdf, {
+          headers: {
+            "Content-Type": "application/pdf",
+            "Cache-Control": "no-store",
+          },
+        });
+      }
+    } catch (err) {
+      console.error("Guide PDF error:", err);
+    }
   }
 
   return Response.json({ success: true, url: GUIDE_URL });

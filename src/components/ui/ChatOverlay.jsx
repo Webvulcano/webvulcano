@@ -15,19 +15,25 @@ export default function ChatOverlay({ open, onClose, result, state, error, indus
 
   useEffect(() => {
     if (!open) return;
-    const start = window.scrollY;
+    let start = window.scrollY;
+    // Az útmutató-popup ebben a nézetben él: amíg nyitva van, a nézet nem záródhat be alatta.
+    const modalOpen = () => document.querySelector("dialog[open]") !== null;
 
     function close() {
       onClose();
       setFade(0);
     }
     function onScroll() {
+      if (modalOpen()) {
+        start = window.scrollY;
+        return;
+      }
       const f = Math.min(1, Math.abs(window.scrollY - start) / FADE_DISTANCE);
       if (f >= 1) close();
       else setFade(f);
     }
     function onKey(e) {
-      if (e.key === "Escape") close();
+      if (e.key === "Escape" && !modalOpen()) close();
     }
 
     window.addEventListener("scroll", onScroll, { passive: true });

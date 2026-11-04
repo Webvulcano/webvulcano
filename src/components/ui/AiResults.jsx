@@ -70,10 +70,10 @@ export default function AiResults({ result, state, error, industry, city, varian
       )}
       {chat ? (
         <div className="rise mt-4" style={{ "--d": `${GUIDE_DELAY + 250}ms` }}>
-          <GuideModal industry={industry} city={city} />
+          <GuideModal industry={industry} city={city} question={result.question} />
         </div>
       ) : (
-        <GuideModal industry={industry} city={city} className="rise mt-5" />
+        <GuideModal industry={industry} city={city} question={result.question} className="rise mt-5" />
       )}
       <p
         className={`${chat ? "rise" : ""} mt-4 text-sm text-paper/40`}

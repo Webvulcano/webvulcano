@@ -3,24 +3,25 @@
 import { useRef, useState } from "react";
 import Icon from "@/components/ui/Icon";
 import { site } from "@/data/site";
+import { openModal } from "@/lib/openModal";
 
 export const guideTitle = "Így ajánljon téged is a ChatGPT";
 export const guideSubtitle = "6 lépés, hogy bekerülj a top 3 közé";
 
 const input =
-  "w-full rounded-xl border border-paper/10 bg-paper/[0.04] px-4 py-3 text-base text-paper placeholder:text-paper/40 outline-none transition focus:border-accent focus:bg-paper/[0.07]";
+  "w-full rounded-xl border border-paper/10 bg-paper/[0.04] px-4 py-2.5 text-base text-paper placeholder:text-paper/40 outline-none transition focus:border-accent focus:bg-paper/[0.07]";
 const label = "mb-1.5 block text-sm font-medium text-paper/70";
 
+const fileName = "chatgpt-ajanlas-utmutato.pdf";
+
 // Útmutató-letöltés: gomb + felugró űrlap (név, e-mail, telefon) → /api/utmutato → PDF.
-// Az iparág/város (ha van) a leadhez megy, hogy lásd, mire keresett rá.
-export default function GuideModal({ industry = "", city = "", className = "" }) {
+// Az iparág/város (ha van) a leadhez megy, hogy lásd, mire keresett rá; a kérdés a PDF-be kerül.
+export default function GuideModal({ industry = "", city = "", question = "", className = "" }) {
   const dialog = useRef(null);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [consent, setConsent] = useState(false);
-  // nem kötelező, külön hozzájárulás a megkereséshez (Grt. 6. §) — a leadbe kerül
-  const [contactOk, setContactOk] = useState(false);
   const [sending, setSending] = useState(false);
   const [url, setUrl] = useState("");
   const [error, setError] = useState("");
@@ -28,7 +29,7 @@ export default function GuideModal({ industry = "", city = "", className = "" })
   function download(href) {
     const a = document.createElement("a");
     a.href = href;
-    a.download = "";
+    a.download = fileName;
     document.body.appendChild(a);
     a.click();
     a.remove();
@@ -46,12 +47,19 @@ export default function GuideModal({ industry = "", city = "", className = "" })
       const res = await fetch("/api/utmutato", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, phone, consent, contactOk, industry, city }),
+        body: JSON.stringify({ name, email, phone, consent, industry, city, question }),
       });
-      const data = await res.json();
-      if (!data.success) throw new Error();
-      setUrl(data.url);
-      download(data.url);
+      // Személyre szabott PDF közvetlenül jön; ha nem készült el, a kész PDF URL-je JSON-ban.
+      let href;
+      if (res.headers.get("Content-Type")?.includes("application/pdf")) {
+        href = URL.createObjectURL(await res.blob());
+      } else {
+        const data = await res.json();
+        if (!data.success) throw new Error();
+        href = data.url;
+      }
+      setUrl(href);
+      download(href);
     } catch {
       setError("Hiba történt, próbáld újra.");
     } finally {
@@ -74,7 +82,7 @@ export default function GuideModal({ industry = "", city = "", className = "" })
         </p>
         <button
           type="button"
-          onClick={() => dialog.current?.showModal()}
+          onClick={() => openModal(dialog.current)}
           className="inline-flex items-center gap-2 rounded-full border border-paper/25 px-5 py-2.5 text-base font-medium whitespace-nowrap text-paper transition-colors hover:border-paper/60 hover:bg-paper/5"
         >
           Letöltöm ingyen
@@ -85,9 +93,9 @@ export default function GuideModal({ industry = "", city = "", className = "" })
       <dialog
         ref={dialog}
         onClick={(e) => e.target === dialog.current && dialog.current.close()}
-        className="m-auto w-[min(92vw,460px)] rounded-2xl border border-paper/10 bg-night-2 p-0 text-paper shadow-[0_30px_80px_-20px_rgba(0,0,0,0.9)] backdrop:bg-black/60 backdrop:backdrop-blur-sm"
+        className="m-auto max-h-[calc(100dvh-2rem)] w-[min(92vw,460px)] overflow-y-auto overscroll-contain rounded-2xl border border-paper/10 bg-night-2 p-0 text-paper shadow-[0_30px_80px_-20px_rgba(0,0,0,0.9)] backdrop:bg-black/60 backdrop:backdrop-blur-sm"
       >
-        <div className="relative p-6 md:p-7">
+        <div className="relative p-6">
           <button
             type="button"
             aria-label="Bezárás"
@@ -105,7 +113,7 @@ export default function GuideModal({ industry = "", city = "", className = "" })
               <h3 className="mt-4 type-h4 font-bold">Indul a letöltés!</h3>
               <p className="mt-2 text-base text-paper/70">
                 Ha nem indult el magától,{" "}
-                <a href={url} download className="text-highlight underline underline-offset-4">
+                <a href={url} download={fileName} className="text-highlight underline underline-offset-4">
                   kattints ide
                 </a>
                 .
@@ -119,7 +127,7 @@ export default function GuideModal({ industry = "", city = "", className = "" })
                 {guideSubtitle}. Add meg az adataidat, és azonnal letöltheted.
               </p>
 
-              <div className="mt-5 space-y-3.5">
+              <div className="mt-4 space-y-3">
                 <div>
                   <label htmlFor="g-name" className={label}>Név</label>
                   <input id="g-name" className={input} value={name} onChange={(e) => setName(e.target.value)} autoComplete="name" required />
@@ -147,18 +155,6 @@ export default function GuideModal({ industry = "", city = "", className = "" })
                     .
                   </span>
                 </label>
-                <label className="flex items-start gap-2.5 text-sm text-paper/70">
-                  <input
-                    type="checkbox"
-                    checked={contactOk}
-                    onChange={(e) => setContactOk(e.target.checked)}
-                    className="mt-0.5 size-4 shrink-0 accent-[var(--accent)]"
-                  />
-                  <span>
-                    Hozzájárulok, hogy az útmutatóval kapcsolatban felvedd velem a kapcsolatot.{" "}
-                    <span className="text-paper/45">(nem kötelező)</span>
-                  </span>
-                </label>
               </div>
 
               {error && <p className="mt-3 text-sm text-danger">{error}</p>}
@@ -166,12 +162,11 @@ export default function GuideModal({ industry = "", city = "", className = "" })
               <button
                 type="submit"
                 disabled={sending}
-                className="glow-accent mt-5 inline-flex w-full items-center justify-center gap-2 rounded-full bg-accent px-6 py-3.5 text-base font-medium text-on-accent transition-colors hover:bg-accent-hover disabled:opacity-60"
+                className="glow-accent mt-4 inline-flex w-full items-center justify-center gap-2 rounded-full bg-accent px-6 py-3 text-base font-medium text-on-accent transition-colors hover:bg-accent-hover disabled:opacity-60"
               >
-                {sending ? "Küldés…" : "Kérem az útmutatót"}
+                {sending ? "Készítem az útmutatódat…" : "Kérem az útmutatót"}
                 {!sending && <Icon name="arrow" className="size-4" strokeWidth={2} />}
               </button>
-              <p className="mt-3 text-center text-sm text-paper/45">Nem küldök spamet.</p>
             </form>
           )}
         </div>

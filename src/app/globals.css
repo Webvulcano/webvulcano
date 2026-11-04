@@ -314,6 +314,21 @@ html {
   background: var(--color-night);
 }
 
+/* Nyitott modal (útmutató, foglalás) alatt nem görget az oldal. A scrollY nem változik,
+   így a ChatOverlay (görgetésre záródik) nyitva marad alatta. */
+html:has(dialog[open]) {
+  overflow: hidden;
+}
+
+/* Kulcsszó-kalkulátor űrlap-lépései: egy képernyő, nincs görgetés és footer (Lehel döntése,
+   2026-11-02); az eredményoldalon a jelölő eltűnik, onnan normálisan görget. */
+html:has([data-no-scroll]) {
+  overflow: hidden;
+  footer {
+    display: none;
+  }
+}
+
 body {
   background: var(--color-canvas);
   color: var(--color-ink);

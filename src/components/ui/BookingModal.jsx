@@ -4,6 +4,7 @@ import { useRef, useState } from "react";
 import Icon from "@/components/ui/Icon";
 import { booking, bookableDays, todayBudapest } from "@/data/booking";
 import { site } from "@/data/site";
+import { openModal } from "@/lib/openModal";
 
 const input =
   "w-full rounded-xl border border-paper/10 bg-paper/[0.04] px-4 py-3 text-base text-paper placeholder:text-paper/40 outline-none transition focus:border-accent focus:bg-paper/[0.07]";
@@ -80,7 +81,9 @@ function Calendar({ days, value, onPick }) {
 }
 
 // Online hívás foglaló: gomb + felugró ablak (nap → időpont → adatok) → /api/foglalas → Airtable.
-export default function BookingModal({ className = "" }) {
+// label / primary / defaultMessage: a kulcsszó-kalkulátor fő gombjaként kiemelt, és az üzenetbe
+// előre beírja, mire keresett rá a látogató (a ContactForm az alapértékekkel használja).
+export default function BookingModal({ className = "", label = "Időpontot foglalok", primary = false, defaultMessage = "" }) {
   const dialog = useRef(null);
   const [days, setDays] = useState([]);
   const [date, setDate] = useState("");
@@ -88,7 +91,7 @@ export default function BookingModal({ className = "" }) {
   const [time, setTime] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState(defaultMessage);
   const [consent, setConsent] = useState(false);
   const [sending, setSending] = useState(false);
   const [done, setDone] = useState(false);
@@ -96,7 +99,7 @@ export default function BookingModal({ className = "" }) {
 
   function open() {
     setDays(bookableDays());
-    dialog.current?.showModal();
+    openModal(dialog.current);
   }
 
   async function pickDay(d) {
@@ -147,9 +150,13 @@ export default function BookingModal({ className = "" }) {
       <button
         type="button"
         onClick={open}
-        className={`inline-flex items-center gap-2 rounded-full border border-paper/25 px-6 py-3 text-base font-medium text-paper transition hover:border-paper/60 hover:bg-paper/[0.06] ${className}`}
+        className={`inline-flex items-center gap-2 rounded-full px-6 py-3 text-base font-medium transition ${
+          primary
+            ? "glow-accent bg-accent text-on-accent hover:bg-accent-hover"
+            : "border border-paper/25 text-paper hover:border-paper/60 hover:bg-paper/[0.06]"
+        } ${className}`}
       >
-        Időpontot foglalok
+        {label}
         <Icon name="arrow" className="size-4" strokeWidth={2} />
       </button>
 

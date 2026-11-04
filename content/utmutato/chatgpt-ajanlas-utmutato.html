@@ -4,11 +4,19 @@
 <meta charset="utf-8">
 <title>Így ajánljon téged is a ChatGPT – Webvulcano</title>
 <!-- Forrás a public/utmutato/chatgpt-ajanlas-utmutato.pdf-hez.
-     Újragenerálás: npm run utmutato (Chrome headless nyomtatás). -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=block" rel="stylesheet">
+     Újragenerálás: npm run utmutato (scripts/build-guide.mjs). A data-fill szövegeket a szerver írja bele
+     az alap-PDF-be, ezért ezek saját sorban állnak. -->
 <style>
+  @font-face { font-family: Inter; font-weight: 400; src: url(fonts/Inter-400.woff); }
+  @font-face { font-family: Inter; font-weight: 500; src: url(fonts/Inter-500.woff); }
+  @font-face { font-family: Inter; font-weight: 600; src: url(fonts/Inter-600.woff); }
+  @font-face { font-family: Inter; font-weight: 700; src: url(fonts/Inter-700.woff); }
+  @font-face { font-family: Inter; font-weight: 800; src: url(fonts/Inter-800.woff); }
+  @font-face { font-family: "Instrument Serif"; font-weight: 400; src: url(fonts/InstrumentSerif-400.woff); }
+  @font-face { font-family: "Instrument Serif"; font-weight: 400; font-style: italic; src: url(fonts/InstrumentSerif-400-italic.woff); }
   @page { size: A4; margin: 0; }
+  .lead.ask { margin-top: 2mm; font-weight: 600; color: var(--ink); }
+  .lead + .lead:not(.ask) { margin-top: 2mm; }
   :root {
     --teal: #1e7c85; --teal-2: #2bb3c0; --ink: #2e3033; --muted: #7c8085;
     --cream: #fbf7f2; --line: #e6e1da;
@@ -78,7 +86,7 @@
 <!-- 1. Borító -->
 <section class="page cover">
   <div class="glow"></div>
-  <div class="brand"><img src="../../public/brand/logo.png" alt=""> Webvulcano</div>
+  <div class="brand"><img src="../../public/brand/logo-nagy-hely.webp" alt=""> Webvulcano</div>
   <p class="kicker">Ingyenes útmutató helyi vállalkozóknak</p>
   <h1>Így ajánljon<br>téged is <em style="white-space:nowrap">a ChatGPT</em></h1>
   <p class="sub">6 lépés, hogy nagyobb eséllyel bekerülj a top 3 közé, amikor valaki a városodban a szakmádra kérdez rá.</p>
@@ -88,7 +96,9 @@
 <!-- 2. Miért és hogyan -->
 <section class="page">
   <h2>Már nem csak <em>guglizunk</em></h2>
-  <p class="lead">Egyre többen kérdezik meg a ChatGPT-t: „Kit ajánlasz, ha fodrász kell Győrben?” A válasz általában 3 név. Aki nincs köztük, az abban a pillanatban nem létezik a kérdező számára.</p>
+  <p class="lead">Egyre többen kérdezik meg a ChatGPT-t:</p>
+  <p class="lead ask"><span data-fill="question">„Kit ajánlasz, ha fodrász kell Győrben?”</span></p>
+  <p class="lead">A válasz általában 3 név. Aki nincs köztük, az abban a pillanatban nem létezik a kérdező számára.</p>
 
   <p style="margin-top:6mm">A jó hír: a ChatGPT nem sorsol. Rákeres a webre, és azokat a vállalkozásokat ajánlja, akikről <b>egyértelmű, megbízható információt talál</b>. Ezen pedig tudsz dolgozni.</p>
 
@@ -108,7 +118,7 @@
       <h3>Legyen saját weboldalad, egyértelmű adatokkal</h3>
       <p class="why">A ChatGPT arra hivatkozik szívesen, akiről egy helyen, világosan kiderül minden. Egy Facebook-oldal vagy egy félkész honlap ehhez kevés.</p>
       <ul>
-        <li>A főcímben pontosan: <b>„Fodrász Győrben – [Neved / Szalonod]”</b>.</li>
+        <li>A főcímben pontosan:<br><b><span data-fill="headline">„Fodrász Győrben – [Neved / Vállalkozásod]”</span></b></li>
         <li>Név, cím, telefonszám, nyitvatartás jól láthatóan, szövegként (ne képen).</li>
         <li>Szolgáltatások és irányárak felsorolva.</li>
         <li>Strukturált adatok („schema”): a fejlesztőd be tudja állítani, hogy a gépek is értsék, ki vagy.</li>
@@ -152,7 +162,7 @@
     <div class="num">4</div>
     <div>
       <h3>Legyél ott, ahol a ChatGPT keres</h3>
-      <p class="why">A modell nem csak a Google-t nézi: iparági katalógusokat, véleményoldalakat és helyi cikkeket is. Minél több megbízható helyen szerepelsz egyformán, annál biztosabb, hogy te vagy „az” a győri fodrász.</p>
+      <p class="why">A modell nem csak a Google-t nézi: iparági katalógusokat, véleményoldalakat és helyi cikkeket is. Minél több megbízható helyen szerepelsz egyformán, annál nagyobb eséllyel téged ajánl.</p>
       <ul>
         <li>Regisztrálj a szakmád katalógusaiba és véleményoldalaira (pl. egészségügyben a medgo.hu).</li>
         <li>A neved, címed, telefonszámod <b>betűre ugyanúgy</b> szerepeljen mindenhol.</li>
@@ -220,15 +230,10 @@
 
   <div class="cta">
     <div class="glow"></div>
-    <h3>Nincs időd ezzel foglalkozni? <em>Megcsinálom helyetted.</em></h3>
-    <p>Bognár Lehel vagyok, weboldalfejlesztő. Az a célom, hogy számokkal alátámasztva hozzam neked az érdeklődőidet.</p>
-    <ul>
-      <li>Weboldal, amit a ChatGPT és a Google is ért</li>
-      <li>Google Cégprofil beállítása</li>
-      <li>Automatikus értékelésszerzés</li>
-    </ul>
-    <a class="btn" href="https://webvulcano.hu/#kapcsolat">Kérek ingyen vázlatot →</a>
-    <p class="contact">Ingyen vázlatot kapsz, mielőtt bármit fizetnél · info@webvulcano.hu · webvulcano.hu</p>
+    <h3>Nem tudod pontosan, hogyan kezdj neki?</h3>
+    <a class="btn" href="https://webvulcano.hu/#kapcsolat">Kérdezz tőlem →</a>
+    <p>Írj, és átnézem, hol tart most a vállalkozásod online, és mit érdemes kezdened az AI-val.</p>
+    <p class="contact">info@webvulcano.hu · webvulcano.hu</p>
   </div>
   <div class="foot"><span>Így ajánljon téged is a ChatGPT</span><span>webvulcano.hu</span></div>
 </section>

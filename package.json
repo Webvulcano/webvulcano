@@ -7,12 +7,14 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "utmutato": "\"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\" --headless=new --disable-gpu --no-pdf-header-footer --virtual-time-budget=8000 --allow-file-access-from-files --print-to-pdf=\"$PWD/public/utmutato/chatgpt-ajanlas-utmutato.pdf\" \"file://$PWD/content/utmutato/chatgpt-ajanlas-utmutato.html\"",
+    "utmutato": "node scripts/build-guide.mjs",
     "og": "\"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\" --headless=new --disable-gpu --hide-scrollbars --force-device-scale-factor=1 --window-size=1200,630 --virtual-time-budget=8000 --allow-file-access-from-files --screenshot=\"$PWD/og.png\" \"file://$PWD/content/og/og-image.html\" && node -e \"require('sharp')('og.png').jpeg({quality:88,mozjpeg:true}).toFile('src/app/opengraph-image.jpg').then(()=>require('fs').unlinkSync('og.png'))\""
   },
   "dependencies": {
+    "@pdf-lib/fontkit": "^1.1.1",
     "motion": "^13.4.6",
     "next": "16.3.6",
+    "pdf-lib": "^1.17.1",
     "react": "19.2.8",
     "react-dom": "19.2.8"
   },
@@ -20,6 +22,7 @@
     "@tailwindcss/postcss": "^4",
     "eslint": "^9",
     "eslint-config-next": "16.3.6",
+    "puppeteer-core": "^25.16.0",
     "tailwindcss": "^4"
   }
 }
