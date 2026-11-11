@@ -24,7 +24,7 @@ export default function StepNav({ next }) {
       <div className="sm:text-right">
         <p className={label}>{next ? "Következő lépés" : "Indulhatunk?"}</p>
         <Link href={next ? stepPath(next.slug) : site.ctaHref} className={link}>
-          {next ? next.title : site.cta}
+          {next ? next.title : "Kezdjük el"}
           <Icon name="arrow" className="size-4" strokeWidth={2} />
         </Link>
       </div>

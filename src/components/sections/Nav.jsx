@@ -55,7 +55,7 @@ export default function Nav() {
           <div className="hidden md:block">
             <Button href={site.ctaHref} size="sm" className="sm:px-5">
               <span className="sm:hidden">{site.ctaShort}</span>
-              <span className="hidden sm:inline">{site.cta}</span>
+              <span className="hidden sm:inline">Kezdjük el</span>
             </Button>
           </div>
         </div>

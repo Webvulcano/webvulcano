@@ -159,7 +159,7 @@ export default function KeywordCalculator() {
           </p>
           <div className="mt-5 flex flex-wrap items-center gap-5">
             <a href={site.ctaHref} className={primaryBtn}>
-              {site.cta}
+              Kérem az elemzést
               <Icon name="arrow" className="size-4" strokeWidth={2} />
             </a>
             <button type="button" onClick={restart} className="text-base font-medium text-paper/60 underline underline-offset-4 hover:text-paper">

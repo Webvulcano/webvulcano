@@ -72,7 +72,7 @@ export default function Pricing() {
                   href={site.ctaHref}
                   className="inline-flex items-center gap-2 text-base font-medium text-paper/85 transition hover:text-paper"
                 >
-                  Ezt kérem
+                  Nekem ez kell
                   <Icon name="arrow" className="size-4" strokeWidth={2} />
                 </Link>
               </div>

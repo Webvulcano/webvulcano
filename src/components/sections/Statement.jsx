@@ -36,7 +36,7 @@ export default function Statement() {
               Nálam látni fogod, hogy a látogatók mire kattintanak az oldaladon.
             </p>
             <Button href={site.ctaHref}>
-              {site.cta}
+              Mérni akarom az oldalam
               <Icon name="arrow" className="size-4" strokeWidth={2} />
             </Button>
           </div>

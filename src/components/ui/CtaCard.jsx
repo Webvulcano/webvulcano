@@ -19,12 +19,12 @@ export default function CtaCard({ reveal = true }) {
         Nézzük meg, mit tudnék kihozni a <Accent>te</Accent> vállalkozásodból.
       </h2>
       <p className="relative mx-auto mt-6 hidden max-w-[48ch] text-base text-paper/70 md:block md:text-lg">
-        A vállalkozásod jó. A weboldalad is ezt mutassa. Kérj egy díjmentes vázlatot – utána
-        döntesz.
+        A vállalkozásod jó. A weboldalad is ezt mutassa. Töltsd ki a rövid kérdőívet, és díjmentes
+        vázlatot kapsz – utána döntesz.
       </p>
       <div className="relative mt-8 flex justify-center md:mt-10">
         <Button href={site.ctaHref} size="md" className="md:px-8 md:py-4 md:text-lg">
-          {site.cta}
+          Mutasd, mit hoznál ki belőle
           <Icon name="arrow" className="size-4 md:size-5" strokeWidth={2} />
         </Button>
       </div>

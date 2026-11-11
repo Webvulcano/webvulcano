@@ -58,7 +58,7 @@ export default function Intro() {
           </p>
 
           <div className="mt-10">
-            <Button href={site.ctaHref}>{site.cta}</Button>
+            <Button href={site.ctaHref}>Ebben kérek segítséget</Button>
           </div>
         </div>
 

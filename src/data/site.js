@@ -27,7 +27,7 @@ export const site = {
     web: "vercel.com",
   },
   cta: "Lépjünk kapcsolatba",
-  ctaShort: "Kapcsolat",
+  ctaShort: "Kezdjük",
   ctaHref: "/#kapcsolat",
   socials: [
     { label: "LinkedIn", icon: "linkedin", href: "https://www.linkedin.com/company/webvulcano" },

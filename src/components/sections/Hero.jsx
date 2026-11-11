@@ -81,7 +81,7 @@ export default function Hero() {
               style={{ "--d": "750ms" }}
             >
               <Button href={site.ctaHref}>
-                {site.cta}
+                Szeretnék megbízható lenni a neten
                 <Icon name="arrow" className="size-4" strokeWidth={2} />
               </Button>
 

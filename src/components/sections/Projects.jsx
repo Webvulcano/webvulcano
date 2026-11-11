@@ -52,7 +52,7 @@ export default function Projects() {
               href={p.url || (p.demo && `${p.demo}${DEMO_HASH}`) || "/#kapcsolat"}
               target={p.url ? "_blank" : undefined}
               rel={p.url ? "noopener" : undefined}
-              className="group block overflow-hidden rounded-2xl border border-paper/10 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.9)]"
+              className="group block overflow-hidden rounded-2xl shadow-[0_30px_80px_-30px_rgba(0,0,0,0.9)]"
             >
               <Image
                 src={p.image}
@@ -128,7 +128,7 @@ export default function Projects() {
         {otherProjects.map((p) => (
           <article
             key={p.title}
-            className="noise flex w-full flex-col rounded-2xl border border-paper/10 bg-night-2 p-8 lg:p-10"
+            className="noise flex w-full flex-col rounded-2xl bg-night-2 p-8 lg:p-10"
           >
             <p className="text-sm font-medium tracking-label text-paper/60 uppercase">
               {p.kind}

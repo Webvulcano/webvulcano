@@ -511,6 +511,18 @@ textarea {
   animation-delay: var(--d, 0ms);
 }
 
+/* Kapcsolat-kérdőív: a válaszkártyák (és az utolsó lépés űrlapja) lépcsőzetes beúszása.
+   A késleltetést inline animationDelay adja kártyánként. */
+@keyframes card-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+}
+.animate-card-in {
+  animation: card-in 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) backwards; /* backwards: lefutás után nem fogja az opacity-t, így a kiúszó transition működik */
+}
+
 @keyframes fade-up {
   from {
     opacity: 0;
