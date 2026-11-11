@@ -46,9 +46,11 @@ export function graphSchema(...items) {
 export function businessSchema() {
   return {
     "@context": "https://schema.org",
-    "@type": "ProfessionalService",
+    // Explicit Organization is: sok AI/SEO-crawler csak a literális Organization típust ismeri fel.
+    "@type": ["Organization", "ProfessionalService"],
     "@id": businessId,
     name: site.brand,
+    legalName: site.legal.name,
     url: site.url,
     logo: abs("/brand/logo.webp"),
     image: abs("/opengraph-image.jpg"),
