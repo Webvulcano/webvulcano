@@ -83,7 +83,7 @@ export const benefits = [
 // A folyamat lépései: data/steps.js (főoldal + /folyamat/[slug] aloldalak közös forrása).
 
 // Csomagok — a főoldali Árak szekció és a /weboldal-keszites-arak oldal közös forrása (egy ár mindenhol).
-// Lehel döntése (2026-11-10): Üzleti = 180e, benne admin felület + analitikai oldal + 1 választható
+// Lehel döntése (2026-11-10): Üzleti = 250e (2026-11-11, előtte 180e), benne admin felület + analitikai oldal + 1 választható
 // modul + AI láthatóság beállítása. Átfutás: általában 5–10 munkanap.
 //   includes: tételes lista az árak-oldalon · delivery: átfutási idő · offer: számok a schema.org Offerhez
 export const pricing = [
@@ -104,7 +104,7 @@ export const pricing = [
     text: "Rád szabott, több szekciós oldal szövegírással, saját admin felülettel, analitikai oldallal, egy választható modullal és AI láthatóság beállításával.",
     forWhom: "A legtöbb helyi vállalkozásnak ez a jó választás",
     // Egy ár mindenhol: ugyanez a szám szerepel a GYIK-ben (lent) → a FAQ schema is abból készül.
-    price: "180e\u00a0Ft",
+    price: "250e\u00a0Ft",
     includes: [
       "Több szekciós oldal referenciákkal és űrlappal",
       "Saját admin felület: te is szerkesztheted a tartalmat",
@@ -113,7 +113,7 @@ export const pricing = [
       "AI láthatóság beállítása",
     ],
     delivery: "Általában 5–10 munkanap",
-    offer: { price: 180000 },
+    offer: { price: 250000 },
     featured: true,
   },
   {
@@ -146,7 +146,7 @@ export const upkeep = {
 export const faq = [
   {
     q: "Mennyibe kerül egy weboldal?",
-    a: "120 és 450\u00a0ezer\u00a0Ft között, a komplexitástól függően. A legtöbb helyi vállalkozásnak szóló Üzleti weboldal 180\u00a0ezer\u00a0Ft, ebben az AI láthatóság beállítása is benne van. A díjmentes vázlat után pontos, fix árajánlatot kapsz. Alanyi adómentes vagyok, így ÁFA nem kerül rá.",
+    a: "120 és 450\u00a0ezer\u00a0Ft között, a komplexitástól függően. A legtöbb helyi vállalkozásnak szóló Üzleti weboldal 250\u00a0ezer\u00a0Ft, ebben az AI láthatóság beállítása is benne van. A díjmentes vázlat után pontos, fix árajánlatot kapsz. Alanyi adómentes vagyok, így ÁFA nem kerül rá.",
   },
   {
     q: "Tényleg díjmentes a vázlat? Mire kötelez?",

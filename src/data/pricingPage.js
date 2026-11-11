@@ -9,19 +9,19 @@ const ft = (n) => `${n.toLocaleString("hu-HU").replace(/\s/g, NB)}${NB}Ft`;
 export const pricingPath = "/weboldal-keszites-arak";
 
 // Írd át, ha az oldal ára vagy tartalma érdemben változik (látható dátum + schema dateModified + sitemap).
-export const pricingUpdated = { iso: "2026-11-10", label: "2026. november" };
+export const pricingUpdated = { iso: "2026-11-11", label: "2026. november" };
 
 export const pricingMeta = {
   // ≤60 karakter a „ | WebVulcano” utótaggal együtt (55).
   title: "Weboldal készítés árak 2026 – fix csomagok",
-  description: `Weboldal készítés árak 2026-ban: 120 ezer Ft-tól, a legtöbb vállalkozásnak 180 ezer Ft. Fix ár, díjmentes vázlat, 3 hónap ingyen karbantartás.`,
+  description: `Weboldal készítés árak 2026-ban: 120 ezer Ft-tól, a legtöbb vállalkozásnak 250 ezer Ft. Fix ár, díjmentes vázlat, 3 hónap ingyen karbantartás.`,
 };
 
 // Válasz-először bekezdés: ezt emeli ki a kereső és az AI, ezért minden szám benne van.
-export const pricingAnswer = `Nálam egy weboldal 120 és 450${NB}ezer${NB}Ft között van. Egy egyoldalas landing 120${NB}ezer${NB}Ft-tól indul, a legtöbb helyi vállalkozásnak való Üzleti weboldal 180${NB}ezer${NB}Ft, az egyedi funkciós oldal 450${NB}ezer${NB}Ft-ig megy. Az ár fix: a díjmentes vázlat után pontos árajánlatot kapsz, és annyit fizetsz, amennyi abban áll. Alanyi adómentes vagyok, ÁFA nem kerül rá.`;
+export const pricingAnswer = `Nálam egy weboldal 120 és 450${NB}ezer${NB}Ft között van. Egy egyoldalas landing 120${NB}ezer${NB}Ft-tól indul, a legtöbb helyi vállalkozásnak való Üzleti weboldal 250${NB}ezer${NB}Ft, az egyedi funkciós oldal 450${NB}ezer${NB}Ft-ig megy. Az ár fix: a díjmentes vázlat után pontos árajánlatot kapsz, és annyit fizetsz, amennyi abban áll. Alanyi adómentes vagyok, ÁFA nem kerül rá.`;
 
 // Mobilon a hosszú válasz helyett ez látszik (a hosszú desktopon marad, a SEO miatt).
-export const pricingAnswerShort = `120–450${NB}ezer${NB}Ft, fix áron. A legtöbbeknek 180${NB}ezer${NB}Ft.`;
+export const pricingAnswerShort = `120–450${NB}ezer${NB}Ft, fix áron. A legtöbbeknek 250${NB}ezer${NB}Ft.`;
 
 export const everyPackage = [
   { title: "Megírt szöveg", text: "Nem neked kell kitalálnod, mit írj magadról." },
@@ -108,7 +108,7 @@ export const market = {
   rows: [
     [
       { long: "Elkészítés ára", short: "Ár" },
-      { long: `180${NB}ezer${NB}Ft, ÁFA nélkül`, short: `180e${NB}Ft` },
+      { long: `250${NB}ezer${NB}Ft, ÁFA nélkül`, short: `250e${NB}Ft` },
       { long: `119–199${NB}ezer${NB}Ft-tól`, short: `119–199e${NB}Ft` },
       { long: `245${NB}ezer${NB}Ft + ÁFA-tól, jellemzően 400–900${NB}ezer${NB}Ft + ÁFA`, short: `400–900e${NB}Ft` },
     ],
