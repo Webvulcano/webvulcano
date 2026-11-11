@@ -3,7 +3,7 @@ import { pageMeta } from "@/lib/seo";
 
 export const metadata = pageMeta({
   title: "Adatkezelési tájékoztató",
-  description: "A Webvulcano adatkezelési tájékoztatója: milyen adatokat kezelünk, miért, meddig, és milyen jogaid vannak (GDPR).",
+  description: "A WebVulcano adatkezelési tájékoztatója: milyen adatokat kezelünk, miért, meddig, és milyen jogaid vannak (GDPR).",
   path: "/adatkezeles",
 });
 
@@ -39,6 +39,15 @@ const purposes = [
     ],
   },
   {
+    title: "PageSpeed-teszt",
+    rows: [
+      ["Adatok", "Név, email cím, a tesztelt weboldal címe és a mérés eredménye."],
+      ["Cél", "A teszt részletes eredményének megmutatása és egy, a teszthez kapcsolódó megkeresés emailben."],
+      ["Jogalap", "Hozzájárulásod (GDPR 6. cikk (1) a) pont), amelyet bármikor visszavonhatsz."],
+      ["Időtartam", "A hozzájárulás visszavonásáig, de legfeljebb 1 évig."],
+    ],
+  },
+  {
     title: "Email levelezés",
     rows: [
       ["Adatok", "Email cím, név, a levél tartalma."],
@@ -50,7 +59,7 @@ const purposes = [
   {
     title: "A weboldal működése és biztonsága",
     rows: [
-      ["Adatok", "IP-cím, a böngésző és az eszköz típusa, a kérés időpontja (szervernapló); az AI-ajánlás demóban az IP-cím a napi keresési korláthoz."],
+      ["Adatok", "IP-cím, a böngésző és az eszköz típusa, a kérés időpontja (szervernapló); az AI-ajánlás demóban és a PageSpeed-tesztben az IP-cím a napi keresési korláthoz."],
       ["Cél", "A weboldal kiszolgálása, hibakeresés, a visszaélések (pl. túlzott terhelés) megelőzése."],
       ["Jogalap", "Jogos érdek a weboldal biztonságos működtetéséhez (GDPR 6. cikk (1) f) pont)."],
       ["Időtartam", "A keresési korlátnál legfeljebb 1 nap (csak a szerver memóriájában); a szervernapló a tárhelyszolgáltató (Vercel) megőrzési szabályai szerint."],
@@ -69,10 +78,11 @@ const purposes = [
 
 // Cégnevek/címek a szolgáltatók saját adatvédelmi oldalairól / DPA-jából (ellenőrizve: 2026-10-16).
 const processors = [
-  ["Vercel Inc. (440 N Barranca Avenue #4133, Covina, CA 91723, USA)", "a weboldal tárhelye, szervernapló"],
+  ["Vercel Inc. (440 N Barranca Avenue #4133, Covina, CA 91723, USA)", "a weboldal tárhelye, szervernapló, anonim látogatottság- és sebességmérés"],
   ["Formagrid Inc. – Airtable (1 Front Street, Fl 28, San Francisco, CA 94111, USA)", "az űrlapok és időpontfoglalások adatainak tárolása"],
   ["Cloudflare, Inc. (101 Townsend St., San Francisco, CA 94107, USA)", "a beérkező emailek továbbítása"],
   ["Plus Five Five, Inc. – Resend (2261 Market Street #5039, San Francisco, CA 94114, USA)", "email küldés"],
+  ["Google Ireland Limited (Gordon House, Barrow Street, Dublin 4, Írország)", "a PageSpeed-teszt: a megadott weboldal-címet kapja meg, személyes adatot nem"],
   ["OpenAI Ireland Ltd. (1st Floor, The Liffey Trust Centre, 117-126 Sheriff Street Upper, Dublin 1, D01 YC43, Írország)", "az AI-ajánlás demó: csak a megadott szakmát és várost kapja meg, személyes adatot nem"],
 ];
 
@@ -162,7 +172,7 @@ const sections = [
   {
     title: "Sütik",
     body: [
-      "A weboldal nem használ sütiket, és nem tárol adatot a böngésződben. Elemző vagy marketing eszközt nem alkalmazunk.",
+      "A weboldal nem használ sütiket, és nem tárol adatot a böngésződben. Anonim, süti nélküli látogatottság- és sebességmérést használunk (Vercel Web Analytics, Vercel Speed Insights): személyes adatot nem gyűjtünk, és nem követünk az oldalak és webhelyek között. Marketing eszközt nem alkalmazunk.",
     ],
   },
   {
@@ -178,7 +188,7 @@ export default function PrivacyPage() {
     <main className="bg-night text-paper">
       <div className="container-x max-w-3xl pt-40 pb-24 lg:pt-48 lg:pb-36">
         <h1 className="type-h1 font-bold">Adatkezelési tájékoztató</h1>
-        <p className="mt-4 text-sm text-paper/55">Utolsó frissítés: 2026. október 16.</p>
+        <p className="mt-4 text-sm text-paper/55">Utolsó frissítés: 2026. november 9.</p>
 
         <div className="mt-14 space-y-12">
           {sections.map((s, i) => (

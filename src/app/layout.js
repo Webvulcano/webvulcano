@@ -1,4 +1,6 @@
 import { Inter, Instrument_Serif } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 import Nav from "@/components/sections/Nav";
 import Footer from "@/components/sections/Footer";
@@ -22,7 +24,7 @@ const instrumentSerif = Instrument_Serif({
   weight: "400",
 });
 
-const homeTitle = "Weboldalkészítés Budapesten | Webvulcano – Bognár Lehel";
+const homeTitle = `Weboldalkészítés Budapesten | ${site.brand} – Bognár Lehel`;
 const homeDescription =
   "Egyedi, gyors weboldal budapesti vállalkozásoknak, ami érdeklődőt hoz. Díjmentes vázlat, átlátható ár, mérhető eredmény, 3 hónap ingyen karbantartás.";
 
@@ -70,6 +72,8 @@ export default function RootLayout({ children }) {
         {children}
         <Footer />
         <HashLinkScroll />
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );

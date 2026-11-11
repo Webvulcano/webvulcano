@@ -41,7 +41,7 @@ export default function Services() {
           style={{ "--d": "80ms" }}
           className="mx-auto mt-8 max-w-[18ch] type-h2 font-bold"
         >
-          A <Accent>Szomorú igazság</Accent>, amit senki sem mond el weboldal készítés előtt.
+          A <Accent>szomorú igazság</Accent>, amit senki sem mond el weboldalkészítés előtt.
         </h2>
 
         <p data-reveal className="mx-auto mt-8 max-w-[52ch] text-base text-ink/70 md:text-lg">

@@ -329,6 +329,17 @@ html:has([data-no-scroll]) {
   }
 }
 
+/* PageSpeed-teszt: desktopon (lg+) az egész folyamat egy képernyő, nincs görgetés és footer;
+   telefonon normál, görgethető oldal. */
+@media (min-width: 64rem) {
+  html:has([data-fit-screen]) {
+    overflow: hidden;
+    footer {
+      display: none;
+    }
+  }
+}
+
 body {
   background: var(--color-canvas);
   color: var(--color-ink);
@@ -593,6 +604,10 @@ textarea {
 .fill-line {
   --fill: clamp(0%, calc((var(--p) * var(--n) - var(--i)) * 100%), 100%);
   clip-path: inset(-0.2em calc(100% - var(--fill)) -0.2em 0);
+}
+/* A kitöltő réteg szava nem a DOM-ban van (különben a címsor szövege duplán szerepelne). */
+.fill-line::before {
+  content: attr(data-w);
 }
 
 /* ---------- Kitűzött görgetés-jelenet (ScrollStory.jsx) ----------

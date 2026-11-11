@@ -312,7 +312,7 @@ export default function ContactForm() {
             style={{ "--d": "80ms" }}
             className="mt-6 max-w-[24ch] type-h2 font-bold text-balance"
           >
-            Engedd meg hogy adjak neked egy <Accent className="text-muted-soft">ajándékot</Accent>
+            Engedd meg, hogy adjak neked egy <Accent className="text-muted-soft">ajándékot</Accent>
           </h2>
           <p
             data-reveal

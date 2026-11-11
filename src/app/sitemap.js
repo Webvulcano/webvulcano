@@ -1,10 +1,12 @@
+import { pricingPath, pricingUpdated } from "@/data/pricingPage";
 import { site } from "@/data/site";
 import { steps, stepPath } from "@/data/steps";
 
 // Fix dátum: írd át, ha az adott oldal tartalma érdemben változik. (A `new Date()` minden
 // buildnél „friss”-nek jelölne mindent → a Google figyelmen kívül hagyja a lastModified-ot.)
 const updated = {
-  home: "2026-10-07",
+  home: "2026-11-10",
+  pagespeed: "2026-11-10",
   demos: "2026-10-07",
   steps: "2026-10-07",
   privacy: "2026-10-16",
@@ -14,6 +16,13 @@ const updated = {
 export default function sitemap() {
   return [
     { url: site.url, lastModified: updated.home, changeFrequency: "weekly", priority: 1 },
+    {
+      url: `${site.url}${pricingPath}`,
+      lastModified: pricingUpdated.iso,
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
+    { url: `${site.url}/pagespeed-teszt`, lastModified: updated.pagespeed, changeFrequency: "monthly", priority: 0.7 },
     ...["ertekeles", "hideg-email", "ticketing"].map((slug) => ({
       url: `${site.url}/munkaim/${slug}`,
       lastModified: updated.demos,

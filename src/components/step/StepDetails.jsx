@@ -13,7 +13,8 @@ export default function StepDetails({ details }) {
           <h2 className={fillHeading}>
             {d.titleLines.map((l) => (
               <span key={l} className="block">
-                {l}
+                {/* záró szóköz: a sorok a kinyert szövegben ne folyjanak össze */}
+                {l}{" "}
               </span>
             ))}
           </h2>

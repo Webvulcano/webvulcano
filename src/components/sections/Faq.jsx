@@ -25,27 +25,34 @@ export default function Faq() {
             const isOpen = open === i;
             return (
               <div key={item.q} className="group border-b border-ink/10">
-                <button
-                  type="button"
-                  id={`faq-q-${i}`}
-                  aria-expanded={isOpen}
-                  aria-controls={`faq-a-${i}`}
-                  onClick={() => setOpen(isOpen ? null : i)}
-                  className="flex w-full cursor-pointer items-start gap-5 py-7 text-left"
-                >
-                  <span className="w-7 shrink-0 pt-1 text-sm font-medium text-ink/75 tabular-nums">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <span className="flex-1 type-h4 font-medium transition-colors group-hover:text-accent-ink">
-                    {item.q}
-                  </span>
-                  <Icon
-                    name="plus"
-                    className={`mt-0.5 size-6 shrink-0 text-ink/60 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-                      isOpen ? "rotate-45" : ""
-                    }`}
-                  />
-                </button>
+                {/* A kérdés valódi címsor (h3 > button): a keresők és az AI a kérdéseket a
+                    címsorokból párosítják. A sorszám CSS-ből jön (data-n → ::before), hogy a
+                    címsor szövege csak a kérdés legyen. */}
+                <h3>
+                  <button
+                    type="button"
+                    id={`faq-q-${i}`}
+                    aria-expanded={isOpen}
+                    aria-controls={`faq-a-${i}`}
+                    onClick={() => setOpen(isOpen ? null : i)}
+                    className="flex w-full cursor-pointer items-start gap-5 py-7 text-left"
+                  >
+                    <span
+                      aria-hidden="true"
+                      data-n={String(i + 1).padStart(2, "0")}
+                      className="w-7 shrink-0 pt-1 text-sm font-medium text-ink/75 tabular-nums before:content-[attr(data-n)]"
+                    />
+                    <span className="flex-1 type-h4 font-medium transition-colors group-hover:text-accent-ink">
+                      {item.q}
+                    </span>
+                    <Icon
+                      name="plus"
+                      className={`mt-0.5 size-6 shrink-0 text-ink/60 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                        isOpen ? "rotate-45" : ""
+                      }`}
+                    />
+                  </button>
+                </h3>
                 {/* 0fr → 1fr: tartalom-magasságra animál, böngészőfüggetlenül */}
                 <div
                   id={`faq-a-${i}`}

@@ -6,6 +6,8 @@ const nextConfig = {
   images: { qualities: [75, 90] },
   // Személyre szabott útmutató-PDF: az alap-PDF és a betűtípusok menjenek a függvénnyel.
   outputFileTracingIncludes: {
+    // PageSpeed-összefoglaló PDF: az Inter betűtípusok menjenek a függvénnyel.
+    "/api/pagespeed/pdf": ["./content/pagespeed-pdf/fonts/*.ttf"],
     "/api/utmutato": [
       "./content/utmutato/base.pdf",
       "./content/utmutato/fills.json",

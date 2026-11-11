@@ -13,7 +13,7 @@ const segments = [
   },
   {
     lines: [
-      "De méred is hogy",
+      "De méred is, hogy",
       "hányan, és mire kattintanak?",
     ],
     fill: "text-highlight",

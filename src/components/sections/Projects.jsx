@@ -5,6 +5,11 @@ import Carousel from "@/components/ui/Carousel";
 import Icon from "@/components/ui/Icon";
 import { featuredProjects, otherProjects } from "@/data/projects";
 
+// A demó-oldalra mutató linkek hash-sel nyitják a teljes képernyős demót (DemoFullscreen.jsx).
+// Nem query-paraméter: a keresőnek a hash ugyanaz az URL, így a belső link a tiszta
+// /munkaim/* oldalt erősíti (a régi ?demo=1 külön URL-nek számított → árva oldalak).
+const DEMO_HASH = "#demo";
+
 function Tags({ tags }) {
   return (
     <ul className="flex flex-wrap gap-2">
@@ -27,7 +32,7 @@ export default function Projects() {
         <h2 data-reveal>
           <span className="block type-h2 font-bold">
             Kiemelt
-          </span>
+          </span>{" "}
           <Accent className="block text-5xl text-paper/85 md:text-6xl lg:text-7xl">
             projektjeim
           </Accent>
@@ -44,7 +49,7 @@ export default function Projects() {
             style={{ zIndex: i + 1 }}
           >
             <a
-              href={p.url || (p.demo && `${p.demo}?demo=1`) || "/#kapcsolat"}
+              href={p.url || (p.demo && `${p.demo}${DEMO_HASH}`) || "/#kapcsolat"}
               target={p.url ? "_blank" : undefined}
               rel={p.url ? "noopener" : undefined}
               className="group block overflow-hidden rounded-2xl border border-paper/10 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.9)]"
@@ -90,10 +95,10 @@ export default function Projects() {
               )}
               {p.demo && (
                 <Link
-                  href={`${p.demo}?demo=1`}
+                  href={`${p.demo}${DEMO_HASH}`}
                   className="nudge-link mt-8 inline-flex items-center gap-2 text-base font-medium text-paper underline max-lg:order-1 max-lg:mt-4 decoration-paper/30 underline-offset-[0.2em] transition hover:decoration-paper"
                 >
-                  <span className={`nudge-text ${p.flow ? `flow-${p.flow}` : ""}`}>Nézd meg élőben hogy működik</span>
+                  <span className={`nudge-text ${p.flow ? `flow-${p.flow}` : ""}`}>Nézd meg élőben, hogy működik</span>
                   <Icon
                     name="arrowUpRight"
                     className="nudge-icon size-4"
@@ -143,10 +148,10 @@ export default function Projects() {
             </div>
             {p.demo && (
               <Link
-                href={`${p.demo}?demo=1`}
+                href={`${p.demo}${DEMO_HASH}`}
                 className="nudge-link mt-7 inline-flex items-center gap-2 self-start text-base font-medium text-paper underline decoration-paper/30 underline-offset-[0.2em] transition hover:decoration-paper"
               >
-                <span className="nudge-text">Nézd meg élőben hogy működik</span>
+                <span className="nudge-text">Nézd meg élőben, hogy működik</span>
                 <Icon name="arrowUpRight" className="nudge-icon size-4" strokeWidth={2} />
               </Link>
             )}

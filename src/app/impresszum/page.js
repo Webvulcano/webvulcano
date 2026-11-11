@@ -3,7 +3,7 @@ import { pageMeta } from "@/lib/seo";
 
 export const metadata = pageMeta({
   title: "Impresszum",
-  description: "A Webvulcano (Bognár Lehel egyéni vállalkozó) szolgáltatói adatai és a tárhelyszolgáltató elérhetőségei.",
+  description: "A WebVulcano (Bognár Lehel egyéni vállalkozó) szolgáltatói adatai és a tárhelyszolgáltató elérhetőségei.",
   path: "/impresszum",
 });
 

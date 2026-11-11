@@ -16,7 +16,8 @@ export default function StepOutputs({ step }) {
         <h2 className={`mt-6 ${fillHeading}`}>
           {step.outputsTitle.map((l) => (
             <span key={l} className="block">
-              {l}
+              {/* záró szóköz: a sorok a kinyert szövegben ne folyjanak össze */}
+              {l}{" "}
             </span>
           ))}
         </h2>

@@ -83,13 +83,13 @@ export default function ScrollFill({
               </span>
             ))}{" "}
           </span>
+          {/* A kitöltő réteg szövege CSS-ből jön (data-w → ::before), így a címsor kinyert
+              szövegében (Google, AI) a mondat csak egyszer szerepel. */}
           <span aria-hidden="true" className={`absolute inset-0 ${l.fill}`}>
             {l.words.map(({ w, i: wi }, k) => (
               <span key={wi}>
                 {k > 0 && " "}
-                <span className="fill-line inline-block" style={{ "--i": wi }}>
-                  {w}
-                </span>
+                <span className="fill-line inline-block" style={{ "--i": wi }} data-w={w} />
               </span>
             ))}
           </span>

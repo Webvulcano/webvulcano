@@ -1,5 +1,6 @@
 export const site = {
-  brand: "Webvulcano",
+  // Egységes írásmód mindenhol (title, schema, OG, közösségi profilok): „WebVulcano”.
+  brand: "WebVulcano",
   // Kanonikus domain (www nélkül) — canonical, sitemap, OG, JSON-LD innen.
   url: "https://webvulcano.hu",
   owner: "Bognár Lehel",
@@ -17,7 +18,6 @@ export const site = {
     registry: "Nemzeti Adó- és Vámhivatal (egyéni vállalkozók nyilvántartása)",
     registryNo: "57400255",
     taxId: "59380074-1-28",
-    vat: "Alanyi adómentes – az árak ÁFA-t nem tartalmaznak, és nem is kerül felszámításra.",
   },
   // Tárhelyszolgáltató (impresszum, Ekertv. 4. § h)). Forrás: vercel.com/legal/privacy-notice (2026-06-01), „Contact Us”.
   host: {

@@ -194,15 +194,21 @@ export default function Process() {
                 >
                   <div className="overflow-hidden">
                   <p className="mt-5 max-w-[46ch] text-base text-ink/80 md:text-lg">{s.short}</p>
-                  {/* ideiglenesen kivéve:
+                  {/* Belső link a lépés aloldalára — enélkül a /folyamat/* oldalak a főoldalról
+                      árvák. Mobilon csukott állapotban nem fókuszálható (invisible); a visibility
+                      átmenete megvárja az összecsukás végét. A rejtett (sr-only) rész a lépés
+                      nevével egészíti ki a link szövegét, hogy ne öt egyforma „Részletek” legyen. */}
                   <Link
                     href={stepPath(s.slug)}
-                    className="mt-6 inline-flex items-center gap-2 text-base font-medium text-accent-ink underline decoration-accent-ink/30 underline-offset-[0.2em] transition hover:decoration-accent-ink"
+                    className={`mt-6 inline-flex items-center gap-2 text-base font-medium text-accent-ink underline decoration-accent-ink/30 underline-offset-[0.2em] transition-[visibility,text-decoration-color] duration-500 hover:decoration-accent-ink ${
+                      expanded ? "" : "max-lg:invisible"
+                    }`}
                   >
-                    Részletek
+                    <span>
+                      Részletek<span className="sr-only">: {s.title}</span>
+                    </span>
                     <Icon name="arrow" className="size-4" strokeWidth={2} />
                   </Link>
-                  */}
                   </div>
                 </div>
                 </div>

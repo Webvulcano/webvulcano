@@ -82,7 +82,10 @@ export const benefits = [
 
 // A folyamat lépései: data/steps.js (főoldal + /folyamat/[slug] aloldalak közös forrása).
 
-// ⚠️ Csomagnevek/tartalom: javaslat a positioning.md ársávjából (80–200e, tipikus 120e) — Lehel véglegesíti.
+// Csomagok — a főoldali Árak szekció és a /weboldal-keszites-arak oldal közös forrása (egy ár mindenhol).
+// Lehel döntése (2026-11-10): Üzleti = 180e, benne admin felület + analitikai oldal + 1 választható
+// modul + AI láthatóság beállítása. Átfutás: általában 5–10 munkanap.
+//   includes: tételes lista az árak-oldalon · delivery: átfutási idő · offer: számok a schema.org Offerhez
 export const pricing = [
   {
     label: "Egy oldal",
@@ -90,31 +93,60 @@ export const pricing = [
     text: "Egyetlen, fókuszált oldal egy világos céllal: hívás vagy üzenet.",
     forWhom: "Induló vállalkozásoknak, egy-egy szolgáltatásra",
     highlights: ["1 egyszerű, fókuszált oldal", "Hívás vagy üzenet gomb", "Mobilbarát"],
+    includes: ["1 egyszerű, fókuszált oldal", "Hívás vagy üzenet gomb", "Mobilbarát megjelenés"],
+    delivery: "Általában 5–10 munkanap",
+    offer: { minPrice: 120000 },
     price: "120e\u00a0Ft-tól",
   },
   {
     label: "Legjobb ár-érték",
     name: "Üzleti weboldal",
-    text: "Rád szabott, több szekciós oldal szövegírással, referenciákkal, űrlappal és csatolt analyticsszel.",
+    text: "Rád szabott, több szekciós oldal szövegírással, saját admin felülettel, analitikai oldallal, egy választható modullal és AI láthatóság beállításával.",
     forWhom: "A legtöbb helyi vállalkozásnak ez a jó választás",
-    price: "150e\u00a0Ft",
+    // Egy ár mindenhol: ugyanez a szám szerepel a GYIK-ben (lent) → a FAQ schema is abból készül.
+    price: "180e\u00a0Ft",
+    includes: [
+      "Több szekciós oldal referenciákkal és űrlappal",
+      "Saját admin felület: te is szerkesztheted a tartalmat",
+      "Analitikai oldal: látod, hányan jöttek, és hányan kerestek meg",
+      "1 választható modul (pl. időpontfoglaló, értékelésgyűjtő vagy árajánlatkérő)",
+      "AI láthatóság beállítása",
+    ],
+    delivery: "Általában 5–10 munkanap",
+    offer: { price: 180000 },
     featured: true,
   },
   {
     label: "Egyedi igények",
-    name: "Ultra Weboldal",
-    text: "Admin felület, egyedi automatizációk - vállalkozásodra szabva",
+    name: "Ultra weboldal",
+    text: "Több modul, chatbot, AI integráció és egyedi automatizációk – a vállalkozásodra szabva.",
     forWhom: "Ha több kell, mint egy bemutatkozó oldal",
     // rövid kiemelések a mobilos kompakt kártyán (Pricing.jsx), ahol a leírás rejtve van
-    highlights: ["Egyedi automatizációk", "Chatbot", "AI integráció", "Admin felület"],
+    highlights: ["Több modul", "Egyedi automatizációk", "Chatbot", "AI integráció"],
+    includes: [
+      "Minden, ami az Üzleti weboldalban benne van",
+      "Több admin modul",
+      "Chatbot és AI integráció",
+      "Egyedi automatizációk",
+    ],
+    delivery: "Az árajánlatban rögzítem",
+    offer: { maxPrice: 450000 },
     price: "450e\u00a0Ft-ig",
   },
 ];
 
+// Folyamatos költségek — a főoldali Árak sáv és az árak-oldal közös forrása.
+// A karbantartás nem kötelező; nélküle csak az üzemeltetési díj fizetendő. Az első 3 hónap mindkettőnél díjmentes.
+export const upkeep = {
+  maintenance: 15000, // Ft/hó — tárhellyel (üzemeltetéssel) együtt
+  hosting: 3000, // Ft/hó — karbantartás nélkül
+  freeMonths: 3,
+};
+
 export const faq = [
   {
     q: "Mennyibe kerül egy weboldal?",
-    a: "120 és 450\u00a0ezer\u00a0Ft között, a komplexitástól függően. A legtöbb helyi vállalkozásnak szóló oldal nagyjából 160\u00a0ezer\u00a0Ft. A díjmentes vázlat után pontos, fix árajánlatot kapsz. Alanyi adómentes vagyok, így ÁFA nem kerül rá.",
+    a: "120 és 450\u00a0ezer\u00a0Ft között, a komplexitástól függően. A legtöbb helyi vállalkozásnak szóló Üzleti weboldal 180\u00a0ezer\u00a0Ft, ebben az AI láthatóság beállítása is benne van. A díjmentes vázlat után pontos, fix árajánlatot kapsz. Alanyi adómentes vagyok, így ÁFA nem kerül rá.",
   },
   {
     q: "Tényleg díjmentes a vázlat? Mire kötelez?",
@@ -126,15 +158,15 @@ export const faq = [
   },
   {
     q: "Mennyi idő alatt készül el az oldal?",
-    a: "A mérettől függ, és attól, milyen gyorsan érkeznek az infók és a képek. A pontos ütemezést az árajánlatban leírom, hogy előre tudj tervezni.",
+    a: "Általában 5–10 munkanap. Ha az infók és a képek később érkeznek, az elkészülés ennyivel csúszik. A pontos ütemezést az árajánlatban leírom, hogy előre tudj tervezni.",
   },
   {
     q: "Mit tartalmaz a karbantartás?",
-    a: "Hosting, frissítések, kisebb módosítások (pl.\u00a0nyitvatartás, árak, képek cseréje), a Google Cégprofilod gondozása és egy havi rövid jelentés: hány látogatód volt, és hányan kerestek meg. Havi 15\u00a0ezer\u00a0Ft – az első 3\u00a0hónap díjmentes.",
+    a: "Hosting, frissítések, kisebb módosítások (pl.\u00a0nyitvatartás, árak, képek cseréje), a Google Cégprofilod gondozása és egy havi rövid jelentés: hány látogatód volt, és hányan kerestek meg. Havi 15\u00a0ezer\u00a0Ft – az első 3\u00a0hónap díjmentes. A karbantartás nem kötelező: nélküle az oldal üzemeltetése havi 3\u00a0ezer\u00a0Ft.",
   },
   {
     q: "Kell külön tárhelyet vennem?",
-    a: "Nem, a tárhellyel nem kell foglalkoznod: az oldal kiszolgálását én intézem. Ha még nincs domain neved (pl.\u00a0cegneved.hu), segítek beszerezni.",
+    a: "Nem, a tárhellyel nem kell foglalkoznod: az oldal kiszolgálását én intézem. Ha még nincs domain neved (pl.\u00a0cegneved.hu), te regisztrálod a saját nevedre – végig segítek, és ha kell, útmutatót is küldök.",
   },
   {
     q: "Megtalálnak majd a Google-ben?",

@@ -10,7 +10,7 @@ export default function OtherSteps({ current }) {
     <section id="tobbi-lepes" className="border-t border-paper/10 py-20 lg:py-28">
       <p className="text-sm font-medium tracking-eyebrow text-highlight uppercase">Így dolgozom</p>
       <h2 className="mt-6 type-h2 font-bold">
-        <span className="block">A folyamat</span>
+        <span className="block">A folyamat</span>{" "}
         <span className="block">többi lépése.</span>
       </h2>
 

@@ -5,10 +5,10 @@ import { site } from "@/data/site";
 
 // Záró CTA-kártya — főoldal (Folyamat után) és a folyamat-aloldalak alja.
 // Mobilon (md alatt) tömörebb: nincs alcím-leírás, kisebb gomb és padding.
-export default function CtaCard() {
+export default function CtaCard({ reveal = true }) {
   return (
     <div
-      data-reveal
+      data-reveal={reveal || undefined}
       className="noise relative overflow-hidden rounded-[28px] bg-night px-6 py-14 text-center text-paper ring-1 ring-paper/10 sm:px-12 lg:py-28"
     >
       <div

@@ -11,8 +11,8 @@ export default function Footer() {
     <footer className="border-t border-paper/10 bg-night text-paper">
       <div className="container-x grid gap-12 py-16 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr]">
         <div>
-          <Link href="/" className="flex items-center gap-3">
-            <Image src="/brand/logo.webp" alt="" width={44} height={44} className="size-11" />
+          <Link href="/" className="flex items-center gap-3" aria-label={`${site.brand} – kezdőlap`}>
+            <Image src="/brand/logo.webp" alt={`${site.brand} logó`} width={44} height={44} className="size-11" />
             <span className="text-base leading-none font-bold">
               Web
               <br />
@@ -35,6 +35,11 @@ export default function Footer() {
                 </Link>
               </li>
             ))}
+            <li>
+              <Link href="/weboldal-keszites-arak" className="transition hover:text-paper">
+                Weboldal készítés árak
+              </Link>
+            </li>
             <li>
               <Link href={site.ctaHref} className="transition hover:text-paper">
                 Kapcsolat
@@ -76,7 +81,7 @@ export default function Footer() {
       </div>
 
       <div className="container-x flex flex-col gap-3 border-t border-paper/10 py-6 text-sm text-paper/60 sm:flex-row sm:justify-between">
-        <p>© 2026 webvulcano · {site.owner}</p>
+        <p>© 2026 {site.brand} · {site.owner}</p>
         <div className="flex gap-6">
           <Link href={site.imprintUrl} className="hover:text-paper">
             Impresszum

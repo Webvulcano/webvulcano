@@ -22,7 +22,8 @@ export default function Pricing() {
                 <span data-reveal style={{ "--d": `${i * 70}ms` }} className="inline-block lg:block">
                   {w}
                 </span>
-                {i === 1 ? <br className="lg:hidden" /> : " "}
+                {/* a szóköz a sortörés előtt is kell, különben a kinyert szöveg összefolyik */}{" "}
+                {i === 1 && <br className="lg:hidden" />}
               </span>
             ))}
           </h2>
@@ -83,9 +84,10 @@ export default function Pricing() {
             className="col-span-2 flex flex-col gap-3 rounded-2xl bg-paper/[0.03] p-6 sm:flex-row sm:items-center sm:justify-between lg:px-10"
           >
             <p className="text-base text-paper/75">
-              <span className="font-bold text-paper">Karbantartás + hosting:</span>{" "}
+              <span className="font-bold text-paper">Karbantartás:</span>{" "}
               15&nbsp;000&nbsp;Ft/hó –{" "}
-              <span className="text-highlight">az első 3&nbsp;hónap díjmentes.</span>
+              <span className="text-highlight">az első 3&nbsp;hónap díjmentes.</span>{" "}
+              Karbantartás nélkül az üzemeltetés 3000&nbsp;Ft/hó.
             </p>
             <Link
               href={site.ctaHref}
@@ -95,7 +97,17 @@ export default function Pricing() {
             </Link>
           </div>
 
-          <p className="col-span-2 text-sm text-paper/50 lg:px-10">{site.legal.vat}</p>
+          <div className="col-span-2 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between lg:px-10">
+            <p className="text-sm text-paper/50">{site.legal.vat}</p>
+            {/* Belső link az árkalauzra (mit tartalmaznak a csomagok, fenntartás, piaci összehasonlítás). */}
+            <Link
+              href="/weboldal-keszites-arak"
+              className="inline-flex shrink-0 items-center gap-2 text-base font-medium text-paper underline decoration-paper/30 underline-offset-[0.2em] transition hover:decoration-paper"
+            >
+              Részletes árak és összehasonlítás
+              <Icon name="arrow" className="size-4" strokeWidth={2} />
+            </Link>
+          </div>
         </div>
       </div>
     </section>

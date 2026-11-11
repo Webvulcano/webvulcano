@@ -13,25 +13,30 @@ const demos = {
   review: dynamic(() => import("./ReviewDemo")),
 };
 
-// Kipróbálható demó az aloldalon + teljes képernyős overlay. A főoldalról ?demo=1-gyel érkezve
-// az overlay azonnal nyílik, és a demó magától indul (görgetés nélkül minden látszik). Nyitva
-// csak az overlay-példány él, hogy ne fusson két idővonal párhuzamosan.
+// Kipróbálható demó az aloldalon + teljes képernyős overlay. A főoldalról #demo hash-sel érkezve
+// (Projects.jsx) az overlay azonnal nyílik, és a demó magától indul (görgetés nélkül minden
+// látszik). A régi ?demo=1 linkek is működnek. Nyitva csak az overlay-példány él, hogy ne fusson
+// két idővonal párhuzamosan.
 export default function DemoFullscreen({ demo, title }) {
   const Demo = demos[demo];
   const [open, setOpen] = useState(false);
   const openButton = useRef(null);
   const dialog = useRef(null);
 
-  // ?demo=1 csak kliensen olvasható (statikus oldal) — hidratálás után nyit.
+  // A hash / ?demo=1 csak kliensen olvasható (statikus oldal) — hidratálás után nyit.
   useEffect(() => {
-    if (new URLSearchParams(window.location.search).get("demo") === "1")
+    if (
+      window.location.hash === "#demo" ||
+      new URLSearchParams(window.location.search).get("demo") === "1"
+    )
       setOpen(true); // eslint-disable-line react-hooks/set-state-in-effect
   }, []);
 
   const close = () => {
     setOpen(false);
     const url = new URL(window.location.href);
-    if (url.searchParams.has("demo")) {
+    if (url.hash === "#demo" || url.searchParams.has("demo")) {
+      url.hash = "";
       url.searchParams.delete("demo");
       window.history.replaceState(window.history.state, "", url);
     }

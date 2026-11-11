@@ -10,7 +10,7 @@ const lines = [
     A neten, <Accent>megbízhatónak</Accent>
   </span>,
   <>
-    és <Accent><span className="whitespace-nowrap">0-24ben</span> elérhetőnek</Accent>
+    és <Accent><span className="whitespace-nowrap">0–24-ben</span> elérhetőnek</Accent>
   </>,
   "kell lenned",
 ];
@@ -55,7 +55,7 @@ export default function Hero() {
               {lines.map((line, i) => (
                 <span key={i} className="-mr-[0.2em] block overflow-hidden pt-[0.04em] pr-[0.2em] pb-[0.08em]">
                   <span className="rise block" style={{ "--d": `${120 + i * 90}ms` }}>
-                    {line}
+                    {line}{" "}
                   </span>
                 </span>
               ))}

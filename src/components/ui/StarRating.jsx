@@ -66,7 +66,7 @@ export default function StarRating() {
           <p className="font-serif text-paper/85 italic">
             Üdvözlettel,
             <br />
-            {site.owner} – Webvulcano
+            {site.owner} – {site.brand}
           </p>
         </div>
       </div>

@@ -10,7 +10,8 @@ import { breadcrumbSchema, pageMeta } from "@/lib/seo";
 const path = "/munkaim/ertekeles";
 
 export const metadata = pageMeta({
-  title: "Automatikus Google-értékelés gyűjtő – Próbáld ki",
+  // ≤60 karakter a „ | WebVulcano” utótaggal együtt (55).
+  title: "Automatikus Google-értékelés gyűjtő – Demó",
   description:
     "Lezárt munka a naptárban → 1–2 nap múlva személyes email → új Google-értékelés. Magától, kézi munka nélkül. Próbáld ki a szimulációt.",
   path,
