@@ -12,6 +12,7 @@ import {
   payment,
   priceFactors,
   pricingAnswer,
+  pricingAnswerShort,
   pricingFaq,
   pricingMeta,
   pricingPath,
@@ -51,7 +52,7 @@ function Section({ id, title, intro, children }) {
   return (
     <section
       aria-labelledby={id}
-      className="grid gap-10 border-t border-paper/10 py-16 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-16 lg:py-24"
+      className="grid gap-6 border-t border-paper/10 py-12 md:gap-10 md:py-16 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-16 lg:py-24"
     >
       {/* a cím akkor kezd tapadni (görgetéssel együtt menni), amikor eléri a képernyő közepét */}
       <div className="lg:sticky lg:top-[calc(50svh-1.5rem)] lg:self-start">
@@ -59,7 +60,7 @@ function Section({ id, title, intro, children }) {
           {title}
         </h2>
         {intro && (
-          <p className="mt-5 max-w-[42ch] text-base text-paper/70">
+          <p className="mt-5 hidden max-w-[42ch] text-base text-paper/70 md:block">
             {intro}
           </p>
         )}
@@ -69,7 +70,7 @@ function Section({ id, title, intro, children }) {
   );
 }
 
-// Cím + leírás sorok (vonallal elválasztva).
+// Cím + leírás sorok (vonallal elválasztva). Mobilon csak a cím látszik (a leírás desktopon marad).
 function Rows({ items, numbered = false }) {
   const List = numbered ? "ol" : "ul";
   return (
@@ -78,16 +79,16 @@ function Rows({ items, numbered = false }) {
         <li
           key={item.title}
          
-          className="flex gap-5 border-b border-paper/10 py-6"
+          className="flex items-baseline gap-4 border-b border-paper/10 py-4 md:gap-5 md:py-6"
         >
           {numbered && (
-            <span aria-hidden="true" className="w-7 shrink-0 pt-1 text-sm font-medium text-paper/60 tabular-nums">
+            <span aria-hidden="true" className="w-7 shrink-0 text-sm font-medium text-paper/60 tabular-nums">
               {String(i + 1).padStart(2, "0")}
             </span>
           )}
           <div>
             <h3 className="type-h4 font-medium">{item.title}</h3>
-            <p className="mt-2 max-w-[58ch] text-base text-paper/70">{item.text}</p>
+            <p className="mt-2 hidden max-w-[58ch] text-base text-paper/70 md:block">{item.text}</p>
           </div>
         </li>
       ))}
@@ -95,19 +96,37 @@ function Rows({ items, numbered = false }) {
   );
 }
 
-// Valódi <table> (a keresők és az AI táblázatként olvassák); keskeny képernyőn vízszintesen görgethető.
-// highlight: a kiemelt oszlop indexe · wide: sokoszlopos tábla (nagyobb minimális szélesség).
-function DataTable({ caption, head, rows, highlight, wide = false }) {
+// Cella: sima szöveg, vagy { long, short } — a short mobilon látszik, a long md-től.
+function Cell({ value }) {
+  if (value && typeof value === "object") {
+    return (
+      <>
+        <span className="md:hidden">{value.short}</span>
+        <span className="hidden md:inline">{value.long}</span>
+      </>
+    );
+  }
+  return value;
+}
+const longOf = (v) => (v && typeof v === "object" ? v.long : v);
+
+// Valódi <table> (a keresők és az AI táblázatként olvassák). Mobilon oldalra lapozás nélkül fér ki:
+// rövid cellák ({ long, short }), és a hideRowsMobile / hideColsMobile sorok, oszlopok rejtve.
+// highlight: a kiemelt oszlop indexe · wide: sokoszlopos tábla (md-től nagyobb minimális szélesség).
+function DataTable({ caption, head, rows, highlight, wide = false, hideRowsMobile = [], hideColsMobile = [] }) {
   const hl = (i) => (i === highlight ? "bg-highlight/[0.07] font-medium text-paper" : "text-paper/75");
+  const col = (i) => (hideColsMobile.includes(i) ? "hidden md:table-cell" : "");
+  const pad = `px-2 py-3 md:p-4 ${wide ? "lg:p-5" : ""}`;
   return (
     <div
-     
       tabIndex={0}
       role="region"
       aria-label={caption}
       className="overflow-x-auto rounded-2xl border border-paper/10 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
     >
-      <table className={`w-full border-collapse text-left text-base ${wide ? "min-w-[720px]" : "min-w-[480px]"}`}>
+      <table
+        className={`w-full border-collapse text-left text-sm md:text-base ${wide ? "md:min-w-[720px]" : "md:min-w-[480px]"}`}
+      >
         <caption className="sr-only">{caption}</caption>
         <thead>
           <tr className="border-b border-paper/10 bg-paper/[0.04]">
@@ -119,11 +138,11 @@ function DataTable({ caption, head, rows, highlight, wide = false }) {
                 <th
                   key={i}
                   scope="col"
-                  className={`p-4 text-sm font-medium tracking-label uppercase ${wide ? "lg:p-5" : ""} ${
+                  className={`${pad} ${col(i)} text-xs font-medium md:text-sm md:tracking-label md:uppercase ${
                     i === highlight ? "bg-highlight/[0.07] text-highlight" : "text-paper/60"
                   }`}
                 >
-                  {h}
+                  <Cell value={h} />
                 </th>
               ),
             )}
@@ -131,13 +150,18 @@ function DataTable({ caption, head, rows, highlight, wide = false }) {
         </thead>
         <tbody>
           {rows.map(([label, ...cells]) => (
-            <tr key={label} className="border-b border-paper/10 last:border-b-0">
-              <th scope="row" className={`p-4 align-top font-medium text-paper ${wide ? "lg:p-5" : ""}`}>
-                {label}
+            <tr
+              key={longOf(label)}
+              className={`border-b border-paper/10 last:border-b-0 ${
+                hideRowsMobile.includes(longOf(label)) ? "hidden md:table-row" : ""
+              }`}
+            >
+              <th scope="row" className={`${pad} align-top font-medium text-paper`}>
+                <Cell value={label} />
               </th>
               {cells.map((c, i) => (
-                <td key={i} className={`p-4 align-top ${wide ? "lg:p-5" : ""} ${hl(i + 1)}`}>
-                  {c}
+                <td key={i} className={`${pad} ${col(i + 1)} align-top ${hl(i + 1)}`}>
+                  <Cell value={c} />
                 </td>
               ))}
             </tr>
@@ -154,8 +178,8 @@ export default function PricingPage() {
       <JsonLd data={schema} />
       <main className="bg-night text-paper">
         <div className="container-x">
-          <header className="pt-40 pb-16 lg:pt-48 lg:pb-24">
-            <nav aria-label="Morzsamenü" >
+          <header className="pt-32 pb-12 md:pt-40 md:pb-16 lg:pt-48 lg:pb-24">
+            <nav aria-label="Morzsamenü" className="hidden md:block">
               <ol className="flex flex-wrap items-center gap-2 text-sm font-medium tracking-label uppercase">
                 <li>
                   <Link href="/" className="text-paper transition hover:text-paper/75">
@@ -171,52 +195,44 @@ export default function PricingPage() {
               </ol>
             </nav>
 
-            <p className={`mt-10 ${eyebrow}`}>
+            <p className={`mt-10 hidden md:block ${eyebrow}`}>
               Csomagok és árak
             </p>
-            <h1 className="mt-4 max-w-[20ch] type-h1 font-bold">
+            <h1 className="max-w-[20ch] md:mt-4 type-h1 font-bold">
               Weboldal készítés árak 2026: <Accent>mennyibe kerül</Accent> egy weboldal?
             </h1>
-            <p
-              className="mt-6 max-w-[62ch] text-base text-paper/80 md:text-lg"
-             
-            >
-              {pricingAnswer}
-            </p>
+            <p className="mt-6 text-base text-paper/80 md:hidden">{pricingAnswerShort}</p>
+            <p className="mt-6 hidden max-w-[62ch] text-lg text-paper/80 md:block">{pricingAnswer}</p>
             <div
               className="mt-8 flex flex-col items-start gap-5 sm:flex-row sm:items-center sm:gap-8"
              
             >
               <Button href={site.ctaHref}>
-                Kérek díjmentes vázlatot
+                Mennyibe kerülne ez nekem?
                 <Icon name="arrow" className="size-4" strokeWidth={2} />
               </Button>
-              <p className="text-sm text-paper/60">
-                Frissítve: <time dateTime={pricingUpdated.iso}>{pricingUpdated.label}</time> · Írta:{" "}
-                {site.owner}, webfejlesztő
-              </p>
             </div>
           </header>
 
           {/* 1. Csomagok */}
-          <section aria-labelledby="csomagok" className="border-t border-paper/10 py-16 lg:py-24">
+          <section aria-labelledby="csomagok" className="border-t border-paper/10 py-12 md:py-16 lg:py-24">
             <h2 id="csomagok" className="max-w-[24ch] type-h2 font-bold">
               Mennyibe kerül egy weboldal? Három csomag, <Accent>fix áron</Accent>
             </h2>
-            <div className="mt-12 grid gap-5 lg:grid-cols-3">
+            <div className="mt-8 grid gap-5 md:mt-12 lg:grid-cols-3">
               {pricing.map((p, i) => (
                 <article
                   key={p.name}
                  
-                  className={`noise flex flex-col rounded-2xl bg-gradient-to-b from-night-2 to-night-3 p-7 lg:p-8 ${
+                  className={`noise flex flex-col rounded-2xl bg-gradient-to-b from-night-2 to-night-3 p-6 md:p-7 lg:p-8 ${
                     p.featured ? "ring-1 ring-highlight/40" : ""
                   }`}
                 >
                   <p className="text-sm font-medium tracking-label text-highlight uppercase">{p.label}</p>
                   <h3 className="mt-3 type-h3 font-medium">{p.name}</h3>
-                  <p className="mt-2 text-sm text-paper/60">{p.forWhom}</p>
-                  <p className="mt-6 type-stat font-bold whitespace-nowrap text-highlight">{p.price}</p>
-                  <ul className="mt-6 space-y-3 border-t border-paper/10 pt-6">
+                  <p className="mt-2 hidden text-sm text-paper/60 md:block">{p.forWhom}</p>
+                  <p className="mt-4 md:mt-6 type-stat font-bold whitespace-nowrap text-highlight">{p.price}</p>
+                  <ul className="mt-5 space-y-3 border-t border-paper/10 pt-5 md:mt-6 md:pt-6">
                     {p.includes.map((item) => (
                       <li key={item} className="flex items-start gap-3 text-base text-paper/80">
                         <Icon
@@ -228,7 +244,7 @@ export default function PricingPage() {
                       </li>
                     ))}
                   </ul>
-                  <p className="mt-auto pt-8 text-sm text-paper/60">
+                  <p className="mt-auto hidden pt-8 text-sm text-paper/60 md:block">
                     <span className="font-medium text-paper/85">Elkészül:</span> {p.delivery}
                   </p>
                 </article>
@@ -250,8 +266,8 @@ export default function PricingPage() {
             title="Mitől függ egy weboldal ára?"
           >
             <Rows items={priceFactors} numbered />
-            <p className="mt-8 max-w-[58ch] text-base text-paper/70">
-              A pontos árat a díjmentes vázlat után kapod meg.{" "}
+            <p className="mt-6 max-w-[58ch] text-base text-paper/70 md:mt-8">
+              <span className="hidden md:inline">A pontos árat a díjmentes vázlat után kapod meg. </span>
               <Link
                 href="/folyamat/arajanlat"
                 className="font-medium text-paper underline decoration-paper/30 underline-offset-[0.2em] transition hover:decoration-paper"
@@ -268,7 +284,7 @@ export default function PricingPage() {
             title="Mennyibe kerül egy weboldal fenntartása?"
           >
             <Rows items={running.items} />
-            <h3 className="mt-12 mb-5 type-h4 font-medium">
+            <h3 className="mt-8 mb-4 type-h4 font-medium md:mt-12 md:mb-5">
               {running.example.caption}
             </h3>
             <DataTable
@@ -276,6 +292,7 @@ export default function PricingPage() {
               head={running.example.head}
               rows={running.example.rows}
               highlight={1}
+              hideColsMobile={running.example.hideColsMobile}
             />
             <p className="mt-4 text-sm text-paper/50">
               {running.example.note}
@@ -285,8 +302,8 @@ export default function PricingPage() {
           {/* 5. AI láthatóság */}
           <Section id="ai-lathatosag" title="Mit jelent az AI láthatóság beállítása?" intro={aiVisibility.intro}>
             <Rows items={aiVisibility.items} />
-            <p className="mt-8 max-w-[58ch] text-base text-paper/70">
-              Kíváncsi vagy, hol tartasz most?{" "}
+            <p className="mt-6 max-w-[58ch] text-base text-paper/70 md:mt-8">
+              <span className="hidden md:inline">Kíváncsi vagy, hol tartasz most? </span>
               <Link
                 href="/#AI"
                 className="font-medium text-paper underline decoration-paper/30 underline-offset-[0.2em] transition hover:decoration-paper"
@@ -298,27 +315,21 @@ export default function PricingPage() {
           </Section>
 
           {/* 6. Piaci összehasonlítás — teljes szélességben, mert a táblázatnak hely kell */}
-          <section aria-labelledby="osszehasonlitas" className="border-t border-paper/10 py-16 lg:py-24">
+          <section aria-labelledby="osszehasonlitas" className="border-t border-paper/10 py-12 md:py-16 lg:py-24">
             <h2 id="osszehasonlitas" className="max-w-[26ch] type-h2 font-bold">
               Weboldal készítés árak a piacon: <Accent>mit kapsz</Accent> a pénzedért?
             </h2>
-            <div className="mt-10">
+            <div className="mt-8 md:mt-10">
               <DataTable
                 caption="Weboldal készítés árak összehasonlítása: WebVulcano, WordPress-csomag és ügynökség"
                 head={market.head}
                 rows={market.rows}
                 highlight={1}
                 wide
+                hideRowsMobile={market.hideRowsMobile}
               />
             </div>
-            {/* a lapozási tipp csak ott látszik, ahol a tábla nem fér ki (md alatt) */}
-            <p className="mt-3 flex items-center gap-2 text-sm text-paper/60 md:hidden">
-              Húzd oldalra a többi oszlopért
-              <Icon name="arrow" className="size-4 shrink-0" strokeWidth={2} />
-            </p>
-            <p className="mt-4 max-w-[80ch] text-sm text-paper/50">
-              {market.note}
-            </p>
+            {market.note && <p className="mt-4 hidden max-w-[80ch] text-sm text-paper/50 md:block">{market.note}</p>}
           </section>
 
           {/* 7. Fizetés */}
@@ -335,8 +346,7 @@ export default function PricingPage() {
               {pricingFaq.map((item, i) => (
                 <div
                   key={item.q}
-                 
-                  className="border-b border-paper/10 py-6"
+                  className={`border-b border-paper/10 py-5 md:py-6 ${item.mobile ? "" : "hidden md:block"}`}
                 >
                   <h3 className="type-h4 font-medium">{item.q}</h3>
                   <p className="mt-2 max-w-[62ch] text-base text-paper/70">{item.a}</p>
@@ -346,7 +356,7 @@ export default function PricingPage() {
           </Section>
         </div>
 
-        <div className="container-x pb-24 lg:pb-32">
+        <div className="container-x pb-16 md:pb-24 lg:pb-32">
           <CtaCard reveal={false} />
         </div>
       </main>

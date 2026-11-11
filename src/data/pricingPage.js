@@ -20,6 +20,9 @@ export const pricingMeta = {
 // Válasz-először bekezdés: ezt emeli ki a kereső és az AI, ezért minden szám benne van.
 export const pricingAnswer = `Nálam egy weboldal 120 és 450${NB}ezer${NB}Ft között van. Egy egyoldalas landing 120${NB}ezer${NB}Ft-tól indul, a legtöbb helyi vállalkozásnak való Üzleti weboldal 180${NB}ezer${NB}Ft, az egyedi funkciós oldal 450${NB}ezer${NB}Ft-ig megy. Az ár fix: a díjmentes vázlat után pontos árajánlatot kapsz, és annyit fizetsz, amennyi abban áll. Alanyi adómentes vagyok, ÁFA nem kerül rá.`;
 
+// Mobilon a hosszú válasz helyett ez látszik (a hosszú desktopon marad, a SEO miatt).
+export const pricingAnswerShort = `120–450${NB}ezer${NB}Ft, fix áron. A legtöbbeknek 180${NB}ezer${NB}Ft.`;
+
 export const everyPackage = [
   { title: "Megírt szöveg", text: "Nem neked kell kitalálnod, mit írj magadról." },
   { title: "Egyedi design", text: "A te vállalkozásodra szabva, nem sablonból." },
@@ -76,6 +79,7 @@ export const running = {
     caption: `Mennyibe kerül egy Üzleti weboldal 3${NB}év alatt?`,
     // A végösszeg az első adatoszlop: keskeny képernyőn ez látszik görgetés nélkül.
     head: ["", `3${NB}évre összesen`, "Havonta", "Számítás"],
+    hideColsMobile: [3], // a „Számítás” oszlop mobilon nem fér ki
     rows: [
       [
         "Karbantartással",
@@ -118,26 +122,34 @@ export const aiVisibility = {
 // Piaci összehasonlítás — név nélkül, kategóriánként. Források (nyilvános árlisták, 2026-11-10):
 // lásd projektek/webvulcano/szoveg-tervezet-arak.md → „Piaci adatok forrása”. Ha frissíted, a dátumot is.
 export const market = {
-  // A WebVulcano oszlop az első adatoszlop: keskeny képernyőn ez látszik görgetés nélkül.
-  head: ["", "WebVulcano – Üzleti weboldal", "WordPress-csomag", "Ügynökség"],
+  // A WebVulcano oszlop az első adatoszlop. Cella lehet { long, short }: a short a mobilos (rövid) változat,
+  // hogy a tábla oldalra lapozás nélkül kiférjen.
+  head: [
+    "",
+    { long: "WebVulcano – Üzleti weboldal", short: "WebVulcano" },
+    { long: "WordPress-csomag", short: "WordPress" },
+    "Ügynökség",
+  ],
+  // mobilon rejtett sorok (nem különböztetnek meg)
+  hideRowsMobile: ["Admin felület", "Látogatottság mérése"],
   rows: [
     [
-      "Elkészítés ára",
-      `180${NB}ezer${NB}Ft, ÁFA nélkül`,
-      `119–199${NB}ezer${NB}Ft-tól`,
-      `245${NB}ezer${NB}Ft + ÁFA-tól, jellemzően 400–900${NB}ezer${NB}Ft + ÁFA`,
+      { long: "Elkészítés ára", short: "Ár" },
+      { long: `180${NB}ezer${NB}Ft, ÁFA nélkül`, short: `180e${NB}Ft` },
+      { long: `119–199${NB}ezer${NB}Ft-tól`, short: `119–199e${NB}Ft` },
+      { long: `245${NB}ezer${NB}Ft + ÁFA-tól, jellemzően 400–900${NB}ezer${NB}Ft + ÁFA`, short: `400–900e${NB}Ft` },
     ],
     [
-      "Elkészülés",
-      "Általában 5–10 munkanap",
-      "Csomagtól függ",
-      "2–6 hét",
+      { long: "Elkészülés", short: "Idő" },
+      { long: "Általában 5–10 munkanap", short: `5–10${NB}nap` },
+      { long: "Csomagtól függ", short: "változó" },
+      { long: "2–6 hét", short: `2–6${NB}hét` },
     ],
     [
       "Szövegírás",
-      "Benne van",
-      "Nem szerepel a csomagban",
-      "Külön díjért vagy részben",
+      { long: "Benne van", short: "✓" },
+      { long: "Nem szerepel a csomagban", short: "✗" },
+      { long: "Külön díjért vagy részben", short: "külön díj" },
     ],
     [
       "Admin felület",
@@ -152,22 +164,25 @@ export const market = {
       "Mérés beállítva",
     ],
     [
-      "Vállalkozásra szabott modul",
-      "1 választható modul benne van",
-      "Külön díjért",
-      `Egyedi funkcióval 900${NB}ezer${NB}Ft + ÁFA-tól`,
+      { long: "Vállalkozásra szabott modul", short: "Egyedi modul" },
+      { long: "1 választható modul benne van", short: "✓" },
+      { long: "Külön díjért", short: "külön díj" },
+      { long: `Egyedi funkcióval 900${NB}ezer${NB}Ft + ÁFA-tól`, short: `900e${NB}Ft-tól` },
     ],
     [
-      "Google Cégprofil, Search Console, Bing beállítása",
-      "Benne van (AI láthatóság beállítása)",
-      "Külön díjért",
-      "Nem szerepel az árlistákon",
+      { long: "Google Cégprofil, Search Console, Bing beállítása", short: "AI láthatóság" },
+      { long: "Benne van (AI láthatóság beállítása)", short: "✓" },
+      { long: "Külön díjért", short: "külön díj" },
+      { long: "Nem szerepel az árlistákon", short: "✗" },
     ],
     [
-      "Havi költség",
-      `${ft(upkeep.hosting)}/hó üzemeltetés, vagy ${ft(upkeep.maintenance)}/hó karbantartással`,
-      "Tárhely és domain külön",
-      `Tárhely évi 12–30${NB}ezer${NB}Ft + ÁFA, karbantartás külön`,
+      { long: "Havi költség", short: "Havi díj" },
+      {
+        long: `${ft(upkeep.hosting)}/hó üzemeltetés, vagy ${ft(upkeep.maintenance)}/hó karbantartással`,
+        short: `${upkeep.hosting / 1000}–${upkeep.maintenance / 1000}e${NB}Ft`,
+      },
+      { long: "Tárhely és domain külön", short: "külön" },
+      { long: `Tárhely évi 12–30${NB}ezer${NB}Ft + ÁFA, karbantartás külön`, short: "külön" },
     ],
   ],
 };
@@ -191,7 +206,7 @@ export const payment = [
   },
 ];
 
-// Csak ár-kérdések — a főoldali GYIK-et nem ismétli. Ebből készül az oldal FAQ schemája is.
+// Csak ár-kérdések — a főoldali GYIK-et nem ismétli. `mobile: true` = mobilon is látszik. Ebből készül az oldal FAQ schemája is.
 export const pricingFaq = [
   {
     q: "Van rejtett költség a weboldal készítés árában?",
@@ -215,15 +230,18 @@ export const pricingFaq = [
   },
   {
     q: "Mi van, ha később bővíteni szeretném az oldalt?",
+    mobile: true, // mobilon csak ezek látszanak (a többit az oldal már elmondja)
     a: "A kisebb módosítások benne vannak a karbantartásban. Nagyobb bővítésre – új aloldal, új modul – külön, szintén fix ajánlatot adok.",
   },
   {
     q: "Miért olcsóbb, mint egy ügynökség?",
+    mobile: true, // mobilon csak ezek látszanak (a többit az oldal már elmondja)
     a: "Mert egyedül dolgozom: nincs projektmenedzser és iroda, amit neked kellene kifizetned. Közvetlenül azzal beszélsz, aki az oldaladat készíti.",
   },
   {
     // Lehel szövege (2026-11-10), nyelvileg csiszolva. A „60+ óra” az ő becslése.
     q: "Miért ne csináljam meg magam AI-val, teljesen ingyen?",
+    mobile: true, // mobilon csak ezek látszanak (a többit az oldal már elmondja)
     a: "Azt is lehet, 1–2 nap alatt össze is tudod rakni. A gond az, hogy attól, hogy elkészült, még senki nem talál rá: megjelenik majd egyáltalán a Google-keresésekben? Látni fogod hányan érkeznek az oldaladra, és mire kattintanak? Ha nincs 60+ órád egy olyan weboldalra, ami konkrét statisztikákat is mutat, érdemes kiszervezni. Mutatok egy demo-t ahol megnézheted pontosan mit kapsz ha megrendeled a weboldal készítést.",
   },
 ];
