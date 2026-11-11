@@ -1,7 +1,7 @@
 // A /weboldal-keszites-arak oldal szövegei. Az árak NEM itt vannak: a csomagok a content.js `pricing`
 // tömbjéből, a havidíjak az `upkeep` objektumból jönnek (egy ár mindenhol).
 // Vázlat + döntések: projektek/webvulcano/szoveg-tervezet-arak.md
-import { pricing, upkeep } from "@/data/content";
+import { upkeep } from "@/data/content";
 
 const NB = " ";
 const ft = (n) => `${n.toLocaleString("hu-HU").replace(/\s/g, NB)}${NB}Ft`;
@@ -53,13 +53,7 @@ export const priceFactors = [
   },
 ];
 
-// Folyamatos költségek. A 3 éves példa: 36 hónapból az első 3 díjmentes → 33 fizetős hónap.
-const paidMonths = 36 - upkeep.freeMonths;
-// Az Üzleti (kiemelt) csomag ára a content.js-ből — nem itt van beírva.
-const build = pricing.find((p) => p.featured).offer.price;
-const withMaintenance = build + paidMonths * upkeep.maintenance;
-const hostingOnly = build + paidMonths * upkeep.hosting;
-
+// Folyamatos költségek.
 export const running = {
   items: [
     {
@@ -75,27 +69,6 @@ export const running = {
       text: "Egy .hu domain ára a regisztrátortól függ. A domaint te regisztrálod a saját nevedre – végig segítek, és ha kell, útmutatót is küldök.",
     },
   ],
-  example: {
-    caption: `Mennyibe kerül egy Üzleti weboldal 3${NB}év alatt?`,
-    // A végösszeg az első adatoszlop: keskeny képernyőn ez látszik görgetés nélkül.
-    head: ["", `3${NB}évre összesen`, "Havonta", "Számítás"],
-    hideColsMobile: [3], // a „Számítás” oszlop mobilon nem fér ki
-    rows: [
-      [
-        "Karbantartással",
-        ft(withMaintenance),
-        ft(Math.round(withMaintenance / 36)),
-        `${ft(build)} + ${paidMonths}${NB}×${NB}${ft(upkeep.maintenance)}`,
-      ],
-      [
-        "Karbantartás nélkül",
-        ft(hostingOnly),
-        ft(Math.round(hostingOnly / 36)),
-        `${ft(build)} + ${paidMonths}${NB}×${NB}${ft(upkeep.hosting)}`,
-      ],
-    ],
-    note: `A 36 hónapból az első ${upkeep.freeMonths} díjmentes. A domain díja ezen felül értendő.`,
-  },
 };
 
 export const aiVisibility = {

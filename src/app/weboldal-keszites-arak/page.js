@@ -284,19 +284,6 @@ export default function PricingPage() {
             title="Mennyibe kerül egy weboldal fenntartása?"
           >
             <Rows items={running.items} />
-            <h3 className="mt-8 mb-4 type-h4 font-medium md:mt-12 md:mb-5">
-              {running.example.caption}
-            </h3>
-            <DataTable
-              caption={running.example.caption}
-              head={running.example.head}
-              rows={running.example.rows}
-              highlight={1}
-              hideColsMobile={running.example.hideColsMobile}
-            />
-            <p className="mt-4 text-sm text-paper/50">
-              {running.example.note}
-            </p>
           </Section>
 
           {/* 5. AI láthatóság */}
